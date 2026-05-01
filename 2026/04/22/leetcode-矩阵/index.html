@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+
+
+  <html lang="en">
+    
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>leetcode-矩阵 |  计算机学习</title>
+  <meta name="generator" content="hexo-theme-ayeria">
+      
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      
+      <link rel="preconnect" href="https://fonts.font.im" crossorigin />
+      <link rel="preconnect" href="https://fonts.gstatic.font.im" crossorigin />
+      <link rel="stylesheet" href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400&display=swap" />
+      
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+
+      
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      
+
+      <!-- mermaid -->
+      
+      
+      <!-- 随机句子功能 -->
+      
+      <script src="/js/random-sentences.js"></script>
+      
+    <link rel="alternate" href="/atom.xml" title="计算机学习" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body class="darkmode">
+  <div id="app">
+    
+    
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-leetcode-矩阵"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  leetcode-矩阵
+</h1>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/22/leetcode-%E7%9F%A9%E9%98%B5/" class="article-date">
+  <time datetime="2026-04-22T00:35:58.000Z" itemprop="datePublished">2026-04-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+      
+        
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">5 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+      
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="73-矩阵置零">73—矩阵置零</h4>
+<p>给定一个 <code>*m* x *n*</code> 的矩阵，如果一个元素为 <strong>0</strong> ，则将其所在行和列的所有元素都设为 <strong>0</strong> 。请使用 <strong><a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E5%8E%9F%E5%9C%B0%E7%AE%97%E6%B3%95">原地</a></strong> 算法**。**</p>
+<p>一个直观的解决方案是使用  <code>O(*m**n*)</code> 的额外空间，但这并不是一个好的解决方案。</p>
+<p>一个简单的改进方案是使用 <code>O(*m* + *n*)</code> 的额外空间，但这仍然不是最好的解决方案。</p>
+<p>你能想出一个仅使用常量空间的解决方案吗?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//关于二阶矩阵获取矩阵长和宽</span></span><br><span class="line"><span class="type">int</span> [][] matrix;</span><br><span class="line"><span class="type">int</span> rows=(matrix==<span class="literal">null</span>)?<span class="number">0</span>:matrix.length;</span><br><span class="line"><span class="type">int</span> cols=matrix[<span class="number">0</span>].length;<span class="comment">//对于规则的矩阵直接获取长度</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//不规则矩阵获取最大列宽</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span>[] row : matrix) &#123;</span><br><span class="line">    <span class="keyword">if</span> (row != <span class="literal">null</span>) &#123;</span><br><span class="line">        maxCols = Math.max(maxCols, row.length);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里使用了两个bollean数组，巧妙的避开了在原数组上在循环过程中修改值导致其他值变化的连锁反应，也就是说，如果我们不希望在循环的过程中修改值导致一些列的连锁反应的时候，我们可以去构造额外的空间去记载或者过渡这些需要修改的值，然后再次遍历的时候进行修改！<strong>空间换时间 → 用 O(m+n) 的额外空间换取清晰的逻辑和正确的置零顺序，避免了 O(m×n) 的复制或复杂的原地标记。</strong></p>
+<p>时间复杂度：O(nm)、空间复杂度O(m+n)；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setZeroes</span><span class="params">(<span class="type">int</span>[][] matrix)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> matrix.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="type">boolean</span>[] rowHasZero = <span class="keyword">new</span> <span class="title class_">boolean</span>[m]; <span class="comment">// 行是否包含 0</span></span><br><span class="line">        <span class="type">boolean</span>[] colHasZero = <span class="keyword">new</span> <span class="title class_">boolean</span>[n]; <span class="comment">// 列是否包含 0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                    rowHasZero[i] = colHasZero[j] = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (rowHasZero[i] || colHasZero[j]) &#123; <span class="comment">// i 行或 j 列有 0</span></span><br><span class="line">                    matrix[i][j] = <span class="number">0</span>; <span class="comment">// 题目要求原地修改，无返回值</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这题可以优化成O(1)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setZeroes</span><span class="params">(<span class="type">int</span>[][] matrix)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> matrix.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> matrix[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">firstRowHasZero</span> <span class="operator">=</span> <span class="literal">false</span>; </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (matrix[<span class="number">0</span>][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                firstRowHasZero = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; n; j++) &#123; <span class="comment">// 如果第一列包含 0，那么 matrix[0][0] 会置为 0</span></span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                    matrix[i][<span class="number">0</span>] = matrix[<span class="number">0</span>][j] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][<span class="number">0</span>] == <span class="number">0</span> || matrix[<span class="number">0</span>][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                    matrix[i][j] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 注意顺序，先改第一列，再改第一行（避免把 matrix[0][0] 从 1 改成 0 影响判断）</span></span><br><span class="line">        <span class="keyword">if</span> (matrix[<span class="number">0</span>][<span class="number">0</span>] == <span class="number">0</span>) &#123; <span class="comment">// 替换原来的 firstColHasZero</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span>[] row : matrix) &#123;</span><br><span class="line">                row[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (firstRowHasZero) &#123;</span><br><span class="line">            Arrays.fill(matrix[<span class="number">0</span>], <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="54-螺旋矩阵">54—螺旋矩阵</h4>
+<p>给你一个 <code>m</code> 行 <code>n</code> 列的矩阵 <code>matrix</code> ，请按照 <strong>顺时针螺旋顺序</strong> ，返回矩阵中的所有元素。</p>
+<p>思路解析：</p>
+<p>我们在矩阵数组中进行螺旋遍历的时候，有两个问题需要解决，一个是要知道自己什么时候要转向，另一个是怎么指定一套四个位置的转向方法。</p>
+<p>对于已经访问过的数字，可将其标记为 ∞ 或者空，从而避免重复访问。用一个长为 4 的方向数组 DIRS=[(0,1),(1,0),(0,−1),(−1,0)] 分别表示右下左上 4 个方向。同时用一个下标 di 表示当前方向，初始值为 0，表示一开始向右。每次移动，相当于把行号增加 DIRS[di][0]，把列号增加 DIRS[di][1]。<br>
+向右转 90 ∘相当于把 di 增加 1，但在 di=3 时要回到 di=0。两种情况合二为一，把 di 更新为 (di+1)mod4。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span>[][] DIRS = &#123;&#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">0</span>&#125;&#125;; <span class="comment">// 右下左上</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">spiralOrder</span><span class="params">(<span class="type">int</span>[][] matrix)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> matrix.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> matrix[<span class="number">0</span>].length;</span><br><span class="line">        List&lt;Integer&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(m * n); <span class="comment">// 预分配空间</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">di</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>; k &lt; m * n; k++) &#123; <span class="comment">// 一共走 mn 步</span></span><br><span class="line">            ans.add(matrix[i][j]);</span><br><span class="line">            matrix[i][j] = Integer.MAX_VALUE; <span class="comment">// 标记，表示已经访问过（已经加入答案）</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> i + DIRS[di][<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> j + DIRS[di][<span class="number">1</span>]; <span class="comment">// 下一步的位置</span></span><br><span class="line">            <span class="comment">// 如果 (x, y) 出界或者已经访问过</span></span><br><span class="line">            <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt;= m || y &lt; <span class="number">0</span> || y &gt;= n || matrix[x][y] == Integer.MAX_VALUE) &#123;</span><br><span class="line">                di = (di + <span class="number">1</span>) % <span class="number">4</span>; <span class="comment">// 右转 90°</span></span><br><span class="line">            &#125;</span><br><span class="line">            i += DIRS[di][<span class="number">0</span>];</span><br><span class="line">            j += DIRS[di][<span class="number">1</span>]; <span class="comment">// 走一步</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+        
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2026/04/22/leetcode-%E7%9F%A9%E9%98%B5/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2026/04/24/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            自我介绍
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2026/04/21/leetcode-%E6%8A%80%E5%B7%A7/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">leetcode-技巧</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+    
+<div class="giscus-container" style="margin-top: 2rem; padding: 0 1rem;">
+  <script
+    src="https://giscus.app/client.js"
+    data-repo="1JHT1/1JHT1.github.io"
+    data-repo-id="R_kgDOSDBesg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOSDBess4C64Wo"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="dark"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async
+  ></script>
+  <script>
+    /* giscus 通过 async 加载，iframe 可能在 ayeria.js 初始化之后才就绪。
+       站点默认暗色模式所以 data-theme="dark" 覆盖多数情况，
+       但若用户之前选择了亮色模式（sessionStorage darkmode==0），
+       需要在 iframe 就绪后修正主题。 */
+    if (sessionStorage.getItem("darkmode") == 0) {
+      window.addEventListener("message", function _giscusThemeFix(e) {
+        if (e.origin !== "https://giscus.app") return;
+        if (!(typeof e.data === "object" && e.data.giscus)) return;
+        var f = document.querySelector("iframe.giscus-frame");
+        if (f) {
+          f.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: "light" } } },
+            "https://giscus.app"
+          );
+        }
+        window.removeEventListener("message", _giscusThemeFix);
+      });
+    }
+  </script>
+</div>
+
+
+  
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2026
+        <i class="ri-heart-fill heart_icon"></i> 蒋洪涛
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+    <!-- 随机句子模块 -->
+    
+    <ul>
+      <li>
+        <div id="random-sentence" class="random-sentence" 
+             data-random-sentences-config='{"use_local_file": false}'></div>
+      </li>
+    </ul>
+    
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="float-btn totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="float-btn todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="float-btn navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.svg" alt="计算机学习"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">全部文章</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">文章分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">全部标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友情链接</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于本站</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+
+
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<!-- Tocbot -->
+
+  
+<script src="/js/tocbot.min.js"></script>
+
+  <script>
+    tocbot.init({
+      tocSelector: ".tocbot",
+      contentSelector: ".article-entry",
+      headingSelector: "h1, h2, h3, h4, h5, h6",
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      scrollContainer: "main",
+      positionFixedSelector: ".tocbot",
+      positionFixedClass: "is-position-fixed",
+      fixedSidebarOffset: "auto",
+    });
+  </script>
+
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css" />
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/dist/main.js"></script>
+
+
+<!-- ImageViewer -->
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<!-- MathJax -->
+
+
+<!-- Katex -->
+
+  
+    
+        <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.css">
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.js"></script>
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/contrib/auto-render.min.js"></script>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            });
+        </script>
+    
+
+
+
+<!-- busuanzi -->
+
+
+<!-- ClickLove -->
+
+
+<!-- ClickBoom1 -->
+
+
+<!-- ClickBoom2 -->
+
+
+<!-- CodeCopy -->
+
+  
+<link rel="stylesheet" href="/css/clipboard.css">
+
+  <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+<!-- CanvasBackground -->
+
+  
+<script src="/js/dz.js"></script>
+
+
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

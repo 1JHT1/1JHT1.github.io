@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+
+
+  <html lang="en">
+    
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> 计算机学习</title>
+  <meta name="generator" content="hexo-theme-ayeria">
+      
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      
+      <link rel="preconnect" href="https://fonts.font.im" crossorigin />
+      <link rel="preconnect" href="https://fonts.gstatic.font.im" crossorigin />
+      <link rel="stylesheet" href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400&display=swap" />
+      
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+
+      
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      
+
+      <!-- mermaid -->
+      
+      
+      <!-- 随机句子功能 -->
+      
+      <script src="/js/random-sentences.js"></script>
+      
+    <link rel="alternate" href="/atom.xml" title="计算机学习" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body class="darkmode">
+  <div id="app">
+    
+    
+    <main class="content on">
+      
+<section class="cover">
+  
+    <a class="forkMe" href="https://github.com/1JHT1/1JHT1.github.io" target="_blank">
+      <img width="149" height="149" src="/images/forkme.png"
+        class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1">
+    </a>
+  
+
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/background.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <a href="/"><h1>计算机学习</h1></a>
+      <div id="subtitle-box">
+        
+          <span id="subtitle">一个数学研究生自学计算机的Blog</span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+
+<div id="main">
+  <section class="outer">
+  
+  <ul class="ads">
+    
+        <li>
+            <a href="">
+                <img src="" width="" alt="">
+            </a>
+        </li>
+    
+</ul>
+  
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-操作系统"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
+    >操作系统</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time datetime="2026-04-16T11:55:36.000Z" itemprop="datePublished">2026-04-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+  </div>
+
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="1-进程线程协程">1.进程线程协程</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">进程—&gt;操作系统进行资源分配的基本单位，每个进程拥有独立的内存空间和系统资源</span><br><span class="line">线程-&gt;CPU调度的最小单位，是进程内的执行单元，共享进程的内存和资源，但拥有独立的栈和寄存器</span><br><span class="line">协程-&gt;用户态的轻量级线程，由程序控制切换，无需操作系统调度。</span><br><span class="line"></span><br><span class="line">############一些区别和特性：</span><br><span class="line">	进程间相互隔离，一个进程崩溃不会影响其他进程，进程切换开销大</span><br><span class="line">	线程间通信方便（直接读写共享内存），同一个进程内的某个线程崩溃可能导致整个进程崩溃，线程切换开销比进程小。</span><br><span class="line">	</span><br><span class="line">1.1-进程间的通信方式（IPC）？</span><br><span class="line">	管道-&gt;简单、单向、亲缘进程</span><br><span class="line">	消息队列-&gt;无亲缘、小块数据、可靠</span><br><span class="line">	共享内存-&gt;多个进程映射同一块物理内存，直接读写，最快的IPC方式（无数据拷贝）</span><br><span class="line">	信号量-&gt;大数据、高性能</span><br><span class="line">	信号-&gt;用于事件通知</span><br><span class="line">	套接字-&gt;可用于不同主机（网络）之间的进程通信Socket</span><br><span class="line">	</span><br><span class="line">1.2-线程间的通信方式?</span><br><span class="line">	共享内存、条件变量、信号量、互斥锁</span><br></pre></td></tr></table></figure>
+<h4 id="2-内存管理">2.内存管理</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2.1</span>-内存管理的目标？</span><br><span class="line">	为每个进程提供独立的虚拟地址空间、防止进程之间相互干扰、允许进程安全地共享部分内存、让有限的物理内存可以运行超过其容量的程序（借助交换和请求分页）</span><br><span class="line">	</span><br><span class="line"><span class="number">2.2</span>-什么是虚拟内存，它和物理内存的关系？</span><br><span class="line">	（CPU产生的地址）虚拟内存是每个进程看到的、从 <span class="number">0</span> 开始的连续线性地址空间；物理内存是硬件实际的 DRAM 地址。两者通过 内存管理单元（MMU）和页表 进行映射。</span><br><span class="line"></span><br><span class="line"><span class="number">2.3</span>-什么是缺页中断？   </span><br></pre></td></tr></table></figure>
+<h4 id="3-死锁">3.死锁</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3.1</span>-产生死锁的四个必要条件？</span><br><span class="line">	<span class="number">1.</span>互斥--资源一次只能被一个进程（或线程）占用</span><br><span class="line">	<span class="number">2.</span>持有并等待--进程至少持有一个资源，同时还在等待其他进程占用的资源</span><br><span class="line">	<span class="number">3.</span>不可剥夺--已分配的进程资源不能被强制剥夺，只能由持有者主动释放</span><br><span class="line">	<span class="number">4.</span>循环等待--进程间形成循环等待环</span><br><span class="line">	</span><br><span class="line"><span class="number">3.2</span>-预防死锁？</span><br><span class="line">	破坏互斥条件-&gt;将独占资源改成共享资源（但不是全部能改）</span><br><span class="line">	破坏持有并等待条件-&gt;进程开始执行前一次性申请所有需要的资源，要么全部获得，要么全部不分配（资源利用低，可能饥饿）</span><br><span class="line">	破坏不可剥夺条件-&gt;进程申请资源失败，释放已占用的资源（实现复杂）</span><br><span class="line">	破坏循环等待条件-&gt;有序资源分配，对资源类型编号，进程必须按编号递增顺序申请资源（常用，锁排序）</span><br><span class="line">	</span><br><span class="line"><span class="number">3.3</span>-避免死锁？</span><br><span class="line">	银行家算法：在分配给进程资源前，首先判断这个进程的安全性，也就是预执行，判断分配后是否产生死锁现象。如果系统当前资源能满足其执行，则尝试分配，如果不满足则让该进程等待。通过不断检查剩余可用资源是否满足某个进程的最大需求，如果可以则加入安全序列，并把该进程当前持有的资源回收；不断重复这个过程，看最后能否实现让所有进程都加入安全序列。</span><br><span class="line">	</span><br><span class="line">	【安全状态一定不会发生死锁，但不安全状态也不一定会发生死锁——不安全状态只是存在发生死锁的可能，并不必然死锁。】</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">3.4</span>-检测死锁和解除死锁？</span><br><span class="line">	检测死锁-&gt;资源分配图、等待图、银行家算法</span><br><span class="line">	解除死锁-&gt;终止进程、回滚到之前的某个安全状态、强行进行资源抢占，重新分配</span><br><span class="line"></span><br><span class="line"><span class="number">3.5</span>-IO多路复用select\poll\epoll</span><br><span class="line">    IO多路复用:允许【单个进程或线程】同时监听多个文件描述符（FD）,并在某个描述符可读、可写或出现异常时得到通知，避免无效等待，充分利用CPU资源。</span><br><span class="line">    监听和通知的方式-&gt;select\poll\epoll</span><br><span class="line">（<span class="number">1</span>）select模式</span><br><span class="line">        描述符集合用【位掩码】，每次调用需拷贝到内核，最大描述符数<span class="number">1024</span>\遍历性能O(n)</span><br><span class="line">（<span class="number">2</span>）poll模式</span><br><span class="line">		【使用pollfd数组】，无大小限制，最大描述符数受系统内存限制\遍历性能O(n)</span><br><span class="line">（<span class="number">3</span>）epoll模式</span><br><span class="line">        事件驱动，使用【回调机制】，只返回就绪的描述符，最大描述符数受系统内存限制\遍历性能O(<span class="number">1</span>)</span><br><span class="line">   </span><br><span class="line">#####高效的原因？</span><br><span class="line">        避免了多线程的上下文切换开销，特别适用于高并发网络服务（如 Web 服务器、聊天服务器）。资源节省：用一个线程处理成千上万个连接，内存占用低。</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="number">3.6</span>-I/O模型有哪几类？</span><br><span class="line">        阻塞I/O、非阻塞I/O、I/O多路复用（监听时阻塞，I/O操作一般非阻塞）、异步I/O（完全不阻塞）。</span><br><span class="line">        </span><br><span class="line"><span class="number">3.7</span>-linux常用命令？</span><br><span class="line">        cd、pwd、ls、mkdir、rm、cp、mv、vim、find、kill PID</span><br><span class="line">        cat-&gt;查看文件全部内容</span><br><span class="line">        grep-&gt;文件或标准输入中的文本搜索命令</span><br><span class="line">        netstat -nap 查看网络状态可以看那些端口被哪些进程PID占用</span><br><span class="line">        top 动态查看CPU的使用情况</span><br><span class="line">        df -h 显示磁盘空间使用情况</span><br><span class="line"></span><br><span class="line">######CPU负责指令执行和数据处理，磁盘负责持久化存储数据。内存（RAM）是计算机系统中介于 CPU 和磁盘之间的关键缓冲层。</span><br><span class="line">        </span><br><span class="line"><span class="number">3.8</span>-进程调度算法？</span><br><span class="line">        ###批处理系统中的调度</span><br><span class="line">        -&gt;先来先服务(非抢占式的调度算法，【按照请求的顺序】进行调度。) </span><br><span class="line">        -&gt;最短作业优先(非抢占式的调度算法，按【估计运行时间最短的顺序】进行调度。 )</span><br><span class="line">        -&gt;最短剩余时间优先(最短作业优先的抢占式版本，按【剩余运行时间的顺序】进行调度。 )</span><br><span class="line">        ###交互式系统</span><br><span class="line">        时间片轮调度</span><br><span class="line">        优先级调度</span><br><span class="line">        多级队列</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
+  id="post-计算机网络"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"
+    >计算机网络</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="article-date">
+  <time datetime="2026-04-16T11:54:55.000Z" itemprop="datePublished">2026-04-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+  </div>
+
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="1-tcp三次握手？四次挥手">1.TCP三次握手？四次挥手</h4>
+<h6 id="三次握手">三次握手</h6>
+<p>首先TCP是面向连接的协议，使用前必须先在客户端和服务端建立连接，而这个连接正是三次握手的用途。初始时刻，服务端和客户端处于Close状态，然后服务端主动监听某个端口，处于Listen状态；</p>
+<p>客户端随机初始化一个【序列号】client_isn，同时把SYN标志位置为1，<strong>发动第一个SYN报文</strong>，表示向服务端发起连接，之后客户端处于SYN_Sent状态；</p>
+<p>服务端收到客户端报文后也会随机初始化自己的【序列号】server_isn,并且将【应答号】设置为客户端的序列号+1，同时修改SYN和ACK标志位置为1；随后服务端会<strong>发送第二个报文 SYN+ACK</strong>报文给客户端，状态变成SYN_Received状态；</p>
+<p>客户端收到服务端报文后，将【应答号】修改为服务端【序列号】+1，并将ACK标志为1；然后客户端向服务端回复<strong>第三个ACK报文</strong>，之后修改为Established状态；</p>
+<p>服务端收到客户端的ACK报文后同步进入Established状态。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>服务端处于监听状态，客户端向服务端发送第一次连接请求，会随机生成一个客户端序列号，SYN报文置<span class="number">1</span>，表示发起连接（第一次握手）；</span><br><span class="line"><span class="number">2.</span>服务端收到SYN报文后，也随机生成一个服务端的序列号，将收到的客户端序列号+<span class="number">1</span>，ACK置<span class="number">1</span>，将报文全部发给客户端（第二次握手）；</span><br><span class="line"><span class="number">3.</span>客户端收到服务端的报文后，将服务端的序列号+<span class="number">1</span>，然后再次发送ACK报文给客户端，客户端处于已建立状态，这次握手可以携带数据到服务端（第三次握手）；</span><br><span class="line"><span class="number">4.</span>服务端收到应答报文后，也处于已建立状态；</span><br></pre></td></tr></table></figure>
+<h5 id="q1为什么不是二次-要三次？-无法防止历史连接-会导致服务器错误建立连接造成资源浪费">Q1为什么不是二次，要三次？（无法防止历史连接，会导致服务器错误建立连接造成资源浪费）</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	三次握手让双方都能确认对方的通信能力和请求的有效性，避免因网络延迟导致的错误连接。</span><br><span class="line">如果只有两次握手也就是说当客户端收到服务端的ACK+SYN报文的时候不会再向服务端发送ACK报文，假设服务端收到了一个滞留在网络中的（已经无效的）历史 SYN 报文，此时服务端就必须分配资源建立连接。如果有大量的无效历史SYN报文，则服务端就分配了大量的资源建立无效连接。</span><br></pre></td></tr></table></figure>
+<h6 id="四次挥手">四次挥手</h6>
+<p>初始时刻，客户端和服务端都处于Established状态，客户端打算关闭连接，那么将FIN标志位置为1，发送第一个FIN报文，表示关闭连接，随后状态处于等待关闭状态；</p>
+<h6 id="q2为什么挥手需要4次？">Q2为什么挥手需要4次？</h6>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">● 关闭连接时，客户端向服务端发送FIN报文，仅表示客户端不再发送数据，但还能接受数据</span><br><span class="line">● 服务端收到客户端的FIN报文后，先回一个ACK报文，而服务端可能还有数据需要处理和发送，等到服务端处理完毕，再发送一个FIN报文给客户端</span><br><span class="line">服务端通常需要等待数据完成处理和发送，所以服务端的ACK报文和FIN报文是分开来发送的，总计四次</span><br></pre></td></tr></table></figure>
+<h4 id="2-tcp可靠性保证">2.TCP可靠性保证</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）确认应答和序列号：接收方在收到数据后必须返回确认，并携带下一个期望收到的序列号 </span><br><span class="line">（<span class="number">2</span>）超时重传机制：发送方在一定时间内没有收到ack，就会重新发送数据。 </span><br><span class="line">（<span class="number">3</span>）连接管理：通过三次握手建立连接，四次挥手释放连接，保证了双向连接的稳定性。 </span><br><span class="line">（<span class="number">4</span>）流量控制：通过滑动窗口根据接收方的处理能力来调整发送速率，避免了接收方的缓冲区溢出。  </span><br><span class="line">（<span class="number">5</span>）拥塞控制：通过慢启动，拥塞避免算法和快速重传等机制，根据网络状况动态调整发送速率</span><br></pre></td></tr></table></figure>
+<h4 id="3-从敲下一个url到页面出现在屏幕的过程？">3.从敲下一个url到页面出现在屏幕的过程？</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">用户输入url-&gt;</span><br><span class="line">	浏览器检查缓存-&gt;</span><br><span class="line">		DNS解析器进行DNS域名解析获得IP地址</span><br><span class="line">			浏览器和服务器建立TCP连接</span><br><span class="line">				浏览器构造并发送HTTP请求报文</span><br><span class="line">						服务器接收请求返回响应报文</span><br><span class="line">							浏览器接收响应准备渲染页面</span><br><span class="line">								浏览器在不需要连接后发起TCP四次挥手关闭连接</span><br><span class="line">			</span><br><span class="line">			</span><br></pre></td></tr></table></figure>
+<h4 id="4-http和https的区别？">4.HTTP和HTTPS的区别？</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>HTTP是明文传输，HTTPS加了TLS协议，是加密传输，更安全；</span><br><span class="line"><span class="number">2.</span>HTTP只需要TCP三次握手过程，而HTTPS还增加了TLS握手过程；</span><br><span class="line"><span class="number">3.</span>HTTP端口号是<span class="number">80</span>，HTTPS端口号是<span class="number">443</span>；</span><br><span class="line"><span class="number">4.</span>HTTPS需要通过CA（证书权威机构）申请数字证书，确保服务器是可信的；  </span><br></pre></td></tr></table></figure>
+<h4 id="5-tcp和udp的区别？">5.TCP和UDP的区别？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1.连接性：</span><br><span class="line">	TCP面向连接，，通信前要三次握手、结束后四次挥手</span><br><span class="line">	UDP无连接，发送数据前不需要连接</span><br><span class="line">2.可靠性：</span><br><span class="line">	TCP是提供可靠传输、通过一些机制保证数据无差错的按序到达</span><br><span class="line">	UDP是不可靠的，不保证数据一定到达且顺序也不保证</span><br><span class="line">3.效率与速度：</span><br><span class="line">	TCP由于建立连接、确保数据无误，速度慢，头部开销大，适合数据要求高的场景</span><br><span class="line">	UDP速度更快，适合实时性要求高的场景</span><br><span class="line">4.数据传输方式：</span><br><span class="line">	TCP是面向字节流的，数据没有边界，应用层需要自己处理消息边界（粘包）</span><br><span class="line">	UDP面向数据报，保留消息边界</span><br><span class="line">5.HTTP/HTTPS\FTP\SSH\SMTP、数据库连接-----&gt;TCP</span><br><span class="line">	DNS\DHCP\SNMP\视频直播、在线游戏-----&gt;UDP</span><br></pre></td></tr></table></figure>
+<h4 id="6-tcp-ip四层模型-osi七层模型">6.TCP/IP四层模型，OSI七层模型</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TCP\IP四层模型：【应用层】-&gt;传输层-&gt;网络层-&gt;【网络接口层】（数据链路层、物理层）</span><br><span class="line">OSI七层模型：【应用层-&gt;表示层-&gt;会话层】-&gt;传输层-&gt;网络层-&gt;【数据链路层-&gt;物理层】</span><br><span class="line">    </span><br><span class="line">TCP、UDP是传输层、而IP是网络层</span><br></pre></td></tr></table></figure>
+<h4 id="7-粘包问题和拆包">7.粘包问题和拆包</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">粘包问题：</span><br><span class="line">● 发送方会缓存小数据包，将多个小数据包合并发送，减少网络开销</span><br><span class="line">● 接收方可能因在缓冲区内一次性读取多个包，也会造成粘包</span><br><span class="line"></span><br><span class="line">拆包问题：</span><br><span class="line">由于数据包太大，超过最大报文长度，此时发送方需要拆分大数据包，分成多个小数据包再发送</span><br><span class="line"></span><br><span class="line">解决方案：</span><br><span class="line">	（1）约定每个数据包的长度-&gt;无法处理动态大小的数据</span><br><span class="line">	（2）用分隔符在数据包的末尾标记，接收方案分隔符切割</span><br><span class="line">	（3）消息头+消息体：报文头部加一个固定长度字段存储消息体长度信息</span><br></pre></td></tr></table></figure>
+<h4 id="8-http">8.HTTP</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HTTP 协议</span><br><span class="line">请求-响应模型：客户端发请求，服务端返回响应。</span><br><span class="line">常见方法：GET、POST、PUT、DELETE、HEAD。</span><br><span class="line">状态码：1xx 信息、2xx 成功（<span class="number">200</span> OK）、3xx 重定向（<span class="number">301</span>/<span class="number">302</span>）、4xx 客户端错误（<span class="number">404</span>）、5xx 服务器错误。</span><br><span class="line">HTTP/<span class="number">1.1</span>：持久连接、管道化、Host 头。</span><br><span class="line">HTTP/<span class="number">2</span>：二进制分帧、多路复用、头部压缩、服务器推送。</span><br><span class="line">HTTP/<span class="number">3</span>：基于 QUIC（UDP 上的可靠传输），减少队头阻塞。</span><br><span class="line">HTTPS = HTTP + TLS/SSL，加密传输、证书验证。</span><br><span class="line">无状态：服务器不保留客户端历史，需借助 Cookie、Session、Token 维持状态。</span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
+  id="post-SpringBoot"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/16/SpringBoot/"
+    >SpringBoot</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/16/SpringBoot/" class="article-date">
+  <time datetime="2026-04-16T11:53:48.000Z" itemprop="datePublished">2026-04-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+  </div>
+
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="1-aop底层原理？">1. AOP底层原理？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">面向切面编程（AOP）:核心是动态代理和责任链</span><br><span class="line">	以Spring AOP为例：</span><br><span class="line">		1.首先根据！目标类是否实现接口！选择代理模式</span><br><span class="line">		有接口就是JDK动态代理（生成接口的代理类，用InvocationHandler拦截）</span><br><span class="line">		没有接口用CGLIB代理（生成目标类的子列，MethodInterceptor拦截）</span><br><span class="line">		2.拦截调用：调用代理对象方法时，进入拦截器链</span><br><span class="line">		3.责任链执行：将过个通知（@before、@Around、@After）包装成MethodInterceptor</span><br><span class="line">		递归调用MethodInvocation.proceed(),依次执行各类通知</span><br><span class="line">		4.目标方法执行：链中最后一个拦截器调用原始Bean的方法。</span><br><span class="line">		</span><br><span class="line">	动态代理能在不修改原始类代码的情况下，在方法调用前后插入额外逻辑（日志、事务、权限等）。责任链模式支持多个切面顺序执行，且可控制是否调用目标方法。</span><br><span class="line">		</span><br></pre></td></tr></table></figure>
+<h4 id="2-ioc底层原理？">2.IOC底层原理？</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">把对象的创建、依赖管理、生命周期等控制权从业务代码中反转给 Spring 容器，开发者只需声明组件，不再手动 <span class="keyword">new</span> 对象。</span><br><span class="line">    </span><br><span class="line">核心策略：</span><br><span class="line">    IOC容器：Spring 的 ApplicationContext 负责创建和管理所有 Bean</span><br><span class="line">    DI（依赖注入）：容器自动将对象所需的依赖（如 Service 注入到 Controller）通过构造器、setter 或字段注入的方式组装好，而不是由对象自己查找或创建。</span><br><span class="line">    配置方式：XML、注解（<span class="meta">@Component</span>/<span class="meta">@Service</span>/<span class="meta">@Autowired</span>）、Java Config（<span class="meta">@Configuration</span> + <span class="meta">@Bean</span>）。</span><br><span class="line">    </span><br><span class="line">优点:</span><br><span class="line">解耦：组件之间依赖接口而非具体实现，容易替换和测试。</span><br><span class="line">可维护性：集中管理 Bean 的作用域（单例、原型等）、生命周期回调（<span class="meta">@PostConstruct</span>）。</span><br><span class="line">易测试：可以轻松注入 Mock 对象。</span><br></pre></td></tr></table></figure>
+<h4 id="3-spring事务">3.Spring事务</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">###Spring 事务本质上是对数据库事务的封装，提供了声明式事务和编程式事务两种方式，核心是AOP 代理。</span><br><span class="line"></span><br><span class="line">3.1-声明式事务@transactional</span><br><span class="line">	Spring 通过 AOP 生成代理对象，在方法执行前开启事务，执行后根据异常情况提交或回滚。在启动类上添加@EnableTransactionManagement 开启事务管理</span><br><span class="line">	</span><br><span class="line">3.2-事务传播行为</span><br><span class="line">	REQUIRED（默认）：当前有事务则加入，无则新建。还有很多其他形式</span><br><span class="line">	编程式事务</span><br><span class="line">	使用 TransactionTemplate 或 PlatformTransactionManager，更细粒度控制。</span><br><span class="line"></span><br><span class="line">3.3-事务隔离级别</span><br><span class="line">	DEFAULT：数据库默认（MySQL 可重复读，Oracle 读已提交）</span><br><span class="line">	READ_UNCOMMITTED（读未提交）、READ_COMMITTED（读已提交）、REPEATABLE_READ（可重复读）、SERIALIZABLE</span><br><span class="line">	</span><br><span class="line">3.4-回滚规则</span><br><span class="line">	默认只回滚 RuntimeException 和 Error，检查异常（Exception）不会回滚。</span><br><span class="line">	可配置：@Transactional(rollbackFor = Exception.class) 让所有异常都回滚。</span><br></pre></td></tr></table></figure>
+<h4 id="4-循环依赖问题-三级缓存">4.循环依赖问题&amp;&amp;三级缓存</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">#### 5.事务失效原因</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>【同一个类内部调用（没有走代理）】。<br>
+同一个类中的无事务方法直接调用本类的 @Transactional 方法，不走代理，事务失效。<br>
+例如：orderService.createOrder() 内部调用 this.updateStock()（带事务注解），<br>
+更新库存不会开启新事务。</p>
+<p>【方法非 public（代理无法拦截）。】<br>
+@Transactional 只能作用于 public 方法，否则代理无法拦截。</p>
+<p>【异常被 catch 后没有重新抛出。】<br>
+代码中 try-catch 了异常但没有 throw，框架感知不到异常，不会回滚。</p>
+<p>【数据库引擎不支持事务（MyISAM）。】<br>
+MySQL 表使用了 MyISAM 引擎（常见于旧项目或建表语句遗漏），该引擎不支持事务。需改为 InnoDB。</p>
+<p>【配置了错误的传播行为（如 SUPPORTS）。】<br>
+SUPPORTS 不会主动创建事务，在无事务环境下执行等于“事务失效”了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 6.@Autowired和@Resource区别？</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>####@Autowired是Spring框架，@Resource是JDK标准下的</p>
+<h4 id="当一个接口有多个实现类时-只用-autowired-会报错-必须配合-qualifier；而-resource-默认会按字段名去匹配-如果字段名与某个实现类-bean-名称一致-会自动注入">当一个接口有多个实现类时，只用 @Autowired 会报错，必须配合 @Qualifier；而 @Resource 默认会按字段名去匹配，如果字段名与某个实现类 Bean 名称一致，会自动注入。</h4>
+<p>@Resource 如果没指定 name，则先按字段名匹配，失败再按类型匹配；而 @Autowired 始终先按类型。<br>
+####@Autowired 是 Spring 按类型注入的首选；@Resource 是 JDK 标准，按名称注入更直接。混合使用时注意各自的行为差异。</p>
+<p>【不同之处】<br>
+（1）默认注入方式不同，@autowired是根据类型注入（bytype）@resource是根据名称（byname）<br>
+（2）指定名称@autowired需要结合@qualifier(“name”) 而resource直接指定@resource(name=&quot;&quot;)<br>
+（3）@Autowired支持require属性：<br>
+@Resource 没有 required 属性，如果指定了 name 但 Bean 不存在，也会抛异常，无法像 @Autowired 那样允许为 null。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 7.Spring中的设计模式？</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">【工厂模式】</span><br><span class="line"> //----------Spring IOC用了什么设计模式？有什么好处？</span><br><span class="line"> BeanFactory 和 ApplicationContext 是工厂模式的体现。把对象的创建和管理交给容器，业务代码只需 @Autowired 使用，解耦了创建和使用。</span><br><span class="line">加分点：能说出 FactoryBean 接口（更灵活的生产 Bean 的方式），以及 ObjectFactory / Provider。   </span><br><span class="line">    </span><br><span class="line">【代理模式】</span><br><span class="line"> //----------AOP 底层用了什么模式？JDK 动态代理和 CGLIB 区别？</span><br><span class="line"> 代理模式。Spring AOP 通过动态代理为目标对象生成代理，在方法调用前后织入增强（事务、日志等）。JDK 基于接口，CGLIB 基于子类。</span><br><span class="line">加分点：能说出 Spring 如何选择两种代理方式（默认有接口用 JDK，无接口用 CGLIB），以及 @EnableAspectJAutoProxy(proxyTargetClass=true) 强制 CGLIB。  </span><br><span class="line">    </span><br><span class="line">【单例模式】</span><br><span class="line"> //---------Spring 中 Bean 默认是单例的吗？怎么保证线程安全？</span><br><span class="line"> 默认作用域是 singleton，容器内只有一个实例。Spring 通过 ConcurrentHashMap 缓存单例 Bean，启动时或懒加载创建。但单例 Bean 自身要处理线程安全（内部尽量无状态，有状态用 ThreadLocal 或锁）。</span><br><span class="line">加分点：能对比 prototype 作用域，说出单例模式的优缺点（节省内存但需注意并发）</span><br><span class="line">    </span><br><span class="line">【模板方法模式】</span><br><span class="line">//----------JdbcTemplate、RedisTemplate 用了什么设计模式？解决了什么问题？</span><br><span class="line"> 模板方法模式。封装固定算法（连接获取、异常处理、资源释放），变化部分通过回调接口（如 RowMapper、RedisCallback）让用户自定义。避免了重复的样板代码。</span><br><span class="line">加分点：能说出手动实现一个简单的模板类，或者类比 RestTemplate、KafkaTemplate</span><br><span class="line">    </span><br><span class="line">【观察者模式】</span><br><span class="line">//----------Spring 的事件监听机制是怎么实现的？</span><br><span class="line">观察者模式。通过 ApplicationEvent（事件）、ApplicationListener（监听器）、ApplicationEventPublisher（发布器）实现。可用于解耦业务逻辑，比如用户注册成功后发布事件，异步发送邮件、优惠券等。</span><br><span class="line">加分点：能说出 @EventListener 注解原理，以及配合 @Async 实现异步事件。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="8-springboot的程序是怎么启动起来的-启动过程做了什么？">8.SpringBoot的程序是怎么启动起来的，启动过程做了什么？</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">###加载工厂 → 监听事件 → 准备环境 → 创建容器 → 刷新（扫描 + 自动配置 + 创建 Bean）→ 启动 Tomcat → 发布就绪</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>入口：<span class="meta">@SpringBootApplication</span> + SpringApplication.run()</span><br><span class="line"><span class="number">2.</span> SpringApplication 初始化阶段</span><br><span class="line"><span class="number">3.</span> 运行阶段（核心）</span><br><span class="line">·启动计时器，记录启动时间。</span><br><span class="line">·创建并启动监听器：SpringApplicationRunListeners（同样是 spring.factories 加载），并发布 ApplicationStartingEvent。</span><br><span class="line">·准备环境：Environment 加载系统属性、配置文件（application.properties / application.yml），并发布 ApplicationEnvironmentPreparedEvent。</span><br><span class="line">·创建 ApplicationContext：根据 Web 类型创建 AnnotationConfigServletWebServerApplicationContext 等。</span><br><span class="line">·初始化 ApplicationContext：</span><br><span class="line">	·调用之前加载的 ApplicationContextInitializer。</span><br><span class="line">	·注册主类：将启动类（MyApplication）注册为配置类（<span class="meta">@Configuration</span>）。</span><br><span class="line">	·发布 ApplicationPreparedEvent。</span><br><span class="line">·刷新上下文（最关键）：调用 refresh()（最终进入 Spring 的 AbstractApplicationContext.refresh()）：</span><br><span class="line">	扫描 Bean 定义（<span class="meta">@ComponentScan</span>）。</span><br><span class="line">	处理 <span class="meta">@Configuration</span>、<span class="meta">@Import</span>、<span class="meta">@Bean</span>。</span><br><span class="line">	触发自动配置：<span class="meta">@EnableAutoConfiguration</span> 通过 AutoConfigurationImportSelector 从 spring.factories 加载所有 AutoConfiguration 类，并根据条件注解（<span class="meta">@Conditional</span>）决定是否配置。</span><br><span class="line">	创建并初始化所有单例 Bean。</span><br><span class="line">	启动内嵌 Web 容器（如果是 Servlet Web 应用）：创建 Tomcat / Jetty / 		Undertow 服务，并注册 DispatcherServlet。</span><br><span class="line">·运行后置操作：调用 afterRefresh()，发布 ApplicationStartedEvent / 				ApplicationReadyEvent。</span><br><span class="line">·返回 ApplicationContext。</span><br><span class="line"></span><br><span class="line">·如果启动失败，发布 ApplicationFailedEvent。</span><br></pre></td></tr></table></figure>
+<h4 id="9-spring-bean的作用域">9.Spring Bean的作用域</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">###Scope决定了Bean的生命周期和可见范围</span><br><span class="line"></span><br><span class="line">默认：singleton-&gt;容器内只有一个实例，所有请求共享</span><br><span class="line">prototype-&gt;每次获取（getBean或<span class="meta">@autowired</span>）都会创建新实例。Spring容器只负责创建，不管理其完整生命周期（不自动销毁）</span><br><span class="line">request（仅web应用）-&gt;每个HTTP请求创建一个新实例，请求结束Bean销毁</span><br><span class="line">session（仅web应用）-&gt;每个HTTP session共享一个实例</span><br><span class="line">application（仅web）-&gt;整个ServletContext级别，类似singleton但作用域在web上下文</span><br><span class="line">websocket（仅web）-&gt;每个websocket会话一个实例</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">作用域声明：<span class="meta">@Scope(&quot;prototype&quot;)</span> <span class="meta">@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</span></span><br><span class="line">作用域代理:当 singleton Bean 注入 request/session Bean 时，需要插入一个代理（<span class="meta">@Scope(value = &quot;request&quot;, proxyMode = ScopedProxyMode.TARGET_CLASS)</span>）。因为每次 HTTP 请求需要获取不同实例，代理会在每次调用时从当前请求中查找真实 Bean。</span><br><span class="line">自定义作用域：实现 Scope 接口</span><br><span class="line">    </span><br><span class="line">Q：request 作用域的 Bean 如何注入到 singleton Controller 中？</span><br><span class="line">A：使用 <span class="meta">@Scope(value = &quot;request&quot;, proxyMode = ScopedProxyMode.TARGET_CLASS)</span> 注入代理。</span><br></pre></td></tr></table></figure>
+<h4 id="10-springboot自动装配原理">10.SpringBoot自动装配原理</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">### 能让第三方库的组件自动注入 IoC 容器，开发者无需手动编写繁琐的配置。</span><br><span class="line">### 与普通 Spring 项目区别：传统 Spring 需要自己写 &lt;context:component-scan&gt; 和 &lt;bean&gt; 配置，Spring Boot 则把这些默认配置封装在 starter 里，只需引入依赖即可。</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> 在SpringBoot项目的引导类上有一个注解叫 <span class="meta">@SpringBootApplication</span>，</span><br><span class="line">在这个注解的里面，又有一个注解叫做：<span class="meta">@EnableAutoConfiguration</span> 即触发了自动装配</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> <span class="meta">@EnableAutoConfiguration</span> 是实现自动化配置的核心注解。</span><br><span class="line">该注解里面 通过 <span class="meta">@Import</span> 注解导入了一个 自动配置导入选择器类 AutoConfigurationImportSelector</span><br><span class="line">在 自动配置导入选择器类 里会读取（该项目和该项目引用的）Jar 包的 META-INF/spring.factories文件</span><br><span class="line">在这些文件中记录了配置类的全类名，通过全类名找到对应的配置类，配置类中定义了Bean，</span><br><span class="line">再判断定义的Bean是否加了条件注解是否生效决定是否将其Bean的实例加载到Sping容器中</span><br><span class="line">（条件注解例如<span class="meta">@ConditionalOnClass(xx)</span>判断是否有对应的class文件(依赖)，如果有则加载该Bean）</span><br><span class="line">    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
+  id="post-Redis"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/16/Redis/"
+    >Redis</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/16/Redis/" class="article-date">
+  <time datetime="2026-04-16T11:33:05.000Z" itemprop="datePublished">2026-04-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a> / <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/">redis</a>
+  </div>
+
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="1-redis-相比与mysql-mongodb-memcached-为什么那么快？">1.Redis（相比与MySQL、MongoDB、Memcached）为什么那么快？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.数据完全基于内存：传统的数据库MySQL数据主要存在硬盘，而Redis数据在内存中，读写操作都在RAM（随机存取存储器）中，内存访问速度是磁盘的数万倍；没有磁盘I/O开销</span><br><span class="line">2.Redis为不同场景定制了专门的数据结构，如跳表skipList</span><br><span class="line">3.单线程命令处理：MySQL和MongoDB采用多线程模型，需要处理并发控制，线程切换开销，而Redis无须加锁，避免多线程带来的上下文切换，CPU缓存失效</span><br><span class="line">（Redis在6.0+引入多线程处理网络I/O,但命令执行一直是单线程）</span><br><span class="line">4.I/O多路复用：传统的数据库只能阻塞式处理连接，无法支撑高并发，Redis利用epoll等机制，一个线程同时监听成千上万个socket事件，只有当某个事件真正执行时才处理</span><br></pre></td></tr></table></figure>
+<h4 id="2-redis那么快-为什么不做主数据库？">2.Redis那么快，为什么不做主数据库？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.Redis的数据持久化能力弱，有丢失数据风险，即使提供了RDB快照和AOF日志等数据持久化策略，对于一些对数据稳定性高的业务是不可接受的</span><br><span class="line">2.查询能力有限，Redis的数据都是键值队型，不能像SQL一样进行复杂的查询如多表关联，分组聚合</span><br><span class="line">3.数据一致性ACID难以保证，不支持回滚</span><br><span class="line">4.内存存储成本高</span><br></pre></td></tr></table></figure>
+<h4 id="3-如何解决redis大key和热key问题？">3.如何解决Redis大Key和热Key问题？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">大key说明该键对应的值占用的内存太大，会导致网络阻塞、慢查询、数据倾斜、持久化导致主从赋值延迟</span><br><span class="line">检测大Key:</span><br><span class="line">	redis-cli --bigkeys</span><br><span class="line">	分析慢日志</span><br><span class="line">解决方法：</span><br><span class="line">	（1）拆分大Key，将数据拆分成多个小一点的value,按id范围或哈希分片，存到多个Key中，读取时先获取分片再合并</span><br><span class="line">	（2）选择合适的数据结构存储</span><br><span class="line">	（3）如果value是文本（json、xml）且允许压缩，可以压缩后再存储</span><br><span class="line">	（4）异步删除，用UNLINK(异步非阻塞删除)，避免主线程卡顿</span><br><span class="line"></span><br><span class="line">热Key是一些Key的访问频率（QPS）远高于其他key，导致该Key所在的redis节点CPU、网络带宽达到瓶颈。常见危害，节点过载、集群性能不均、缓存击穿/雪崩</span><br><span class="line">检测方法：</span><br><span class="line">	redis cli --hotkeys</span><br><span class="line">解决方法：</span><br><span class="line">	（1）本地缓存：在应用内存中缓存热Key数据，设置短过期时间（秒级），减少对redis的直接访问</span><br><span class="line">	（2）读写分离+副本分散：将热Key认为复制多分，客户端访问时随机访问不同副本，分散到多个Redis节点或者从节点</span><br><span class="line">	（3）限流+降级：对访问热Key的接口限流（令牌桶），超出阈值返回默认值或者缓存的旧数据</span><br></pre></td></tr></table></figure>
+<h4 id="4-redis有哪些数据结构？">4.Redis有哪些数据结构？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">核心数据结构：String字符串、Hash哈希、List列表、Set集合、Sorted Set排序集合</span><br><span class="line">扩展结构：Bitmap（位图）、HyperLogLog（超对数日志）、GEO（地理空间）、Stream（流）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="5-布隆过滤器原理？">5.布隆过滤器原理？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">其底层数据结构是一个二进制位数组+多个哈希函数</span><br><span class="line">布隆过滤器：</span><br><span class="line">	添加元素时会用k个哈希函数对key计算k个位置，这些位置的位则为1</span><br><span class="line">	查询元素时同样计算k个位置，只要有一个地方为0，则一定不存在，全为1则说明可能存在</span><br><span class="line">特性:</span><br><span class="line">	借助多个哈希函数计算位提高过滤，能确定某个key一定不在集合里，但是即使计算全为1也说明不了一定在，可能存在（其他key可能这些地方也为1）。不支持删除操作，除非用计数布隆过滤器。</span><br><span class="line"></span><br><span class="line">数学角度：</span><br><span class="line">	显然哈希函数判断是判断key存在的必要但不充分条件。</span><br><span class="line">	显然哈希函数判断k个位置值全是1是判断key存在的必要但不充分条件。但如果某一个位置为0，则一定是不存在的充分不必要条件。</span><br><span class="line">（这里充分的意思是说我们的条件一定能推出结论，必要性是结论一定推出条件）</span><br></pre></td></tr></table></figure>
+<h4 id="6-redis缓存击穿-缓存雪崩-缓存穿透解释一下-并说明怎么解决">6.Redis缓存击穿、缓存雪崩、缓存穿透解释一下，并说明怎么解决。</h4>
+<p><code>1.缓存击穿：</code>击穿是由于在热Key失效的一瞬间，大量的并发请求直接访问redis的时候发现没有该key会直接穿透到数据库。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">解决方案：</span><br><span class="line">	互斥锁（SETNX）:只让一个线程去查DB并重新构建缓存，其他线程等待或者重试</span><br><span class="line">	逻辑过期：缓存不设置TTL，存业务过期字段，发现逻辑过期时异步去刷新</span><br></pre></td></tr></table></figure>
+<p>（击穿是Key本来存在只是过期了，穿透是Key压根不存在。）</p>
+<p><code>2.缓存穿透：</code>请求查询一个数据库和缓存中都不存在的数据，每次请求都会直接打到数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">解决方案：</span><br><span class="line">	布隆过滤器：请求先过布隆过滤器筛选一遍，判断Key不存在直接拦截</span><br><span class="line">	缓存空对象：查询DB后直接返回空结果，也缓存一个短TTL的控制</span><br><span class="line">	参数校验：拦截非法参数</span><br></pre></td></tr></table></figure>
+<p><code>3.缓存雪崩：</code>Redis大量的缓存Key在某一时间段同时过期，或者Redis直接宕机了，此时大量数据会直接打到本地数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">解决方案：</span><br><span class="line">	对于大量key在同一时间段过期，我们可以对过期时间加随机偏移量（随机秒），避免集体在同一时间失效</span><br><span class="line">	多级缓存：采取本地缓存+Redis缓存</span><br><span class="line">	Redis高可用：采用集群+哨兵，防止单个节点宕机</span><br><span class="line">	熔断限流：</span><br></pre></td></tr></table></figure>
+<h4 id="7-redis持久化策略">7.Redis持久化策略</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">###redis配置文件里RDB默认开启，AOF需要手动配置开启</span><br><span class="line">    </span><br><span class="line"><span class="number">7.1</span>-RDB（数据快照）</span><br><span class="line">    RDB异步持久化-bgSave开启一个子进程，？？？由子进程读取内存数据集以二进制快照形式写入磁盘，生成.rdb文件，通过fork()子进程完成，父进程继续处理客户端请求，子进程负责写入临时文件、写入完成后替换旧文件。</span><br><span class="line">    优点--&gt;文件紧凑，恢复速度快，对性能影响小</span><br><span class="line">    缺点--&gt;【可能丢失最后一次快照后的数据】、数据量大，fork()耗时导致服务停顿、无法实时持久化。</span><br><span class="line">    </span><br><span class="line"><span class="number">7.2</span>-AOP(AOF刷盘)</span><br><span class="line">    记录每个写命令到日志文件，redis重启时重放所有写命令来恢复数据。（always、everysec、no）</span><br><span class="line">    优点--&gt;数据安全性高，always下可做到不丢失数据；可读性强，AOF文件时纯文本命令格式，便于手动恢复</span><br><span class="line">    缺点--&gt;文件体积比RDB大，恢复速度慢、磁盘写入压力大时影响性能。</span><br><span class="line"></span><br><span class="line"><span class="number">7.3</span>-混合持久化（redis4<span class="number">.0</span>)</span><br><span class="line">    同时开启RDB和AOF，生成一个混合文件，前半部分是RDB格式快照、后面追加AOF格式的增量命令。重启时，先加载RDB再重放AOF增量，兼顾恢复速度和数据安全性。</span><br><span class="line">    缺点-&gt;实现复杂，不支持旧版Redis</span><br><span class="line">    优点-&gt;重启恢复速度快，数据丢失少，文件体积小于AOF。</span><br><span class="line">    </span><br><span class="line">【通常生产环境建议：混合持久化 + 从库定期 RDB 备份。】</span><br></pre></td></tr></table></figure>
+<h4 id="8-说说redis与数据库如何保持双写一致性？">8.说说Redis与数据库如何保持双写一致性？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">### 为什么会产生不一致？</span><br><span class="line">（1）写操作-&gt;更新数据库需要同步或删除缓存</span><br><span class="line">	两个操作（更新DB/操作缓存）无法做到完全原子，中间存在时间窗口</span><br><span class="line">（2）并发读写-&gt;一个线程更新数据库，另一个线程读取旧数据并回写缓存，导致脏数据</span><br><span class="line">	多个线程交错执行，读线程可能拿到旧数据并回写缓存，覆盖了新数据</span><br><span class="line">（3）redis异常情况-&gt;更新数据库成功但删除缓存失败，或这删除缓存成功但更新数据库失败</span><br><span class="line">	一个操作成功，另一个失败，导致两者状态不同步</span><br><span class="line">	</span><br><span class="line">对于使用先删除缓存再更新数据库的模式导致的缓存一致性问题，可以采用【延迟双删策略】把可能被其他线程错误回写的脏缓存再次清理掉。</span><br><span class="line"></span><br><span class="line">解决方案-&gt;</span><br><span class="line">`	（1）使用缓存过期时间</span><br><span class="line">	（2）重试机制（删除缓存失败，发送消息队列异步重试）</span><br><span class="line">	（3）分布式锁限制并发写（影响性能）</span><br><span class="line">	（4）采用先更新数据库再删缓存，并保证删除成功（配合消息队列重试）</span><br></pre></td></tr></table></figure>
+<h4 id="9-redis的zset怎么实现？">9.Redis的Zset怎么实现？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">底层根据元素数量和大小自动切换：</span><br><span class="line">	元素较少、较小-------&gt;ziplist(压缩跳表)</span><br><span class="line">	元素较多、较大-------&gt;skiplist+dict(跳表+字典)</span><br><span class="line">切换条件:Zset元素个数&lt;=128，且每个元素（member+score)的字符串长度&lt;=64字节时使用ziplist，超过任何一个阈值底层切换成skiplist和dict（哈希表）。</span><br><span class="line"></span><br><span class="line">9.1-跳表（skiplist）</span><br><span class="line">	跳表是一种多层链表，通过概率生成的索引层实现O(logN)的平均、插入、删除复杂度</span><br><span class="line">只使用跳表：查找某个 member 的 score 需要 O(log N) 时间；哈希表提供 O(1) 的 member → score 映射，让 ZSCORE 等命令非常快。</span><br></pre></td></tr></table></figure>
+<h4 id="10-redis分布式锁">10.Redis分布式锁</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">######分布式锁用于在分布式系统（多进程、多机器）中【控制共享资源的互斥访问】。Redis 因其高性能、单线程原子操作成为实现分布式锁的常用组件。</span><br><span class="line">    </span><br><span class="line">   借助Redis的原子命令SET key Value NX EX timeout</span><br><span class="line">NX:只要key不存在时才设置成功，EX设置过期时间，防止死锁</span><br><span class="line"></span><br><span class="line">加锁-&gt;    SET lock_key unique_value NX EX <span class="number">30</span></span><br><span class="line">释放锁-&gt;	ua 脚本实现原子性：先 GET 判断 value 是否匹配，匹配则 DEL。</span><br><span class="line"> <span class="keyword">if</span> redis.call(<span class="string">&quot;get&quot;</span>, KEYS[<span class="number">1</span>]) == ARGV[<span class="number">1</span>] then</span><br><span class="line">    <span class="keyword">return</span> redis.call(<span class="string">&quot;del&quot;</span>, KEYS[<span class="number">1</span>])</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">end</span><br><span class="line">    </span><br><span class="line">【【【问题优化】】】</span><br><span class="line">   (<span class="number">1</span>) 锁过期但是业务还没完成，此时锁提前释放，其他进程获得锁，造成并发问题</span><br><span class="line">【Watchdog机制】，加锁后启动后台定时线程，每隔一段时间（锁过期的<span class="number">1</span>/<span class="number">3</span>）为锁续期---&gt;Redisson</span><br><span class="line">   (<span class="number">2</span>)主从架构，主节点加锁成功后未同步到从节点就宕机了，从节点提升为主节点，锁信息丢失，另一客户端重复加锁</span><br><span class="line">【Redlock算法】使用多个独立的Redis案例（&gt;=<span class="number">5</span>）,客户向所有实例请求加锁，当成功一半+<span class="number">1</span>才认为加锁成功。</span><br><span class="line">   </span><br><span class="line">【【【实现方案】】】</span><br><span class="line">简单场景：单 Redis + SET NX + Lua 即可。</span><br><span class="line">生产推荐：使用 Redisson，它封装了看门狗、可重入、公平锁等特性。</span><br><span class="line">极高可靠性：用 Redlock 或 Zookeeper。</span><br><span class="line"></span><br><span class="line">【【【Zookeeper分布式锁对比】】】</span><br><span class="line">性能没有redis好，因为Zookeeper为了确保数据一致性和持久性，每次写操作会都会先写入事务日志到【磁盘】，然后才更新内存。Zookeeper集群与客户端之间的请求都是【网络】通信，网络开销比单纯内存操作慢。</span><br><span class="line"></span><br><span class="line">【【【场景选择】】】</span><br><span class="line">Zookeeper的数据一致性优先，Redis的性能优先（高并发下的吞吐量）</span><br><span class="line">Zookeeper -&gt;金融支付、库存扣减、配置管理</span><br><span class="line">Redis-&gt;高并发、低延迟（如秒杀、抢购），并且可以接受极端情况下极低概率的数据不一致，</span><br></pre></td></tr></table></figure>
+<h4 id="11-内存淘汰策略">11.内存淘汰策略</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
+  id="post-StringBuilder"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/16/StringBuilder/"
+    >StringBuilder</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/16/StringBuilder/" class="article-date">
+  <time datetime="2026-04-16T08:45:05.000Z" itemprop="datePublished">2026-04-16</time>
+</a>
+      
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <center><h2>StringBuilder</h2></center>
+<p><code>StringBuilder</code>是对动态数组（<code>char[]</code>）的封装，用于高效处理可变字符串。 是 Java 中用于创建可变字符串的类，位于 <code>java.lang</code> 包中。它提供了一个可变的字符序列，适合在需要频繁修改字符串内容（例如拼接、插入、删除）的场景下使用，比直接使用 <code>String</code> 更加高效。</p>
+<hr>
+<h4 id="1-为什么需要-stringbuilder？">1. 为什么需要 <code>StringBuilder</code>？</h4>
+<ul>
+<li><strong><code>String</code> 是不可变的</strong>：每次对 <code>String</code> 进行拼接、替换等操作，都会创建一个新的 <code>String</code> 对象。如果频繁操作，会产生大量临时对象，降低性能并增加垃圾回收压力。</li>
+<li><strong><code>StringBuilder</code> 是可变的</strong>：它内部维护一个可变的字符数组，修改操作直接在原数组上进行，避免了创建中间对象。</li>
+</ul>
+<hr>
+<h4 id="2-与-stringbuffer-的区别">2. 与 <code>StringBuffer</code> 的区别</h4>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th><code>StringBuilder</code></th>
+<th><code>StringBuffer</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线程安全</td>
+<td>否</td>
+<td>是（方法用 <code>synchronized</code> 修饰）</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>更高（无同步开销）</td>
+<td>较低</td>
+</tr>
+<tr>
+<td>使用场景</td>
+<td>单线程环境</td>
+<td>多线程环境</td>
+</tr>
+</tbody>
+</table>
+<p>在实际开发中，绝大多数情况使用 <code>StringBuilder</code> 即可，除非明确需要线程安全。</p>
+<hr>
+<h4 id="3-常用构造方法">3. 常用构造方法</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();                 <span class="comment">// 默认容量16</span></span><br><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(<span class="number">50</span>);               <span class="comment">// 指定初始容量</span></span><br><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(<span class="string">&quot;Hello&quot;</span>);          <span class="comment">// 初始包含字符串 &quot;Hello&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-常用方法">4. 常用方法</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">sb.append(<span class="string">&quot;Hello&quot;</span>);          <span class="comment">// 追加字符串</span></span><br><span class="line">sb.append(<span class="string">&#x27; &#x27;</span>);              <span class="comment">// 追加字符</span></span><br><span class="line">sb.append(<span class="number">123</span>);              <span class="comment">// 追加整数（自动转换为字符串）</span></span><br><span class="line">sb.append(<span class="literal">true</span>);             <span class="comment">// 追加布尔值</span></span><br><span class="line"><span class="comment">// 链式调用</span></span><br><span class="line">sb.append(<span class="string">&quot;World&quot;</span>).append(<span class="string">&quot;!&quot;</span>);</span><br><span class="line"></span><br><span class="line">sb.insert(<span class="number">5</span>, <span class="string">&quot;Java &quot;</span>);       <span class="comment">// 在索引5处插入 &quot;Java &quot;</span></span><br><span class="line"></span><br><span class="line">sb.delete(<span class="number">0</span>, <span class="number">5</span>);             <span class="comment">// 删除 [0,5) 范围内的字符</span></span><br><span class="line">sb.deleteCharAt(<span class="number">3</span>);          <span class="comment">// 删除索引3处的字符</span></span><br><span class="line"></span><br><span class="line">sb.replace(<span class="number">0</span>, <span class="number">3</span>, <span class="string">&quot;Hey&quot;</span>);     <span class="comment">// 将 [0,3) 替换为 &quot;Hey&quot;</span></span><br><span class="line"></span><br><span class="line">sb.reverse();                <span class="comment">// 反转字符序列</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> sb.length();       <span class="comment">// 实际字符数</span></span><br><span class="line"><span class="type">int</span> <span class="variable">cap</span> <span class="operator">=</span> sb.capacity();     <span class="comment">// 内部数组当前容量</span></span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> sb.toString();</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> <span class="variable">ch</span> <span class="operator">=</span> sb.charAt(<span class="number">2</span>);      <span class="comment">// 获取指定位置的字符</span></span><br><span class="line">sb.setCharAt(<span class="number">2</span>, <span class="string">&#x27;X&#x27;</span>);        <span class="comment">// 设置指定位置的字符</span></span><br><span class="line"><span class="type">int</span> <span class="variable">idx</span> <span class="operator">=</span> sb.indexOf(<span class="string">&quot;lo&quot;</span>);  <span class="comment">// 查找子串第一次出现的位置</span></span><br><span class="line"><span class="type">String</span> <span class="variable">sub</span> <span class="operator">=</span> sb.substring(<span class="number">2</span>, <span class="number">5</span>); <span class="comment">// 截取子串（返回 String）</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-扩容机制">5.扩容机制</h4>
+<p>当内部字符数组容量不足时，<code>StringBuilder</code> 会自动扩容：<strong>新容量 = 旧容量 * 2 + 2</strong>，然后将原数组内容复制到新数组中。频繁扩容会影响性能，因此如果能预估最终字符串长度，建议在构造时指定合适的初始容量。</p>
+<h4 id="6-小结">6. 小结</h4>
+<ul>
+<li><strong>用途</strong>：解决频繁修改字符串时的性能问题。</li>
+<li><strong>特点</strong>：可变、非线程安全、效率高。</li>
+<li><strong>注意</strong>：不需要线程安全时优先使用 <code>StringBuilder</code>，否则用 <code>StringBuffer</code>。</li>
+<li><strong>重要方法</strong>：<code>append</code>、<code>insert</code>、<code>delete</code>、<code>replace</code>、<code>reverse</code>、<code>toString</code>。</li>
+</ul>
+<h4 id="7-所有对象的to方法">7.所有对象的to方法</h4>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>所属类</th>
+<th>功能</th>
+<th>返回值</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toString()</code></td>
+<td><code>Object</code>（所有类）</td>
+<td>返回对象的字符串表示</td>
+<td><code>String</code></td>
+<td><code>Integer num = 123; num.toString();</code></td>
+</tr>
+<tr>
+<td><code>toCharArray()</code></td>
+<td><code>String</code></td>
+<td>将字符串转换为字符数组</td>
+<td><code>char[]</code></td>
+<td><code>&quot;hello&quot;.toCharArray();</code></td>
+</tr>
+<tr>
+<td><code>toArray()</code></td>
+<td><code>Collection</code>（如 <code>List</code>, <code>Set</code>）</td>
+<td>将集合转换为数组</td>
+<td><code>Object[]</code> 或指定类型 <code>T[]</code></td>
+<td><code>list.toArray(new String[0]);</code></td>
+</tr>
+<tr>
+<td><code>toArray(T[] a)</code></td>
+<td><code>Collection</code></td>
+<td>将集合转换为指定类型的数组</td>
+<td><code>T[]</code></td>
+<td><code>list.toArray(new String[list.size()]);</code></td>
+</tr>
+<tr>
+<td><code>toLowerCase()</code></td>
+<td><code>String</code></td>
+<td>将字符串转换为小写</td>
+<td><code>String</code></td>
+<td><code>&quot;HELLO&quot;.toLowerCase();</code></td>
+</tr>
+<tr>
+<td><code>toUpperCase()</code></td>
+<td><code>String</code></td>
+<td>将字符串转换为大写</td>
+<td><code>String</code></td>
+<td><code>&quot;hello&quot;.toUpperCase();</code></td>
+</tr>
+<tr>
+<td><code>trim()</code></td>
+<td><code>String</code></td>
+<td>去除字符串首尾空白字符</td>
+<td><code>String</code></td>
+<td><code>&quot;  hi  &quot;.trim();</code></td>
+</tr>
+<tr>
+<td><code>toCharArray()</code></td>
+<td><code>StringBuilder</code> / <code>StringBuffer</code></td>
+<td>先调用 <code>toString()</code> 再转数组（间接）</td>
+<td><code>char[]</code></td>
+<td><code>sb.toString().toCharArray();</code></td>
+</tr>
+<tr>
+<td><code>toByteArray()</code></td>
+<td><code>ByteArrayOutputStream</code></td>
+<td>将缓冲区数据转为字节数组</td>
+<td><code>byte[]</code></td>
+<td><code>baos.toByteArray();</code></td>
+</tr>
+<tr>
+<td><code>toArray()</code></td>
+<td><code>Vector</code></td>
+<td>将 Vector 转为数组</td>
+<td><code>Object[]</code></td>
+<td><code>vector.toArray();</code></td>
+</tr>
+<tr>
+<td><code>toArray(T[] a)</code></td>
+<td><code>Vector</code></td>
+<td>同上，指定类型</td>
+<td><code>T[]</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>toFile()</code></td>
+<td><code>Path</code>（Java NIO）</td>
+<td>将 <code>Path</code> 转为 <code>File</code></td>
+<td><code>File</code></td>
+<td><code>path.toFile();</code></td>
+</tr>
+<tr>
+<td><code>toAbsolutePath()</code></td>
+<td><code>Path</code></td>
+<td>转为绝对路径</td>
+<td><code>Path</code></td>
+<td><code>path.toAbsolutePath();</code></td>
+</tr>
+<tr>
+<td><code>toURI()</code></td>
+<td><code>File</code> / <code>Path</code></td>
+<td>转为 URI</td>
+<td><code>URI</code></td>
+<td><code>file.toURI();</code></td>
+</tr>
+<tr>
+<td><code>toURL()</code></td>
+<td><code>File</code>（已过时）</td>
+<td>转为 URL</td>
+<td><code>URL</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>toInstant()</code></td>
+<td><code>Date</code> / <code>Calendar</code></td>
+<td>转为 <code>Instant</code></td>
+<td><code>Instant</code></td>
+<td><code>new Date().toInstant();</code></td>
+</tr>
+<tr>
+<td><code>toLocalDate()</code></td>
+<td><code>java.sql.Date</code></td>
+<td>转为 <code>LocalDate</code></td>
+<td><code>LocalDate</code></td>
+<td><code>sqlDate.toLocalDate();</code></td>
+</tr>
+<tr>
+<td><code>toLocalTime()</code></td>
+<td><code>java.sql.Time</code></td>
+<td>转为 <code>LocalTime</code></td>
+<td><code>LocalTime</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>toLocalDateTime()</code></td>
+<td><code>java.sql.Timestamp</code></td>
+<td>转为 <code>LocalDateTime</code></td>
+<td><code>LocalDateTime</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>toEpochSecond()</code></td>
+<td><code>LocalDateTime</code></td>
+<td>转为从 1970-01-01 开始的秒数</td>
+<td><code>long</code></td>
+<td><code>ldt.toEpochSecond(ZoneOffset.UTC);</code></td>
+</tr>
+<tr>
+<td><code>toMillis()</code></td>
+<td><code>Instant</code></td>
+<td>转为毫秒时间戳</td>
+<td><code>long</code></td>
+<td><code>instant.toEpochMilli();</code></td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/StringBuilder/" rel="tag">StringBuilder</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
+  id="post-数据结构-Hash"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-Hash/"
+    >数据结构-Hash</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-Hash/" class="article-date">
+  <time datetime="2026-04-16T08:10:01.000Z" itemprop="datePublished">2026-04-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </div>
+
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <center><h2> Hash</h2></center>
+<p>在 Java 的集合框架中，基于哈希（Hash）实现的数据结构主要有以下几种:<code>HashMap</code>、<code>HashSet</code>、<code>LinkedHashMap</code>、<code>Hashtable</code>、<code>ConcurrentHashMap</code>…</p>
+<h3 id="1-hashmap">1.HashMap</h3>
+<p>最常用的哈希表实现，允许一个 <code>null</code> 键和多个 <code>null</code> 值，线程不安全，无序（不保证顺序）。</p>
+<p>Hashmap只允许一个键存在，如果键重复会实现值的覆盖！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">常用方法</span><br><span class="line">HashMap&lt;String, Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">map.put(<span class="string">&quot;apple&quot;</span>, <span class="number">1</span>);                <span class="comment">// 添加键值对</span></span><br><span class="line">map.get(<span class="string">&quot;apple&quot;</span>);                   <span class="comment">// 获取值，返回 1</span></span><br><span class="line">map.containsKey(<span class="string">&quot;apple&quot;</span>);           <span class="comment">// 判断键是否存在，true</span></span><br><span class="line">map.containsValue(<span class="number">1</span>);               <span class="comment">// 判断值是否存在，true</span></span><br><span class="line"></span><br><span class="line">map.remove(<span class="string">&quot;apple&quot;</span>);                <span class="comment">// 删除键值对，返回被删的值</span></span><br><span class="line">map.size();                         <span class="comment">// 键值对数量</span></span><br><span class="line"></span><br><span class="line">map.isEmpty();                      <span class="comment">// 是否为空</span></span><br><span class="line">map.keySet();                       <span class="comment">// 返回所有键的 Set 视图</span></span><br><span class="line">map.values();                       <span class="comment">// 返回所有值的 Collection</span></span><br><span class="line">map.entrySet();                     <span class="comment">// 返回所有键值对的 Set</span></span><br><span class="line"></span><br><span class="line">map.forEach((k, v) -&gt; System.out.println(k + <span class="string">&quot;=&quot;</span> + v)); <span class="comment">// 遍历</span></span><br><span class="line"></span><br><span class="line">map.replace(<span class="string">&quot;apple&quot;</span>, <span class="number">2</span>);            <span class="comment">// 替换值（键存在时）</span></span><br><span class="line"></span><br><span class="line">map.getOrDefault(<span class="string">&quot;orange&quot;</span>, <span class="number">0</span>);      <span class="comment">// 获取值，不存在则返回默认值</span></span><br><span class="line"></span><br><span class="line">map.putIfAbsent(<span class="string">&quot;banana&quot;</span>, <span class="number">3</span>);       <span class="comment">// 仅当键不存在时放入</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="2-hashset">2.HashSet</h3>
+<p>底层基于 <code>HashMap</code> 实现，存储不重复的元素，允许一个 <code>null</code> 值，线程不安全，无序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;String&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">set.add(<span class="string">&quot;cat&quot;</span>);                     <span class="comment">// 添加元素，返回是否添加成功</span></span><br><span class="line">set.remove(<span class="string">&quot;cat&quot;</span>);                  <span class="comment">// 删除元素，返回是否删除成功</span></span><br><span class="line">set.contains(<span class="string">&quot;cat&quot;</span>);                <span class="comment">// 判断元素是否存在</span></span><br><span class="line">set.size();                         <span class="comment">// 元素个数</span></span><br><span class="line">set.isEmpty();                      <span class="comment">// 是否为空</span></span><br><span class="line">set.clear();                        <span class="comment">// 清空所有元素</span></span><br><span class="line">set.iterator();                     <span class="comment">// 获取迭代器</span></span><br><span class="line">set.forEach(System.out::println);   <span class="comment">// 遍历</span></span><br></pre></td></tr></table></figure>
+<h3 id="3">3.</h3>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hash/" rel="tag">Hash</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
+  id="post-leetcode-Hash"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/16/leetcode-Hash/"
+    >leetcode-Hash</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/16/leetcode-Hash/" class="article-date">
+  <time datetime="2026-04-16T07:09:06.000Z" itemprop="datePublished">2026-04-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="1-两数之和">1—两数之和</h4>
+<p>给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em> 的那 <strong>两个</strong> 整数，并返回它们的数组下标。你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。你可以按任意顺序返回答案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line">输入：nums = [2,7,11,15], target = 9</span><br><span class="line">输出：[0,1]</span><br><span class="line">解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] twoSum(<span class="type">int</span>[] nums, <span class="type">int</span> target) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; hashtable = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Integer, Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (hashtable.containsKey(target - nums[i])) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;hashtable.get(target - nums[i]), i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hashtable.put(nums[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>没什么好说的，唯一巧妙的点就是借助Hash表构建了nums[i]和i之间的映射，通过nums[i]获取i，但是这种方法有局限性，只能针对只有一个解的情况。当数组中有重复元素，且有多个解的时候hash表会在for循环的时候覆盖之前的一个解，导致最后只能产生一个解。</p>
+<p>优化后由于结果多个，故存储结果的数据结构变成List，泛型是数组。在构建HashMap映射的时候,我们需要将值对应的所有索引放进一个数组里，这样我们间接实现了一对多的想法，也就产生了多个解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;<span class="type">int</span>[]&gt; twoSumAll(<span class="type">int</span>[] nums, <span class="type">int</span> target) &#123;</span><br><span class="line">    List&lt;<span class="type">int</span>[]&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">// 值 -&gt; 该值出现过的所有索引列表</span></span><br><span class="line">    Map&lt;Integer, List&lt;Integer&gt;&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">complement</span> <span class="operator">=</span> target - nums[i];</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(complement)) &#123;</span><br><span class="line">            <span class="comment">// 所有之前出现的互补索引都可以与当前 i 组成解</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> idx : map.get(complement)) &#123;</span><br><span class="line">                result.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;idx, i&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 将当前索引加入该值的列表</span></span><br><span class="line">        map.computeIfAbsent(nums[i], k -&gt; <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;()).add(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-字母异位词分组">2—字母异位词分组</h4>
+<p>给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line">输入: strs = [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]</span><br><span class="line">输出: [[&quot;bat&quot;],[&quot;nat&quot;,&quot;tan&quot;],[&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; <span class="title function_">groupAnagrams</span><span class="params">(String[] strs)</span> &#123;</span><br><span class="line">        Map&lt;String, List&lt;String&gt;&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;String, List&lt;String&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (String str : strs) &#123;</span><br><span class="line">            <span class="type">char</span>[] array = str.toCharArray();</span><br><span class="line">            Arrays.sort(array);</span><br><span class="line">            <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(array);</span><br><span class="line">            List&lt;String&gt; list = map.getOrDefault(key, <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;());</span><br><span class="line">            list.add(str);</span><br><span class="line">            map.put(key, list);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;List&lt;String&gt;&gt;(map.values());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="3-最长连续序列">3—最长连续序列</h4>
+<p>给定一个未排序的整数数组 <code>nums</code> ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。请你设计并实现时间复杂度为 <code>O(n)</code> 的算法解决此问题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line">输入：nums = [100,4,200,1,3,2]</span><br><span class="line">输出：4</span><br><span class="line">解释：最长数字连续序列是 [1, 2, 3, 4]。它的长度为 4。</span><br></pre></td></tr></table></figure>
+<p>我们将数组中的元素存入HashSet里进行去重处理，然后我们遍历HashSet里的元素num，如果num-1不在HaseSet里说明它是一个开头，如果num+1在集合里以这个num开头的序列长度+1，在遍历的时候不断更新最长序列长度。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">longestConsecutive</span><span class="params">(<span class="type">int</span>[] nums)</span>&#123;</span><br><span class="line">        <span class="comment">//创建HashSet去重</span></span><br><span class="line">		Set&lt;Integer&gt; set=<span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//将数组元素放入set里</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> num:nums)&#123;</span><br><span class="line">			set.add(num);</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="comment">//初始化最大长度</span></span><br><span class="line">        <span class="type">int</span> maxlen=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//遍历HashSet</span></span><br><span class="line">        <span class="keyword">for</span>(Integer num:set)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!set.contains(num-<span class="number">1</span>))&#123;</span><br><span class="line">                <span class="comment">//开头cur</span></span><br><span class="line">                <span class="type">int</span> cur=num;</span><br><span class="line">                <span class="comment">//初始最大长度</span></span><br><span class="line">                <span class="type">int</span> len=<span class="number">1</span>;</span><br><span class="line">                <span class="comment">//计算以cur开头的长度</span></span><br><span class="line">                <span class="keyword">while</span>(set.contains(cur+<span class="number">1</span>))&#123;</span><br><span class="line">                    len++;</span><br><span class="line">                    cur++;</span><br><span class="line">                &#125;</span><br><span class="line">                maxlen=Math.max(len,maxlen); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxlen;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%93%88%E5%B8%8C/" rel="tag">哈希</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
+  id="post-leetcode-栈"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/15/leetcode-%E6%A0%88/"
+    >LeetCode-栈</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/15/leetcode-%E6%A0%88/" class="article-date">
+  <time datetime="2026-04-15T12:17:19.000Z" itemprop="datePublished">2026-04-15</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h3 id="20-有效的括号">20—有效的括号</h3>
+<p>给定一个只包括各种括号的字符串s，判断字段串是否有效，满足左右括号必须相同类型匹配，左括号必须以正确的顺序闭合，每个右括号都有一个对应的相同类型的左括号。</p>
+<p>我们这里可以借助HashMap构建匹配规则，通过栈模拟字符串匹配流程，这两者通常可以用来实现匹配算法。</p>
+<p>由于匹配的时候我们是看到右括号才会完成一次匹配，因此在构建HashMap的键的时候以右括号作为键，左括号为值。遍历字符串时，我们取出每个字符并判断它是否是左括号，如果是左括号就压入栈，是右括号则需要判断栈顶是否为空？是空则不能匹配完，此外如果也不是右括号通过HashMap获取的对应左括号，也是匹配失败，当遍历完整个字符时，如果栈顶为空说明匹配成功，否则失败。</p>
+<p>Tips：</p>
+<p>（由于是用的HashMap，这里借助map.containsKey(ch)）来判断是不是右括号！要判断右括号不判断左括号，因为随便从字符串拿一个元素，如果是左括号我们借助map来判断的话就是通过map判断值，但是时间复杂度是O(n)，map判断键时间复杂度O(1)）</p>
+<p>（双端队列Deque可以LIFO和FIFO）(单端队列只能先进先出(FIFO) Deque接口继承Queue接口，通过后进先出模拟栈，单端队列不可以只能模拟队列，而双端都可以</p>
+<p>（ArrayQueue实现比LinkedList实现双端队列占用更少内存，但是ArrayQueue不能通过索引访问，不能存取null）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isValid</span><span class="params">(String s)</span> &#123;</span><br><span class="line">       <span class="comment">//先判断字符串长度</span></span><br><span class="line">       <span class="keyword">if</span>(s.length()%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">        <span class="comment">//创建一个HashMap用于构建括号匹配</span></span><br><span class="line">        Map&lt;Character,Character&gt; map=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">&#x27;)&#x27;</span>,<span class="string">&#x27;(&#x27;</span>);</span><br><span class="line">        map.put(<span class="string">&#x27;&#125;&#x27;</span>,<span class="string">&#x27;&#123;&#x27;</span>);</span><br><span class="line">        map.put(<span class="string">&#x27;]&#x27;</span>,<span class="string">&#x27;[&#x27;</span>);</span><br><span class="line">        <span class="comment">//创建一个双端队列模拟栈</span></span><br><span class="line">        Deque&lt;Character&gt; stack=<span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">//遍历字符串</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            <span class="type">char</span> ch=s.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(ch))&#123;</span><br><span class="line">                <span class="keyword">if</span>(stack.isEmpty()||stack.peek()!=map.get(ch))&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                stack.pop();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            stack.push(ch);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="155-最小栈">155—最小栈</h3>
+<p>设计一个支持 <code>push</code> ，<code>pop</code> ，<code>top</code> 操作，并能在常数时间内检索到最小元素的栈。</p>
+<p>实现 <code>MinStack</code> 类:</p>
+<ul>
+<li><code>MinStack()</code> 初始化堆栈对象。</li>
+<li><code>void push(int val)</code> 将元素val推入堆栈。</li>
+<li><code>void pop()</code> 删除堆栈顶部的元素。</li>
+<li><code>int top()</code> 获取堆栈顶部的元素。</li>
+<li><code>int getMin()</code> 获取堆栈中的最小元素。</li>
+</ul>
+<p>本题要求实现一个类，首先要有成员变量、其次构造方法MinStack（和类同名）、最后是成员方法。</p>
+<p>本题要求实现栈的基本功能，直接借助双端队列接口实现类可选择ArrayDeque或者LinkedList，对于双端队列Deque而言可以实现先进后出，用pop弹出栈顶元素也就是删除栈顶，用peek获取栈顶元素。怎么获取最小值呢，一种思路是我们每次push一个元素的时候维护一个最小值变量，但是我们这个时候的getMin方法不能在弹出这个最小值变量的时候再次获取当前栈的最小值，除非再去遍历一遍栈，这个时候时间复杂度就是O(n)了</p>
+<p>那么怎么做到能够时刻都能获取到当前栈的最小值呢，我们创建双端队列模拟一个当前栈后，再创建一个辅助栈用来更新最小值，每次再push一个元素到当前栈的时候，我们比较最小值并放入辅助栈，也就是说辅助栈栈顶的元素会对应一个当前的最小值，且它下面的元素的值都比当前的最小值大，因此当栈顶元素被弹出的时候，我们弹出辅助栈的栈顶也就是维护的最小值即可获得当前栈的最小值，无论是否当前栈弹出的是最小值，我们都不需要去遍历栈！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MinStack</span> &#123;</span><br><span class="line">    <span class="comment">//引入辅助栈</span></span><br><span class="line">    Deque&lt;Integer&gt; xStack;</span><br><span class="line">    Deque&lt;Integer&gt; minStack;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MinStack</span><span class="params">()</span> &#123;</span><br><span class="line">        xStack=<span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;Integer&gt;();</span><br><span class="line">        minStack=<span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;Integer&gt;();</span><br><span class="line">        minStack.push(Integer.MAX_VALUE);    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">push</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        xStack.push(val);</span><br><span class="line">        minStack.push(Math.min(minStack.peek(),val));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">pop</span><span class="params">()</span> &#123;</span><br><span class="line">        xStack.pop();</span><br><span class="line">        minStack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">top</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> xStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getMin</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> minStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方法借助了辅助栈以及栈顶以下的元素条件一定是满足小于栈顶最小值的条件的，能够做到随着栈的更新，栈內元素满足的条件也时时更新并不需要遍历这个栈以获取时间复杂度为O（1）.</p>
+<p>还有一种方法是不利用辅助栈这种结构，这个时候需要更多的push和pop方法技巧设计，如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MinStack</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Deque&lt;Long&gt; data = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">long</span> minVal;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MinStack</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.data = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">push</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(data.isEmpty()) &#123;</span><br><span class="line">            data.push(<span class="number">0L</span>);</span><br><span class="line">            minVal = val;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">long</span> <span class="variable">diff</span> <span class="operator">=</span> val - minVal;</span><br><span class="line">            data.push(diff);</span><br><span class="line">            <span class="keyword">if</span>(diff &lt; <span class="number">0</span>) &#123; <span class="comment">// 发现 val 是新的最小值</span></span><br><span class="line">                minVal = val;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">pop</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">long</span> <span class="variable">val</span> <span class="operator">=</span> data.pop();</span><br><span class="line">        <span class="keyword">if</span>(val &lt; <span class="number">0</span>) &#123; <span class="comment">// 当前 val 是一个转折点【图中红色块】</span></span><br><span class="line">            <span class="comment">// 因为要 pop 的这个元素是最小值</span></span><br><span class="line">            <span class="comment">// 所以需要还原当前最小值为之前的最小值</span></span><br><span class="line">            minVal = minVal - val;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">top</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">long</span> <span class="variable">top</span> <span class="operator">=</span> data.peek();</span><br><span class="line">        <span class="comment">// 两种从 diff 还原到 val 的方式</span></span><br><span class="line">        <span class="keyword">return</span> top &lt; <span class="number">0</span> ? (<span class="type">int</span>) minVal : (<span class="type">int</span>) (minVal + top);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getMin</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="type">int</span>) minVal;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="394-字符串解码">394—字符串解码</h3>
+<p>给定一个经过编码的字符串，返回它解码后的字符串。编码规则为: <code>k[encoded_string]</code>，表示其中方括号内部的 <code>encoded_string</code> 正好重复 <code>k</code> 次。注意 <code>k</code> 保证为正整数。你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 <code>k</code> ，例如不会出现像 <code>3a</code> 或 <code>2[4]</code> 的输入。测试用例保证输出的长度不会超过 <code>105</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line">输入：s = &quot;3[a]2[bc]&quot;</span><br><span class="line">输出：&quot;aaabcbc&quot;</span><br><span class="line">示例 2：</span><br><span class="line">输入：s = &quot;3[a2[c]]&quot;</span><br><span class="line">输出：&quot;accaccacc&quot;</span><br><span class="line">示例 3：</span><br><span class="line">输入：s = &quot;abc3[cd]xyz&quot;</span><br><span class="line">输出：&quot;abccdcdcdxyz&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">decodeString</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">res</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        Stack&lt;Integer&gt; kstack = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">        Stack&lt;StringBuilder&gt; restack = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">char</span> c : s.toCharArray())&#123;</span><br><span class="line">            <span class="keyword">if</span>(c == <span class="string">&#x27;[&#x27;</span>)&#123;</span><br><span class="line">                <span class="comment">//碰到括号，记录K和当前res，归零。</span></span><br><span class="line">                kstack.push(k);</span><br><span class="line">                restack.push(res);</span><br><span class="line">                k = <span class="number">0</span>;</span><br><span class="line">                res = <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(); </span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(c ==<span class="string">&#x27;]&#x27;</span>)&#123;</span><br><span class="line">                <span class="comment">//出最近的一个左括号入的k,当前res进行计算不入栈</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">curk</span> <span class="operator">=</span> kstack.pop();</span><br><span class="line">                <span class="type">StringBuilder</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; curk; i++)&#123;</span><br><span class="line">                    temp.append(res);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//与括号外合并</span></span><br><span class="line">                res = restack.pop().append(temp);</span><br><span class="line">                </span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(c &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span>)&#123;</span><br><span class="line">                k = c - <span class="string">&#x27;0&#x27;</span> + k * <span class="number">10</span>;</span><br><span class="line">                <span class="comment">//如果k是多位数需要x10</span></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                res.append(c);</span><br><span class="line">                <span class="comment">//如果是字母则缓慢添加</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.toString();              </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
+  id="post-加载优化"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/14/%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/"
+    >加载优化</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/14/%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/" class="article-date">
+  <time datetime="2026-04-14T13:09:32.000Z" itemprop="datePublished">2026-04-14</time>
+</a>
+      
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h1>搭建的网页打不开延迟也很高要怎么处理？</h1>
+<p>当用户反馈 “网页打不开” 或 “加载半天没反应” 时，背后可能隐藏着从本地设备到全球网络的多层故障。某电商平台曾因 CDN 节点配置错误，导致华东地区用户访问延迟从 80ms 飙升至 500ms，转化率骤降 18%；而一家企业官网因未及时清理冗余数据库索引，引发服务器响应超时，出现持续 2 小时的访问中断。网页访问故障绝非单一因素导致，需建立 “先定位、再修复、后加固” 的系统化思维，才能实现高效解决与长期保障。</p>
+<h2 id="一-精准定位故障根源的四步法">一、精准定位故障根源的四步法</h2>
+<p>网页访问是 “本地设备 — 网络链路 — 服务器 — 应用架构” 协同作用的过程，故障排查需遵循 “由近及远、由表及里” 的原则，逐步缩小问题范围。</p>
+<h3 id="一-本地环境验证">（一）本地环境验证</h3>
+<p>本地设备与网络配置异常是最易被忽视的起点，需优先完成基础验证：</p>
+<ul>
+<li><strong>问题复现与范围确认</strong>：使用不同设备（手机、电脑）、不同网络（WiFi、4G/5G）访问目标网页，同时测试其他网站（如百度、谷歌）。若仅特定设备或网络出现问题，故障大概率在本地；若所有场景均异常，则聚焦服务器与网络链路。</li>
+<li><strong>本地配置清理</strong>：清除浏览器缓存（快捷键 <code>Ctrl+Shift+Del</code>）与 DNS 缓存（Windows 执行 <code>ipconfig /flushdns</code>，Linux 执行 <code>systemd-resolve --flush-caches</code>），避免旧缓存导致的资源加载异常。更换公共 DNS 服务器（如 Google DNS <code>8.8.8.8</code>、阿里云 DNS <code>223.5.5.5</code>），排除本地 DNS 解析故障。</li>
+<li><strong>安全策略检查</strong>：暂时禁用防火墙、杀毒软件与浏览器插件，部分安全工具会误拦截网页资源加载。若禁用后恢复正常，需在安全软件中添加网页域名至白名单。</li>
+</ul>
+<h3 id="二-网络链路诊断">（二）网络链路诊断</h3>
+<p>网络链路是连接用户与服务器的关键，延迟与中断多源于路由异常、带宽瓶颈或运营商互通问题：</p>
+<ul>
+<li><strong>基础连通性测试</strong>：通过 <code>ping</code> 命令检测服务器可达性，正常情况下丢包率应低于 1%，延迟（RTT）需结合地域判断（同区域 <code>&lt; 50ms</code>，跨区域 <code>&lt; 200ms</code>）。若 <code>ping</code> 失败，执行 <code>traceroute</code>（Windows 为 <code>tracert</code>）追踪数据包路径，红色超时节点即为故障点 —— 例如中间路由跳数突然从 10 跳增至 30 跳，可能是运营商路由劫持导致。</li>
+<li><strong>端口与服务验证</strong>：使用 <code>telnet 服务器IP 80</code> 或 <code>nc -zv 服务器IP 443</code> 测试 Web 服务端口是否开放，若连接失败，可能是服务器防火墙封禁或 Web 服务未启动。对于 HTTPS 网站，可通过 <code>openssl s_client -connect 域名:443</code> 验证 SSL 证书配置，证书过期会直接导致浏览器拒绝访问。</li>
+<li><strong>链路质量深度分析</strong>：借助第三方工具（如 Pingdom、<a target="_blank" rel="noopener" href="http://IPIP.net">IPIP.net</a>）测试多区域访问性能，若仅特定运营商（如移动用户）出现高延迟，需排查跨运营商互通问题 —— 国内三大运营商之间的 peering 点拥堵是常见诱因。</li>
+</ul>
+<h3 id="三-服务器状态排查">（三）服务器状态排查</h3>
+<p>服务器是网页运行的核心载体，资源耗尽或服务故障会直接导致访问失败：</p>
+<ul>
+<li><strong>硬件资源监控</strong>：通过 <code>top</code>（Linux）或任务管理器（Windows）检查 CPU、内存、磁盘使用率：CPU 持续 100% 可能是进程死循环或恶意攻击；内存使用率 &gt; 90% 易引发 OOM（内存溢出）杀死 Web 进程；磁盘空间满（使用率 &gt; 95%）会导致日志写入失败与静态资源无法加载。</li>
+<li><strong>服务与日志检查</strong>：验证 Web 服务（Nginx/Apache）与数据库（MySQL/PostgreSQL）状态，执行 <code>systemctl status nginx</code> 查看是否正常运行。重点分析错误日志：Nginx 日志（<code>/var/log/nginx/error.log</code>）中的 “connection timed out” 可能是后端服务无响应；MySQL 日志中的 “slow query” 提示存在低效查询语句。</li>
+<li><strong>安全与负载检测</strong>：使用 <code>netstat -an | grep :80 | wc -l</code> 统计并发连接数，若远超服务器承载能力（如单台服务器 &gt; 1000 并发），会导致新请求被拒绝。检查是否存在 DDoS 攻击，通过 <code>tcpdump</code> 抓取流量，大量来源分散的异常请求可能是 UDP 洪水攻击。</li>
+</ul>
+<h2 id="二-分场景修复">二、分场景修复</h2>
+<p>根据诊断结果，针对不同故障类型采取精准修复措施，快速恢复网页打不开的可用性。</p>
+<h3 id="一-本地与网络类故障">（一）本地与网络类故障</h3>
+<ul>
+<li><strong>DNS 解析异常</strong>：若本地 DNS 污染，配置 hosts 文件强制绑定域名与服务器 IP；若域名解析失效，检查 DNS 服务商控制台是否存在解析记录过期或错误（如 A 记录指向旧 IP）。</li>
+<li><strong>链路拥堵或中断</strong>：短期可通过更换 CDN 节点缓解，长期需与运营商协商优化路由，或部署 BGP 多线机房实现多运营商接入。对于国际链路延迟，可采用云厂商的全球加速服务（如阿里云全球加速）优化跨境传输。</li>
+<li><strong>端口与防火墙问题</strong>：在服务器防火墙中开放 80/443 端口（Linux 执行 <code>firewall-cmd --add-port=80/tcp --permanent</code>），云服务器还需配置安全组规则，允许公网访问目标端口。</li>
+</ul>
+<h3 id="二-服务器与资源类故障">（二）服务器与资源类故障</h3>
+<ul>
+<li><strong>资源耗尽修复</strong>：CPU 过载需终止异常进程（<code>kill -9 进程ID</code>），并排查是否为程序 bug 或挖矿病毒；内存不足可临时增加 Swap 分区（Linux 执行 <code>swapon /swapfile</code>），长期需升级物理内存；磁盘满需删除日志、备份文件或扩展磁盘容量。</li>
+<li><strong>服务故障恢复</strong>：重启异常服务（<code>systemctl restart nginx</code>），若反复崩溃需检查配置文件语法（<code>nginx -t</code>）。数据库无法连接时，验证账号权限与端口开放，执行 <code>mysqladmin -u root -p status</code> 确认服务状态。</li>
+<li><strong>攻击防护处理</strong>：启用云服务商的 DDoS 高防服务，配置 WAF 规则过滤恶意请求（如拦截 SQL 注入、XSS 攻击）。对于 CC 攻击，通过 Nginx 配置限制单 IP 并发（<code>limit_conn perip 20</code>）与请求频率（<code>limit_req zone=one 10r/s</code>）。</li>
+</ul>
+<h3 id="三-应用与架构类故障">（三）应用与架构类故障</h3>
+<ul>
+<li><strong>前端优化</strong>：压缩静态资源（使用 Gzip/Brotli 压缩 JS/CSS，通过 TinyPNG 压缩图片），图片采用 WebP/AVIF 格式减少体积；合并零散资源（如将多个 JS 文件合并为一个），减少 HTTP 请求数；启用浏览器缓存（设置 <code>Cache-Control: max-age=86400</code>）缓存静态资源。</li>
+<li><strong>后端优化</strong>：优化数据库查询，为频繁访问的字段添加索引（<code>ALTER TABLE 表名 ADD INDEX 索引名(字段名)</code>），清理冗余数据与慢查询；配置连接池（如 MySQL 的 <code>max_connections</code> 设为 500）避免连接耗尽；将动态内容静态化（如生成 HTML 快照）减少后端计算量。</li>
+</ul>
+<h2 id="三-长效保障">三、长效保障</h2>
+<p>短期修复只能解决当前问题，需通过监控、优化与架构升级实现长期稳定。</p>
+<h3 id="一-构建立体化监控体系">（一）构建立体化监控体系</h3>
+<ul>
+<li><strong>实时告警配置</strong>：部署监控工具（Zabbix、Prometheus），设置关键指标阈值告警：CPU 使用率 &gt; 85%、内存使用率 &gt; 90%、磁盘使用率 &gt; 90%、TTFB&gt;500ms 时触发短信 / 邮件告警。</li>
+<li><strong>全链路性能监控</strong>：使用 APM 工具（如 SkyWalking、New Relic）追踪请求流转，从用户端到数据库的每一环延迟都可可视化，快速定位新增功能引发的性能退化。</li>
+<li><strong>多维度可用性检测</strong>：通过 UptimeRobot 等工具实现全球多地每分钟访问检测，一旦出现打不开或高延迟，立即触发告警，缩短故障发现时间。</li>
+</ul>
+<h3 id="二-优化基础设施架构">（二）优化基础设施架构</h3>
+<ul>
+<li><strong>服务器与网络升级</strong>：采用 SSD 替代 HDD，提升磁盘 I/O 性能（随机读写速度提升 10 倍以上）；升级带宽至业务峰值的 1.5 倍，预留冗余应对突发流量；选择 BGP 多线机房，解决跨运营商访问问题。</li>
+<li><strong>弹性与容灾设计</strong>：使用云服务器（如 AWS EC2、阿里云 ECS）实现弹性伸缩，流量高峰时自动扩容实例，低谷时释放资源。部署主从架构，数据库主从同步，Web 服务多可用区部署，避免单点故障。</li>
+</ul>
+<h3 id="三-标准化运维与优化流程">（三）标准化运维与优化流程</h3>
+<ul>
+<li><strong>定期维护计划</strong>：每周清理服务器日志与临时文件，每月更新系统安全补丁与应用程序版本，每季度进行性能压测，提前发现架构瓶颈。</li>
+<li><strong>版本控制与回滚</strong>：通过 Git 管理代码，每次上线前进行灰度发布（先覆盖 10% 用户），出现问题可快速回滚至稳定版本。对服务器配置变更做记录，避免误操作导致故障。</li>
+<li><strong>应急响应预案</strong>：制定故障处理流程图，明确 “发现告警 — 定位根源 — 执行修复 — 验证效果” 的步骤与责任人。定期开展故障演练，提升团队应急处理效率。</li>
+</ul>
+<p>网页打不开与高延迟的解决，核心在于 “精准诊断” 与 “系统优化” 的结合。本地与网络层故障可通过基础工具快速定位修复，服务器与应用层问题需深入技术细节挖掘根源，而长效保障则依赖架构升级与标准化运维。对于中小网站，通过 CDN 部署、资源优化与基础监控，可将访问延迟降低 40% 以上，可用性提升至 99.9%；对于大型业务系统，需构建 “弹性伸缩 + 多活架构 + 全链路监控” 的立体化体系，才能在流量波动与潜在故障中保持稳定。最终，将故障处理从 “被动响应” 转变为 “主动预防”，才能为用户提供流畅可靠的访问体验。</p>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/" rel="tag">页面加载优化</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
+  id="post-mysql"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/14/mysql/"
+    >后端八股</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/14/mysql/" class="article-date">
+  <time datetime="2026-04-14T03:00:00.000Z" itemprop="datePublished">2026-04-14</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a> / <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql/">Mysql</a>
+  </div>
+
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="1-事务的四大特性和实现原理">1.事务的四大特性和实现原理</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">A:原子性：一个事务操作要么全部成功要么全部失败----&gt;借助Undo <span class="title function_">Log</span><span class="params">(回滚日志)</span>保证</span><br><span class="line">C:一致性：执行事务前后，数据保持一致，需要原子性+持久性+隔离性</span><br><span class="line">I:隔离性：并发执行的事务彼此隔离，一个事务的中间状态对其他事务不可见。通过隔离级别和MVCC（多版本并发控制）机制控制事务之间的可见性和操作冲突</span><br><span class="line">D:持久性：一旦事务提交，对数据库的修改是永久性的，即使系统崩溃断电也不会丢失，通过Redo Log（重做日志）保证。</span><br><span class="line"> </span><br><span class="line"><span class="number">1.1</span>-并发事务可能出现的问题？</span><br><span class="line">    脏读（一个事务读取另一个事务修改且未提交的数据）、不可重复读（在同一事务里，多次读取同一个记录不一致）、幻读（同一事务内，两次执行相同的范围查询，第二次返回结果多出原本不存在的行或少了一些行）</span><br><span class="line">    </span><br><span class="line"><span class="number">1.2</span>-事务隔离级别</span><br><span class="line">    读未提交---都可能发生</span><br><span class="line">    读已提交---解决脏读</span><br><span class="line">    可重复读---解决脏读和不可重复读</span><br><span class="line">    串行化---都解决（包括幻读）</span><br></pre></td></tr></table></figure>
+<h4 id="2-如何理解mvcc">2.如何理解MVCC</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Mysql会为每一个事务分配一个事务ID，事务ID按创建事务顺序递增</span><br><span class="line">    MVCC是多版本并发控制，核心思想是维护一个数据的多个版本，使得读写操作没有冲突，避免加锁阻塞。</span><br><span class="line">    应用：Mysql的InnoDB存储引擎通过MVCC实现读已提交和可重复读隔离级别。</span><br><span class="line">    </span><br><span class="line"><span class="number">2.1</span>-MVCC实现依赖哪些字段？</span><br><span class="line">    数据库记录行的隐藏字段trx_id事务id和roll_pointer指针</span><br><span class="line">    ReadView读视图</span><br><span class="line">    UndoLog版本链</span><br><span class="line">    </span><br><span class="line"><span class="number">2.2</span>-实现原理：</span><br><span class="line">    InnoDB在事务开启后执行第一个查询时会创建一个快照(ReadView),通过查询语句定位到最新版本的数据行，并根据规则获取访问的数据版本</span><br><span class="line">    【被访问事务id=ReadView中当前事务id】当前事务访问自己修改过的版本</span><br><span class="line">    【id&lt;ReadView中最小活动事务id】表明生成该版本的事务在当前事务生成ReadView已经提交</span><br><span class="line">    【id&gt;=ReadView最大活动事务id+<span class="number">1</span>】表明生成该版本的事务在当前事务生成ReadView之后才开启，此时该版本不可以被当前事务访问，需要通过回滚指针从UndoLog读取历史版本</span><br><span class="line">    【ReadView最小id&lt;id&lt;ReadView最大id+<span class="number">1</span>】判断事务id是否在活动事务列表中，在，说明创建该版本的事务还没有提交，回滚读取历史版本；不在，说明已经提交，所以可以读取该版本的数据。</span><br><span class="line">    （可以理解为在开始快读时前会在ReadVIew里查看一个大纲，如果被访问的事务id太小说明已经提交了可以访问，太大说明还没创建事务id，不能被当前访问，中间且在事务列表说明被访问事务还没提交，回滚，不在说明已经提交，可以访问）</span><br><span class="line">    </span><br><span class="line"><span class="number">2.3</span>-</span><br><span class="line">    读已提交隔离级别下：事务【每次查询】前都会创建一个新的ReadView，不可重复读依然存在</span><br><span class="line">    可重复读隔离级别下：只会在事务中【第一次查询】时创建ReadView，同一个事务后续查询共用一个，可以解决不可重复读问题。</span><br></pre></td></tr></table></figure>
+<h4 id="3-b-树索引">3.B+树索引</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//前置-InnoDB存储引擎的每次磁盘I/O操作读取或写入的大小是一页(16Kb)</span></span><br><span class="line"><span class="comment">//B+树的结构下每个节点大小就是一页</span></span><br><span class="line"><span class="comment">//树的高度==每次查询数据时磁盘IO操作的次数</span></span><br><span class="line"><span class="comment">// 索引是基于表中的一个或多个列构建的数据结构，目的是加速对这些列的查询。</span></span><br><span class="line"></span><br><span class="line"><span class="number">3.1</span>-Mysql的索引的数据结构是B+树，为什么选择B+树？</span><br><span class="line">    首先虽然哈希表查询效率很高，但是不支持范围查找；</span><br><span class="line">    二叉树在数据量大二的时候树的层级高，那么磁盘I/O操作多</span><br><span class="line">    B树（多叉平衡查找树）--非叶子节点存储索引数据和记录数据，虽然层级比二叉树低，但是相对B+树还是高，且范围查询的时候是中序遍历</span><br><span class="line">    B+树--非叶子结点只存储索引数据，叶子节点存（索引+记录）叶子节点之间形成双向链表便于范围查询且I/O次数少且支持范围查询。</span><br><span class="line">    跳表在数据量大的时候层数上升，则磁盘I/O上升，其范围查询逐节点按链表移动，跳表更适合内存场景，如果放在磁盘上其节点大小不固定容易随机I/O</span><br><span class="line"></span><br><span class="line"><span class="number">3.2</span>-B树和B+树的区别？</span><br><span class="line">    首先存储数据位置：B树的所有节点都存储，而B+树只在叶子结点存储，非叶子存储的是索引！！</span><br><span class="line">    叶子结点结构不同：B+树节点间有指针形成有序链表，支持高效范围查询，B树没有</span><br><span class="line">    查询效率：B树不稳定（数据可能存储在任何节点，导致不同查询需要的磁盘I/O差异大），B+树稳定</span><br><span class="line">    空间冗余：B+树的键值会在叶子节点冗余</span><br><span class="line"></span><br><span class="line"><span class="number">3.3</span>-聚簇（聚集）索引和二级索引？</span><br><span class="line">    聚簇索引--主键索引，若表中没有主键则是第一个不为<span class="literal">null</span>的唯一索引</span><br><span class="line">    二级索引--非主键索引</span><br><span class="line">    聚簇索引树--聚簇索引树 = 一颗特殊的B+树，它的【叶子节点就是整张表的数据行】。</span><br><span class="line">    二级索引树--二级索引树是为了加速非主键列查询而构建的独立 B+树结构，它的叶子节点只存储【索引列 + 主键】，访问完整数据需要回表。</span><br><span class="line">    </span><br><span class="line"><span class="number">3.4</span>-为什么B+树的I/O次数少？</span><br><span class="line">    非叶子节点只存索引（键），分支因子大，树高低</span><br><span class="line">    范围查询顺序扫描叶子链表，而B树是中序遍历（随机i/O）</span><br><span class="line">    </span><br><span class="line"><span class="number">3.5</span>-回表和索引覆盖？</span><br><span class="line">    select id,age,name from tb.student <span class="type">where</span> <span class="variable">age</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    回表---当查询语句以二级索引的列（非主键）为查询条件时，会先走二级索引树，查到叶子节点取到主键值回到主键索引树去用查到的主键值匹配（这个过程也叫回表）</span><br><span class="line">    select id,age from tb.student <span class="type">where</span> <span class="variable">age</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    索引覆盖---如果查询要获取的列 全部被包含在“二级索引列 + 主键列”的组合中，那么就不需要回表。这称为 覆盖索引。</span><br><span class="line">       </span><br><span class="line">example：</span><br><span class="line">        CREATE TABLE <span class="title function_">t</span> <span class="params">(</span></span><br><span class="line"><span class="params">    id INT PRIMARY KEY,//聚簇索引</span></span><br><span class="line"><span class="params">    name VARCHAR(<span class="number">50</span>)</span>,<span class="comment">//二级索引列</span></span><br><span class="line">    age INT,<span class="comment">//非二级索引列</span></span><br><span class="line">    INDEX <span class="title function_">idx_name</span> <span class="params">(name)</span><span class="comment">//二级索引可以覆盖name列和多有主键列</span></span><br><span class="line">);        </span><br><span class="line">	·二级索引 idx_name 的叶子节点存储的是 (name, id) 对。</span><br><span class="line">	·如果一个查询的 SELECT 列表只包含 idx_name 覆盖的列（即 name 和 id），则不需要回表。</span><br><span class="line">	·如果查询包含 age，则必须回表（因为 age 不在二级索引中，且不是主键）</span><br><span class="line"> </span><br><span class="line"><span class="number">3.6</span>-为什么索引能提高查询效率？</span><br><span class="line">    （<span class="number">1</span>）避免全表扫描，没有索引，查询需要逐行扫描整个表</span><br><span class="line">    （<span class="number">2</span>）利用有序结构加速查找，B+树索引将索引列的值按顺序存储</span><br><span class="line">    （<span class="number">3</span>）减少磁盘I/O，索引的数据结构是B+树，即使数据量级很大，树高依然低，磁盘I/O自然少。</span><br><span class="line">    （<span class="number">4</span>）利用覆盖索引可以直接返回数据。</span><br></pre></td></tr></table></figure>
+<h4 id="4-索引失效">4.索引失效</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>对索引使用函数或表达式计算</span><br><span class="line">    select * from t_user where <span class="title function_">length</span><span class="params">(name)</span>=<span class="number">6</span>;</span><br><span class="line">    select * from t_user where id + <span class="number">1</span> = <span class="number">10</span>;</span><br><span class="line"><span class="number">2.</span>存在索引隐式类型转换</span><br><span class="line">    select * from t_user <span class="type">where</span> <span class="variable">phone</span> <span class="operator">=</span> <span class="number">1300000001</span>;</span><br><span class="line">-- MySQL 在遇到字符串和数字比较的时候，会自动把字符串转为数字，然后再进行比较。</span><br><span class="line">-- 因此相当于  select * from t_user where <span class="title function_">CAST</span><span class="params">(phone AS signed <span class="type">int</span>)</span> = <span class="number">1300000001</span>;</span><br><span class="line"><span class="number">3.</span>使用like且通配符%在开头</span><br><span class="line">    WHERE name LIKE <span class="string">&#x27;%张三&#x27;</span>   -- 以 % 开头，无法用B+树索引</span><br><span class="line"><span class="number">4.</span>使用or条件（一方有索引，另一方没有索引）</span><br><span class="line">    select * from t_user <span class="type">where</span> <span class="variable">id</span> <span class="operator">=</span> <span class="number">1</span> <span class="type">or</span> <span class="variable">age</span> <span class="operator">=</span> <span class="number">18</span>;</span><br><span class="line"><span class="number">5.</span>联合索引不满足最左前缀原则</span><br><span class="line">    -- 联合索引 (a, b, c)</span><br><span class="line"><span class="type">WHERE</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>           -- 没用 a，全索引失效</span><br><span class="line"><span class="type">WHERE</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span> <span class="type">AND</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">3</span> -- 跳过 b，只能用到 a 列，@@@@@@@@@<span class="meta">@c</span> 部分失效@@@@@@@@</span><br><span class="line"><span class="number">6.</span>使用一些否定用于如NOT \!= \NOT IN等</span><br><span class="line"><span class="number">7.</span>数据分布不均，优化器认为全表扫描更快</span><br><span class="line">    </span><br><span class="line">最左匹配原则：</span><br><span class="line">    使用联合索引当where条件中缺少了联合索引左侧的列时，索引就会失效，至于位置顺序并不重要，但是一定要出现联合索引的左侧列</span><br><span class="line">    </span><br><span class="line"><span class="number">4.2</span>---如何判断索引是否生效？</span><br><span class="line">    使用 EXPLAIN 分析查询执行计划，如果key列显示了使用索引的名称，并且type列为ref，range，const等情况的说明索引生效</span><br></pre></td></tr></table></figure>
+<h4 id="5-日志-redolog-undolog-binlog">5.日志（RedoLog、UndoLog、BinLog）</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">###MySql分为两层，Server层（负责Mysql功能）和存储引擎层（负责数据存储）</span><br><span class="line">    RedoLog和UndoLog属于存储引擎层InnoDB引擎的日志，其他引擎无</span><br><span class="line">    BinLog属于Server层的日志</span><br><span class="line"></span><br><span class="line"><span class="number">5.1</span>-RedoLog</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<h4 id="6-执行一条sql的过程">6.执行一条sql的过程</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">连接器：客服端与Mysql服务器建立连接，验证用户名和密码以及权限</span><br><span class="line">查询缓存：（Mysql8.0删除）</span><br><span class="line">解析Sql语句：借助解析器对sql进行词法分析和语法分析</span><br><span class="line">执行sql：</span><br><span class="line">	预处理器（检查表或字段是否存在）</span><br><span class="line">	优化器：分析可能使用的索引，计算不同执行计划的代价选择最优的</span><br><span class="line">	执行器：根据优化器的执行计划调用存储引擎的接口逐行或批量读取数据，进行条件过滤、聚合、排序等</span><br><span class="line">存储引擎：负责实际数据的读写操作，将结果返回给执行器</span><br><span class="line">返回结果。</span><br></pre></td></tr></table></figure>
+<h4 id="7-执行计划的分析">7.执行计划的分析</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">关键字段--type、key、rows、Extra、possible_keys、ref、filtered</span><br><span class="line">先看type是不是All或index</span><br><span class="line">然后看key是否为null</span><br><span class="line">再看rows是否过大</span><br><span class="line">最后检查Extra是否有Using filesort后Using temporary</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="8-你是怎么优化慢sql的？">8.你是怎么优化慢sql的？</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">慢sql的定位-&gt;分析慢sql的原因-&gt;问题解决方案</span><br><span class="line"></span><br><span class="line"><span class="number">8.1</span>-慢sql定位的分析与优化</span><br><span class="line">	定位：【开启慢查询日志】，记录时间超过设置阈值的sql</span><br><span class="line">    分析：慢的原因有哪些？</span><br><span class="line">    数据量大、并发量大、【索引未使用或使用不当】、【sql语句书写不当】、【业务设计不合理】</span><br><span class="line">    </span><br><span class="line"><span class="number">8.2</span>-索引优化？</span><br><span class="line">    （<span class="number">1</span>）限制表上的索引数量，建议单表索引不超过<span class="number">5</span>个</span><br><span class="line">    （<span class="number">2</span>）使用联合索引时，区分度最高的放最左边、频繁使用的列放最左边</span><br><span class="line">    （<span class="number">3</span>）对where、order by、group by后的字段建索引然后联合</span><br><span class="line">    （<span class="number">4</span>）尽量创造覆盖索引，避免回表（也就是说索引中包含查询结果的所有列）</span><br><span class="line"><span class="number">8.3</span>-sql语句优化？</span><br><span class="line">	（<span class="number">1</span>）尽量不适用select*</span><br><span class="line">    （<span class="number">2</span>）join多表查询时，使用数据量小的表驱动数据量大的表</span><br><span class="line">    （<span class="number">3</span>）如果结果集无重复，用Union all替换union（因为union会去重，增加排序和过滤开销）</span><br><span class="line">    （<span class="number">4</span>）避免在where中对列计算（索引失效）</span><br><span class="line"><span class="number">8.4</span>-表结构优化？</span><br><span class="line">    （<span class="number">1</span>）数据类型优化</span><br><span class="line">    	合适的数据类型，如IP用<span class="type">int</span> undesigned不用varchar（<span class="number">15</span>）、避免使用<span class="literal">null</span></span><br><span class="line">    （<span class="number">2</span>）范式与冗余平衡</span><br><span class="line">    	遵循第三范式减少冗余，适当反范式减少联表查询</span><br><span class="line">    （<span class="number">3</span>）分区与分表</span><br><span class="line">    	当单表数据量大，使用分区将表拆分到不同物理文件（范围分区、哈希分区、列表分区）（分去是在同一实例内）</span><br><span class="line">    	分表将数据拆分到不同数据库实例，包括水平分表（按某个键取模）和垂直分表（不常用字段拆分到另一个表）</span><br><span class="line">    （<span class="number">4</span>）约束和索引</span><br><span class="line">    	主键设计成单调递增的列，避免页分裂，主键不宜过长</span><br><span class="line"></span><br><span class="line"><span class="number">8.5</span>-架构优化？</span><br><span class="line">    读写分离、分库分表、缓存机制、分布式数据库</span><br></pre></td></tr></table></figure>
+<h4 id="9-innodb和myisam的区别">9.InnoDB和MyISAM的区别</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">InnoDB：绝大多数业务场景（电商、金融、社交等），MySQL <span class="number">5.5</span> 后也是默认引擎。</span><br><span class="line">MyISAM：只读或低频写入的数据仓库、日志表等（注意崩溃风险）。</span><br><span class="line">    MyISAM不支持事务、外键、行级锁、聚簇索引（InnoDB支持）</span><br></pre></td></tr></table></figure>
+<h4 id="10-查询关键字的顺序？">10.查询关键字的顺序？</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">SELECT name, COUNT(*)</span><br><span class="line">FROM employees</span><br><span class="line">JOIN departments ON employees.<span class="type">department</span> <span class="variable">id</span> <span class="operator">=</span> departments.id</span><br><span class="line">WHERE employees.salary &gt; <span class="number">50000</span></span><br><span class="line">GROUP BY departments.name</span><br><span class="line">HAVING <span class="title function_">COUNT</span><span class="params">(*)</span> &gt; <span class="number">10</span></span><br><span class="line">ORDER BY name</span><br><span class="line">LIMIT <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">from-&gt;确定数据来源</span><br><span class="line">    on-&gt;处理join的关联条件</span><br><span class="line">    	join-&gt;合并关联的表数据</span><br><span class="line">    		where-&gt;对join操作结果实现过滤操作</span><br><span class="line">    			group by-&gt;分组操作通常在条件过滤之后</span><br><span class="line">    				having-&gt;筛选过滤分组后的数据</span><br><span class="line">    					select-&gt;选择需要返回的字段</span><br><span class="line">    						distinct-&gt;去除重复的行</span><br><span class="line">    								order by-&gt;对结果排序</span><br><span class="line">    										limit-&gt;限制返回行数</span><br></pre></td></tr></table></figure>
+<h4 id="11">11.</h4>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2026
+        <i class="ri-heart-fill heart_icon"></i> 蒋洪涛
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+    <!-- 随机句子模块 -->
+    
+    <ul>
+      <li>
+        <div id="random-sentence" class="random-sentence" 
+             data-random-sentences-config='{"use_local_file": false}'></div>
+      </li>
+    </ul>
+    
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="float-btn totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="float-btn todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="float-btn navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.svg" alt="计算机学习"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">全部文章</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">文章分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">全部标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友情链接</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于本站</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+
+
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<!-- Tocbot -->
+
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css" />
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/dist/main.js"></script>
+
+
+<!-- ImageViewer -->
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<!-- MathJax -->
+
+
+<!-- Katex -->
+
+  
+    
+        <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.css">
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.js"></script>
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/contrib/auto-render.min.js"></script>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            });
+        </script>
+    
+
+
+
+<!-- busuanzi -->
+
+
+<!-- ClickLove -->
+
+
+<!-- ClickBoom1 -->
+
+
+<!-- ClickBoom2 -->
+
+
+<!-- CodeCopy -->
+
+  
+<link rel="stylesheet" href="/css/clipboard.css">
+
+  <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+<!-- CanvasBackground -->
+
+  
+<script src="/js/dz.js"></script>
+
+
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

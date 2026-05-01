@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+
+  <html lang="en">
+    
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Java基础 |  计算机学习</title>
+  <meta name="generator" content="hexo-theme-ayeria">
+      
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      
+      <link rel="preconnect" href="https://fonts.font.im" crossorigin />
+      <link rel="preconnect" href="https://fonts.gstatic.font.im" crossorigin />
+      <link rel="stylesheet" href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400&display=swap" />
+      
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+
+      
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      
+
+      <!-- mermaid -->
+      
+      
+      <!-- 随机句子功能 -->
+      
+      <script src="/js/random-sentences.js"></script>
+      
+    <link rel="alternate" href="/atom.xml" title="计算机学习" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body class="darkmode">
+  <div id="app">
+    
+    
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Java基础"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Java基础
+</h1>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/19/Java%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2026-04-19T07:34:23.000Z" itemprop="datePublished">2026-04-19</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+  </div>
+
+      
+        
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">11 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+      
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="1-java的类里有什么？">1.Java的类里有什么？</h4>
+<p>类的主要成分有<code>成员变量</code>、<code>构造方法</code>（带参、无参）、<code>成员方法</code>、<code>getter、setter方法</code>（封装）</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">组成部分</th>
+<th style="text-align:left">作用</th>
+<th style="text-align:left">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>成员变量</strong></td>
+<td style="text-align:left">存储对象的状态（数据）</td>
+<td style="text-align:left"><code>private String brand;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>构造方法</strong></td>
+<td style="text-align:left">创建对象时初始化成员变量</td>
+<td style="text-align:left"><code>public Car(String b) { brand = b; }</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>方法</strong></td>
+<td style="text-align:left">定义对象的行为或功能</td>
+<td style="text-align:left"><code>public void start() { ... }</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>内部类</strong></td>
+<td style="text-align:left">定义在另一个类内部的类</td>
+<td style="text-align:left"><code>class Engine { }</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>静态成员</strong></td>
+<td style="text-align:left">属于类本身，而不是对象</td>
+<td style="text-align:left"><code>public static int wheelCount = 4;</code></td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Car</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 成员变量（属性）,这里用来声明各种在后续方法里用到的变量</span></span><br><span class="line">    <span class="keyword">private</span> String brand;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> speed;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 构造方法（用于初始化对象）方法名必须和类名一致</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Car</span><span class="params">(String brand, <span class="type">int</span> speed)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.brand = brand;</span><br><span class="line">        <span class="built_in">this</span>.speed = speed;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 方法（行为）</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accelerate</span><span class="params">()</span> &#123;</span><br><span class="line">        speed += <span class="number">10</span>;</span><br><span class="line">        System.out.println(brand + <span class="string">&quot; 加速，当前速度：&quot;</span> + speed);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. getter / setter（封装）</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getSpeed</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> speed;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-在java中不支持用toarray-方法将list转变成int-数组">2.在Java中不支持用toArray()方法将list转变成int []数组</h4>
+<p><code>List&lt;Integer&gt;</code> 不能直接通过 <code>toArray()</code> 转成 <code>int[]</code>（因为泛型不支持基本类型），需要使用以下方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="comment">//方法一：使用流</span></span><br><span class="line"><span class="comment">// ... 添加元素</span></span><br><span class="line"><span class="type">int</span>[] arr = list.stream().mapToInt(Integer::intValue).toArray();</span><br><span class="line"></span><br><span class="line"><span class="comment">//方法二手动循环</span></span><br><span class="line"><span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[list.size()];</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">    arr[i] = list.get(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>！！！<code>toArray(T[])</code> 中的 <code>T</code> 必须是引用类型，<code>int</code> 是基本类型，不满足泛型约束</p>
+<h4 id="3-在for循环里什么时候用while什么时候用if？">3.在for循环里什么时候用while什么时候用if？</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">每次在<span class="keyword">for</span>循环或者其他循环里嵌套循环的时候，应该时刻问自己一个问题:如果条件成立，我希望这段代码只运行一次，还是希望它一直运行到条件不成立为止？</span><br></pre></td></tr></table></figure>
+<h4 id="4-java集合分类">4.Java集合分类</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Java集合分为单列集合Collection和双列集合Map</span><br><span class="line">单列集合Collection接口下面有两个接口一个是List，一个是Set</span><br><span class="line">List接口下有三个实现类，ArrayList、LinkedList、vector；</span><br><span class="line">Set接口下有实现类，HashSet、TreeSet；还有LinkedHashSet继承HashSet</span><br><span class="line"></span><br><span class="line">双列集合Map接口下有两个实现类分别是常用的HashMap、和TreeMap；</span><br><span class="line">LinkedHashMap继承HashMap;</span><br></pre></td></tr></table></figure>
+<h4 id="5-arraylist-底层数据结构是动态数组-1-5扩容">5.ArrayList（底层数据结构是动态数组）-1.5扩容</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5.1</span>-为什么建议在创建对象的时候初始化容量值</span><br><span class="line">	<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();建议指定初始化容量值，设置合适的初始值可以避免数组扩容(每次扩容会创建新的数组并拷贝旧数据)，避免扩容就提高了性能也避免内存浪费</span><br><span class="line">    </span><br><span class="line"><span class="number">5.2</span>-为什么扩容因子是<span class="number">1.5</span>？</span><br><span class="line">    扩容因子太大会浪费内存，太小会频繁扩容影响性能，这个<span class="number">1.5</span>是经验值来权衡性能和内存。</span><br><span class="line">    </span><br><span class="line"><span class="number">5.3</span>-ArrayList是线程安全的吗？</span><br><span class="line">    不是线程安全的，作为多线程共享数据，多线程并发修改ArrayList，如同时add()导致元素覆盖，同时扩容导致数据丢失。</span><br><span class="line">    解决方法：使用<span class="keyword">synchronized</span>(lock)&#123;&#125;代码块包裹操作;使用CopyOnWirteArrayList</span><br></pre></td></tr></table></figure>
+<h4 id="6-copyonwritearraylist实现原理？-0-75扩容因子">6.CopyOnWriteArrayList实现原理？-0.75扩容因子</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.底层数据结构时是数组,在向CopyOnWriteArrayList添加元素时，会复制一个数组将读写分离，原数组进行读操作，新数组进行写操作。</span><br><span class="line">2.写操作上会加锁，防止出现并发写入时元素覆盖的问题</span><br><span class="line">3.写操作结束之后会把原数组指向新数组。</span><br><span class="line"></span><br><span class="line">优势：适合读多写少场景，读性能高（在写操作读时不用加锁）</span><br><span class="line">劣势：较占内存，读到数据不是实时的，不适合实时性要求很高的场景</span><br></pre></td></tr></table></figure>
+<h4 id="7-hashmap底层原理">7.HashMap底层原理</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">底层数据结构在JDk1<span class="number">.7</span>之前时数组+链表；在<span class="number">1.8</span>是数组+链表+红黑树</span><br><span class="line">    </span><br><span class="line"><span class="number">7.1</span>-添加元素流程</span><br><span class="line">    put时，用(数组长度-<span class="number">1</span>)&amp;键的哈希值计算元素在数组对应下标：一种是数字该位置是<span class="literal">null</span>直接添加，一种是不为<span class="literal">null</span>，则遍历该桶位置下的链表或者红黑树，调用equals方法遍历比较键:若键一致，则会覆盖数组原有的Entry对象的value，然后返回。</span><br><span class="line">    如果没有一致的键，则把元素加入链表（<span class="number">1.7</span>头插。<span class="number">1.8</span>尾插）或红黑树</span><br><span class="line">   	在JDK8以后链表长度&gt;=<span class="number">8</span>且数组长度&gt;=<span class="number">64</span>的时候，将链表转为红黑树。</span><br><span class="line">    当红黑树节点数&lt;= <span class="number">6</span> 时，退化为链表。</span><br><span class="line"></span><br><span class="line">###树化可以提高大量哈希冲突时的查找效率（从 O(n) 降至 O(log n)）</span><br><span class="line">    </span><br><span class="line"><span class="number">7.2</span>-扩容加载因子<span class="number">0.75</span></span><br><span class="line">    如果HashMap中元素达到数组长度的<span class="number">0.75</span>就会扩容为原来的<span class="number">2</span>倍，这个<span class="number">0.75</span>是基于possion分布的统计规律的，在此时扩容发生哈希冲突的概率显著降低且控制内存占用。</span><br><span class="line">    </span><br><span class="line"><span class="number">7.3</span>-扩容为数组长度的<span class="number">2</span>倍</span><br><span class="line">    为什么是<span class="number">2</span>倍？因为在插入键值对元素，是通过（数组长度-<span class="number">1</span>）&amp;键的哈希值去确定在数组的索引位置，若数组长度是<span class="number">2</span>的次幂，则公式的左边二进制就全是<span class="number">1</span>，此时索引位置完全取决于键的hash值，降低hash碰撞的概率，提高查询效率</span><br><span class="line"></span><br><span class="line"><span class="number">7.4</span>-HashMap线程安全吗？</span><br><span class="line">    不是线程安全的，jdk1<span class="number">.7</span>的多线程环境下扩容时会造成环形链或数据丢失</span><br><span class="line">    jdk1<span class="number">.8</span>的多线程环境下插入元素到空桶会发生数据覆盖的情况！</span><br><span class="line">   	解决方案：<span class="keyword">synchronized</span>代码块包裹</span><br><span class="line">    使用ConcurrentHashMap</span><br><span class="line">    </span><br><span class="line"><span class="number">7.5</span>-初始容量不是<span class="number">2</span>的幂次怎么办？</span><br><span class="line">    初始容量必须是 <span class="number">2</span> 的幂，如果不是，构造函数会通过 tableSizeFor 方法调整到大于等于给定值的最近 <span class="number">2</span> 的幂。</span><br></pre></td></tr></table></figure>
+<h4 id="8-concurrenthashmap实现原理">8.ConcurrentHashMap实现原理</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8.1</span>-底层数据结构</span><br><span class="line">	Jdk1<span class="number">.7</span>底层是数组+链表，使用分段锁保证线程安全，默认将数组分成<span class="number">16</span>段，同时给每一段来配一把锁，因此最多有<span class="number">16</span>个线程同时操作集合，这样降低并发操作时的锁竞争，提高并发性能</span><br><span class="line">	jdk1<span class="number">.8</span>底层是数组+链表+红黑树，在并发处理上去掉了分段锁得到设计，采用CAS+synchronzied实现更加细粒度(为读写删除等操作单独授权，甚至限制都某条数据)的锁</span><br><span class="line"></span><br><span class="line"><span class="number">8.2</span>-添加元素过程</span><br><span class="line">	添加元素时会判断数组是否为空，如果为空则用CAS来初始化数组，非空判断元素存入桶的位置是否为空，如果桶位置为空则使用CAS设置桶上的头节点，不为空则用<span class="keyword">synchronized</span>加锁，锁住桶位置的头节点，遍历桶中的数据，替换或新增节点到桶中，并且判断链表是否需要转成红黑树</span><br><span class="line"></span><br><span class="line"><span class="number">8.3</span>-锁粒度细化</span><br><span class="line">锁的粒度从段缩小到单个桶(链表/树的头结点)，减少竞争概率，JDK1.8ConcurrentHashMap设计了无锁化编程和锁粒度细化的优化思想是Java并发容器的经典实现</span><br><span class="line"></span><br><span class="line"><span class="number">8.4</span>-为什么不全用CAS或者全用<span class="keyword">synchronized</span>加锁实现线程安全，为什么不同操作用不同方式保证呢？</span><br><span class="line">	CAS保证线程安全时做的事是初始化数组或者初始化头结点;</span><br><span class="line">	<span class="keyword">synchronized</span>做的是遍历桶的节点，比较key是否相等然后插入或替换元素，再判断链表是否转为红黑树;</span><br><span class="line">	CAS无锁适合做短时间任务，执行时间太长，就会有线程不断自旋尝试，过度占用CPU</span><br><span class="line">	<span class="keyword">synchronized</span>适合做长时间，高竞争的任务，加锁后，其余线程进入休眠，不会占用CPU。</span><br></pre></td></tr></table></figure>
+<h4 id="9-什么是反射-举例子解释？">9.什么是反射，举例子解释？</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">9.1</span>-反射概念</span><br><span class="line">    反射是一种允许程序在运行时动态的检查、修改或调用类、方法、属性和构造函数等代码结构的信息，增加程序的灵活性和通用性。</span><br><span class="line">   </span><br><span class="line"><span class="number">9.2</span>-使用场景</span><br><span class="line">    框架开发：Spring的依赖注入（IOC）、AOP的动态代理</span><br><span class="line">    动态加载类（插件化架构）） 利用反射在运行时加载、实例化和调用事先未知的类，实现程序功能的动态扩展。</span><br><span class="line">    序列化/反序列化（JSON库将对象转为字符串）</span><br><span class="line">    测试工具（JUnit动态调用测试方法）</span><br><span class="line">    </span><br><span class="line">缺点：性能开销大，破坏封装、安全风险</span><br><span class="line"></span><br><span class="line"><span class="number">9.3</span>-获取一个类的Class对象有几种方式？</span><br><span class="line">    类名.class、对象.getClass()、Class.forName(<span class="string">&quot;全限定名&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="number">9.4</span>-借助反射绕过泛型检查</span><br><span class="line">    获取Add方法，用Method.invoke添加任意对象</span><br></pre></td></tr></table></figure>
+<h4 id="10-异常处理">10.异常处理</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10.1</span>-Error和Exception的区别？</span><br><span class="line">	Error是由JVM或底层系统资源不足引发，如内存溢出、栈溢出--无法通过代码恢复</span><br><span class="line">	Exception是程序逻辑或外部输入导致，如文件不存在、空指针异常，是程序设计不完善出现的--可以通过代码捕获处理：<span class="keyword">try</span>-<span class="keyword">catch</span>后者<span class="keyword">throws</span>抛出来控制。</span><br><span class="line"></span><br><span class="line"><span class="number">10.2</span>-异常的分类和区别？</span><br><span class="line">	两大类：编译时异常（受检）和运行时异常（非受检）</span><br><span class="line">	编译异常：在代码中显示的异常编译时就可以发现，IOException（输入输出异常）、SQLException（数据库相关异常）ClassNotFoundException（找不到类文件）、InterruptedException（线程阻塞时被打断）</span><br><span class="line">	运行时异常：继承RuntimeException，不捕获在运行期间会发生异常，如空指针、索引越界、类型转换错误、内存不足</span><br><span class="line">	</span><br><span class="line"><span class="number">10.3</span>-<span class="keyword">throw</span>和<span class="keyword">throws</span>的核心区别？</span><br><span class="line">	<span class="keyword">throw</span>：方法内部主动抛出一个异常对象；后面必须跟一个异常对象（<span class="keyword">new</span> <span class="title class_">Exception</span>()）；执行<span class="keyword">throw</span>后方法终止，后续代码不会执行。</span><br><span class="line">	使用场景：程序检测到某种错误时，主动创建并抛出异常。</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">throws</span>：在方法签名中声明该方法可能抛出的异常；调用声明了<span class="keyword">throws</span>编译异常的方法，必须用<span class="keyword">try</span> <span class="keyword">catch</span>捕获或用<span class="keyword">throws</span>继续声明；</span><br><span class="line">	使用场景：方法内部可能抛出受检异常（编译异常），但是不打算在当前方法处理。运行时异常不需要再<span class="keyword">throws</span>声明。</span><br><span class="line">	</span><br><span class="line"><span class="number">10.4</span>-<span class="keyword">finally</span>代码一定会被执行吗?</span><br><span class="line">	正常情况下一定会被执行，以下情况不会继续：</span><br><span class="line">	（<span class="number">1</span>）<span class="keyword">try</span>里遇到System.exit()；虚拟机关闭</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;执行 try 代码.&quot;</span>);</span><br><span class="line">            System.exit(<span class="number">0</span>);</span><br><span class="line">            Runtime.getRuntime().halt(<span class="number">0</span>);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;执行 finally 代码.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">     （<span class="number">2</span>）程序在 <span class="keyword">try</span> 块中遇到死循环或者发生死锁等情况时，程序可能无法正常跳出 <span class="keyword">try</span> 块，此时 <span class="keyword">finally</span> 块中的代码也不会被执行。</span><br><span class="line">     （<span class="number">3</span>）要执行前停电</span><br><span class="line">     （<span class="number">4</span>）JVM异常崩溃问题</span><br><span class="line">### <span class="keyword">finally</span> 在 <span class="keyword">return</span> 之前执行；如果 <span class="keyword">finally</span> 中也有 <span class="keyword">return</span>，会覆盖之前的 <span class="keyword">return</span>。</span><br></pre></td></tr></table></figure>
+<h4 id="11-深拷贝和浅拷贝">11.深拷贝和浅拷贝</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">11.1</span>-深拷贝和浅拷贝是在复制对象或数据结构时所用的两种不同的拷贝方式</span><br><span class="line"></span><br><span class="line"><span class="number">11.2</span>-浅拷贝</span><br><span class="line">    创建一个新的对象，只复制原始对象的基本数据类型的字段或引用地址，不复制引用指向的对象，这种拷贝方式的新对象和原始对象指向同一个对象，共用一个对象，所以新的对象修改会影响原始的数据</span><br><span class="line"></span><br><span class="line"><span class="number">11.3</span>-深拷贝</span><br><span class="line">    创建一个新的对象，递归地复制原始对象的所有字段和引用指向的对象，不仅仅只复制引用本身</span><br><span class="line">会递归的复制整个对象结构包括对象内部的对象，确保新对象和原对象是独立的，原对象不会受到影响。</span><br><span class="line">    </span><br><span class="line"><span class="number">11.4</span>-克隆</span><br><span class="line">    （<span class="number">1</span>）手动<span class="keyword">new</span>对象和递归复制</span><br><span class="line">    （<span class="number">2</span>）实现Cloneable接口并重写clone方法---<span class="built_in">super</span>.clone()这是浅拷贝;如果需要深拷贝那么需要再clone()方法里手动克隆字段。</span><br><span class="line">    （<span class="number">3</span>）实现Serializable接口通过序列化将对象写入流再读回</span><br><span class="line">    （<span class="number">4</span>）外部库（Apache commons）</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<h4 id="12-linkedlist">12.LinkedList</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+        
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2026/04/19/Java%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+    </footer>
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2026/04/19/ACM/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            ACM
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2026/04/19/leetcode-%E5%AD%90%E4%B8%B2/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">leetcode-子串</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+    
+<div class="giscus-container" style="margin-top: 2rem; padding: 0 1rem;">
+  <script
+    src="https://giscus.app/client.js"
+    data-repo="1JHT1/1JHT1.github.io"
+    data-repo-id="R_kgDOSDBesg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOSDBess4C64Wo"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="dark"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async
+  ></script>
+  <script>
+    /* giscus 通过 async 加载，iframe 可能在 ayeria.js 初始化之后才就绪。
+       站点默认暗色模式所以 data-theme="dark" 覆盖多数情况，
+       但若用户之前选择了亮色模式（sessionStorage darkmode==0），
+       需要在 iframe 就绪后修正主题。 */
+    if (sessionStorage.getItem("darkmode") == 0) {
+      window.addEventListener("message", function _giscusThemeFix(e) {
+        if (e.origin !== "https://giscus.app") return;
+        if (!(typeof e.data === "object" && e.data.giscus)) return;
+        var f = document.querySelector("iframe.giscus-frame");
+        if (f) {
+          f.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: "light" } } },
+            "https://giscus.app"
+          );
+        }
+        window.removeEventListener("message", _giscusThemeFix);
+      });
+    }
+  </script>
+</div>
+
+
+  
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2026
+        <i class="ri-heart-fill heart_icon"></i> 蒋洪涛
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+    <!-- 随机句子模块 -->
+    
+    <ul>
+      <li>
+        <div id="random-sentence" class="random-sentence" 
+             data-random-sentences-config='{"use_local_file": false}'></div>
+      </li>
+    </ul>
+    
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="float-btn totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="float-btn todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="float-btn navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.svg" alt="计算机学习"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">全部文章</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">文章分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">全部标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友情链接</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于本站</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+
+
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<!-- Tocbot -->
+
+  
+<script src="/js/tocbot.min.js"></script>
+
+  <script>
+    tocbot.init({
+      tocSelector: ".tocbot",
+      contentSelector: ".article-entry",
+      headingSelector: "h1, h2, h3, h4, h5, h6",
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      scrollContainer: "main",
+      positionFixedSelector: ".tocbot",
+      positionFixedClass: "is-position-fixed",
+      fixedSidebarOffset: "auto",
+    });
+  </script>
+
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css" />
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/dist/main.js"></script>
+
+
+<!-- ImageViewer -->
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<!-- MathJax -->
+
+
+<!-- Katex -->
+
+  
+    
+        <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.css">
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.js"></script>
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/contrib/auto-render.min.js"></script>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            });
+        </script>
+    
+
+
+
+<!-- busuanzi -->
+
+
+<!-- ClickLove -->
+
+
+<!-- ClickBoom1 -->
+
+
+<!-- ClickBoom2 -->
+
+
+<!-- CodeCopy -->
+
+  
+<link rel="stylesheet" href="/css/clipboard.css">
+
+  <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+<!-- CanvasBackground -->
+
+  
+<script src="/js/dz.js"></script>
+
+
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

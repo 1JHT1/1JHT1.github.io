@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+
+
+  <html lang="en">
+    
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>项目问题 |  计算机学习</title>
+  <meta name="generator" content="hexo-theme-ayeria">
+      
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      
+      <link rel="preconnect" href="https://fonts.font.im" crossorigin />
+      <link rel="preconnect" href="https://fonts.gstatic.font.im" crossorigin />
+      <link rel="stylesheet" href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400&display=swap" />
+      
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+
+      
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      
+
+      <!-- mermaid -->
+      
+      
+      <!-- 随机句子功能 -->
+      
+      <script src="/js/random-sentences.js"></script>
+      
+    <link rel="alternate" href="/atom.xml" title="计算机学习" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body class="darkmode">
+  <div id="app">
+    
+    
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-项目问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  项目问题
+</h1>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/17/%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2026-04-17T12:08:18.000Z" itemprop="datePublished">2026-04-17</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/">项目问题</a>
+  </div>
+
+      
+        
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.9k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">6 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+      
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="1-你在项目中怎么实现多级缓存的？">1.你在项目中怎么实现多级缓存的？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">本地缓存选择的是Caffeine(高性能、支持淘汰)，Redis则用来做分布式二级缓存</span><br><span class="line">	读流程：先查本地缓存，命中直接返回，未命中则查Redis。命中回写Caffeine(设置短TTL)，如果前面都未命中再查DB,回写Redis和Caffeine</span><br><span class="line">	写流程：首先应该更新DB，然后删除Redis的key，再发送MQ广播（每个服务实例监听），收到原因后失效本地缓存，如果直接更新缓存会产生并发脏数据，MQ保证最终一致！</span><br><span class="line">	防雪崩和击穿：本地TTL设10s，Redis设30s。(这里本地的TTL一定要小于Redis的，不然会导致数据不一致)</span><br><span class="line">	监控：Caffeine暴露命中率指标，低于阈值时自动调大本地TTL或预热热点Key</span><br></pre></td></tr></table></figure>
+<h4 id="2-既然多级缓存-本地缓存-redis缓存-可以在热key访问redis前进行返回-那为什么不用来解决缓存击穿？">2.既然多级缓存（本地缓存+redis缓存）可以在热Key访问Redis前进行返回，那为什么不用来解决缓存击穿？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">本地缓存如果用于解决缓存击穿的话就必须确保数据过期时间比Redis的过期时间大，这样在Redis过期的时候数据访问的时候不会击穿Redis直接访问DB，但是这样会影响数据的一致性问题（对于多个节点的分布式系统，删除数据更新后本地的数据仍然没失效）</span><br></pre></td></tr></table></figure>
+<h4 id="3-redis执行lua脚本为什么是原子性的？和redis原生的的事务-multi-exec-的区别？">3.Redis执行Lua脚本为什么是原子性的？和Redis原生的的事务(MULTI/EXEC)的区别？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Redis是单线程模型</span><br><span class="line">执行层面：Lua脚本执行期间，Redis会完全阻塞其他客户端的请求，包括其他Lua脚本，作为一个独立个体要么全部执行，要么全部失效</span><br><span class="line">事务层面：Lua脚本的某个命令执行失败，Redis不会自动回滚已经执行成功的前面所有命令，会立即停止执行脚本返回错误信息</span><br><span class="line"></span><br><span class="line">区别：</span><br><span class="line">	（1）交互逻辑：Lua脚本更加灵活，可以在脚本内部根据中间的执行结果来决定接下来执行什么命令，而原生事务中所有命令在执行前已经放进队列，无法在执行中动态调整。</span><br><span class="line">	（2）网络开销：Lua脚本是打包成一个请求，而原生事务需要发送多个命令到客户端，在请求-相应上Lua更优</span><br><span class="line">	（3）复杂度：Lua脚本更擅长有命令之间联系更深的，而原生事务更适合一系列互不依赖、批量执行的命令。</span><br></pre></td></tr></table></figure>
+<h4 id="4-你用-set-还是-string-记录已秒杀的用户？如果用户量很大-千万级-set-会变成大-key-怎么优化？">4.<strong>你用 Set 还是 String 记录已秒杀的用户？如果用户量很大（千万级），Set 会变成大 Key，怎么优化？</strong></h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">	如果需要遍历列表，则用Set记录已秒杀的用户，SISMEMBER O(1) 判断用户是否存在，天然去重。如果用String 存储，要么无法高效判重，要么需要额外解析。</span><br><span class="line">	如果用户id是连续数字且不关心秒杀用户的其他特征，用String的BitMap而不用Set，原因是此时用String占用的内存极小，操作更高效，防重复</span><br><span class="line">	</span><br><span class="line">	优化大Key采用分片操作：</span><br><span class="line">将用户ID按哈希分散到多个小Set中，每个Set控制在合理范围（如1-2万个),秒杀活动结束后，异步删除所有分片的</span><br><span class="line">Key。</span><br><span class="line">	分片具体做法：</span><br><span class="line">	1.设定分片的个数N</span><br><span class="line">	2.计算分片键：slot=hash(userId)%N（将已秒杀的用户的id计算slot）</span><br><span class="line">	3.修改Set的key确保相同slot的用户在同一Set里</span><br><span class="line">	4.判断是否已秒杀：计算slot然后找到对应的分片，通过SISMember可以查询是否在Set里，由于我们Set只存秒杀用户，如果不在则未秒杀！</span><br><span class="line">	5.记录秒杀用户：SADD到对应的小Set</span><br></pre></td></tr></table></figure>
+<h4 id="5-防重判断和扣库存的顺序有没有讲究？如果先扣库存再判断是否已秒杀-会有什么问题？">5.防重判断和扣库存的顺序有没有讲究？如果先扣库存再判断是否已秒杀，会有什么问题？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">正确的顺序是先防重判断再扣库存：</span><br><span class="line">	读取防重记录，检查用户是否已秒杀成功，若未秒杀，则执行扣库存操作，扣完后写入防重记录，标记用户已秒杀。该顺序能够确保用户成功秒杀一次，且库存消化和订单一一对应。</span><br><span class="line">	顺序弄反会导致库存被重复请求无效消化，lua不支持回滚，数据不一致</span><br></pre></td></tr></table></figure>
+<h4 id="6-lua-脚本中如何避免库存扣成负数？如果并发量极高-仅用-decr-判断返回值是否足够？">6. Lua 脚本中如何避免库存扣成负数？如果并发量极高，仅用 DECR 判断返回值是否足够？</h4>
+<p>仍然需要先判断再扣减，且可以借助DECRBY KEY num指定扣减数量，且需要在业务层去控制扣减数量非负，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">利用脚本的原子性，在扣减前先检查库存是否充足。如果库存小于<span class="number">0</span>直接<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"><span class="type">local</span> <span class="variable">key</span> <span class="operator">=</span> KEYS[<span class="number">1</span>]</span><br><span class="line"><span class="type">local</span> <span class="variable">stock</span> <span class="operator">=</span> redis.call(<span class="string">&#x27;GET&#x27;</span>, key)</span><br><span class="line"><span class="keyword">if</span> stock and <span class="title function_">tonumber</span><span class="params">(stock)</span> &gt; <span class="number">0</span> then</span><br><span class="line">    redis.call(<span class="string">&#x27;DECR&#x27;</span>, key)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>   -- 扣减成功</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>   -- 库存不足</span><br><span class="line">end</span><br><span class="line">    </span><br><span class="line">    对于并发量极高来说，若库存频繁为<span class="number">0</span>，每个失败的请求会执行两次写操作一次Decr一次Incr，会增加Redis的CPU开销。所以用lua脚本进行先判断再执行只需执行一次写且遇到负值直接返回<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h4 id="7-秒杀的商品库存不是单纯减一-而是每次购买多个数量-lua-脚本应该怎么改？">7.秒杀的商品库存不是单纯减一，而是每次购买多个数量，Lua 脚本应该怎么改？</h4>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- KEYS[1] : 库存 key</span></span><br><span class="line"><span class="comment">-- ARGV[1] : 本次购买数量（正整数）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> key = KEYS[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">local</span> buy_num = <span class="built_in">tonumber</span>(ARGV[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 获取当前库存</span></span><br><span class="line"><span class="keyword">local</span> stock = redis.call(<span class="string">&#x27;GET&#x27;</span>, key)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 库存不存在或不足，返回失败</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> stock <span class="keyword">or</span> <span class="built_in">tonumber</span>(stock) &lt; buy_num <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>   <span class="comment">-- 扣减失败</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 库存充足，减少指定数量</span></span><br><span class="line">redis.call(<span class="string">&#x27;DECRBY&#x27;</span>, key, buy_num)</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span>       <span class="comment">-- 扣减成功</span></span><br></pre></td></tr></table></figure>
+<h4 id="8-如果-lua-脚本执行到一半-redis-主从切换了-会发生什么？如何保证秒杀数据不丢失？">8.如果 Lua 脚本执行到一半，Redis 主从切换了，会发生什么？如何保证秒杀数据不丢失？</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">在 Redis 主从异步复制的架构下，确实存在这种极端情况导致数据丢失的风险。为了在秒杀场景下保证数据不丢失，我的项目采用了以下策略：</span><br><span class="line"><span class="number">1.</span>Redis 仅作为热数据缓存，不作为最终权威数据源。Lua 脚本扣减的是 Redis 中的“虚拟库存”，即使丢失，也可以从数据库恢复。</span><br><span class="line"><span class="number">2.</span>同步写入 Kafka，再由消费者异步落库。数据库事务保证最终一致性，并且通过消息重试机制防止丢失。</span><br><span class="line"><span class="number">3.</span>主从切换时，如果脚本执行了一半，可能会出现 Redis 与数据库不一致。我会设置一个 定时对账任务，扫描数据库订单和 Redis 库存的差异，进行补偿修复。</span><br><span class="line"><span class="number">4.</span>如果对一致性要求极高，可以使用 WAIT 命令 或 Redisson 的分布式锁，但会牺牲部分性能。在秒杀场景下，我更倾向于异步补偿 + 最终一致性。</span><br><span class="line"></span><br><span class="line"><span class="comment">//“为什么不用 Zookeeper 或 etcd 来保证强一致性？”</span></span><br><span class="line"></span><br><span class="line">Zookeeper 使用 ZAB 协议，写操作需要多数节点确认，能保证强一致性，但吞吐量远低于 Redis（ZK 适合配置管理，不适合秒杀）。秒杀场景更看重 高吞吐 + 最终一致性，Redis + 异步落库是更合适的组合。</span><br></pre></td></tr></table></figure>
+<p><img src="C:/Users/%E8%92%8B%E6%B4%AA%E6%B6%9B/AppData/Roaming/Typora/typora-user-images/image-20260417205619599.png" alt="image-20260417205619599"></p>
+<h4 id="9-秒杀结束后-库存key和用户记录key还需要保留吗？如何设计清理策略？">9.秒杀结束后，库存key和用户记录key还需要保留吗？如何设计清理策略？</h4>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+        
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2026/04/17/%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+    </footer>
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2026/04/17/leetcode-%E5%8F%8C%E6%8C%87%E9%92%88/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            leetcode-双指针
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2026/04/17/%E5%90%8D%E8%AF%8D%E4%BB%8B%E7%BB%8D/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">名词介绍</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+    
+<div class="giscus-container" style="margin-top: 2rem; padding: 0 1rem;">
+  <script
+    src="https://giscus.app/client.js"
+    data-repo="1JHT1/1JHT1.github.io"
+    data-repo-id="R_kgDOSDBesg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOSDBess4C64Wo"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="dark"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async
+  ></script>
+  <script>
+    /* giscus 通过 async 加载，iframe 可能在 ayeria.js 初始化之后才就绪。
+       站点默认暗色模式所以 data-theme="dark" 覆盖多数情况，
+       但若用户之前选择了亮色模式（sessionStorage darkmode==0），
+       需要在 iframe 就绪后修正主题。 */
+    if (sessionStorage.getItem("darkmode") == 0) {
+      window.addEventListener("message", function _giscusThemeFix(e) {
+        if (e.origin !== "https://giscus.app") return;
+        if (!(typeof e.data === "object" && e.data.giscus)) return;
+        var f = document.querySelector("iframe.giscus-frame");
+        if (f) {
+          f.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: "light" } } },
+            "https://giscus.app"
+          );
+        }
+        window.removeEventListener("message", _giscusThemeFix);
+      });
+    }
+  </script>
+</div>
+
+
+  
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2026
+        <i class="ri-heart-fill heart_icon"></i> 蒋洪涛
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+    <!-- 随机句子模块 -->
+    
+    <ul>
+      <li>
+        <div id="random-sentence" class="random-sentence" 
+             data-random-sentences-config='{"use_local_file": false}'></div>
+      </li>
+    </ul>
+    
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="float-btn totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="float-btn todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="float-btn navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.svg" alt="计算机学习"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">全部文章</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">文章分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">全部标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友情链接</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于本站</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+
+
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<!-- Tocbot -->
+
+  
+<script src="/js/tocbot.min.js"></script>
+
+  <script>
+    tocbot.init({
+      tocSelector: ".tocbot",
+      contentSelector: ".article-entry",
+      headingSelector: "h1, h2, h3, h4, h5, h6",
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      scrollContainer: "main",
+      positionFixedSelector: ".tocbot",
+      positionFixedClass: "is-position-fixed",
+      fixedSidebarOffset: "auto",
+    });
+  </script>
+
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css" />
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/dist/main.js"></script>
+
+
+<!-- ImageViewer -->
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<!-- MathJax -->
+
+
+<!-- Katex -->
+
+  
+    
+        <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.css">
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.js"></script>
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/contrib/auto-render.min.js"></script>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            });
+        </script>
+    
+
+
+
+<!-- busuanzi -->
+
+
+<!-- ClickLove -->
+
+
+<!-- ClickBoom1 -->
+
+
+<!-- ClickBoom2 -->
+
+
+<!-- CodeCopy -->
+
+  
+<link rel="stylesheet" href="/css/clipboard.css">
+
+  <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+<!-- CanvasBackground -->
+
+  
+<script src="/js/dz.js"></script>
+
+
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

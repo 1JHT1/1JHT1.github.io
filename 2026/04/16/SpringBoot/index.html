@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+
+
+  <html lang="en">
+    
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>SpringBoot |  计算机学习</title>
+  <meta name="generator" content="hexo-theme-ayeria">
+      
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      
+      <link rel="preconnect" href="https://fonts.font.im" crossorigin />
+      <link rel="preconnect" href="https://fonts.gstatic.font.im" crossorigin />
+      <link rel="stylesheet" href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400&display=swap" />
+      
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+
+      
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      
+
+      <!-- mermaid -->
+      
+      
+      <!-- 随机句子功能 -->
+      
+      <script src="/js/random-sentences.js"></script>
+      
+    <link rel="alternate" href="/atom.xml" title="计算机学习" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body class="darkmode">
+  <div id="app">
+    
+    
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-SpringBoot"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  SpringBoot
+</h1>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/16/SpringBoot/" class="article-date">
+  <time datetime="2026-04-16T11:53:48.000Z" itemprop="datePublished">2026-04-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+  </div>
+
+      
+        
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">2.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">9 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+      
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="1-aop底层原理？">1. AOP底层原理？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">面向切面编程（AOP）:核心是动态代理和责任链</span><br><span class="line">	以Spring AOP为例：</span><br><span class="line">		1.首先根据！目标类是否实现接口！选择代理模式</span><br><span class="line">		有接口就是JDK动态代理（生成接口的代理类，用InvocationHandler拦截）</span><br><span class="line">		没有接口用CGLIB代理（生成目标类的子列，MethodInterceptor拦截）</span><br><span class="line">		2.拦截调用：调用代理对象方法时，进入拦截器链</span><br><span class="line">		3.责任链执行：将过个通知（@before、@Around、@After）包装成MethodInterceptor</span><br><span class="line">		递归调用MethodInvocation.proceed(),依次执行各类通知</span><br><span class="line">		4.目标方法执行：链中最后一个拦截器调用原始Bean的方法。</span><br><span class="line">		</span><br><span class="line">	动态代理能在不修改原始类代码的情况下，在方法调用前后插入额外逻辑（日志、事务、权限等）。责任链模式支持多个切面顺序执行，且可控制是否调用目标方法。</span><br><span class="line">		</span><br></pre></td></tr></table></figure>
+<h4 id="2-ioc底层原理？">2.IOC底层原理？</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">把对象的创建、依赖管理、生命周期等控制权从业务代码中反转给 Spring 容器，开发者只需声明组件，不再手动 <span class="keyword">new</span> 对象。</span><br><span class="line">    </span><br><span class="line">核心策略：</span><br><span class="line">    IOC容器：Spring 的 ApplicationContext 负责创建和管理所有 Bean</span><br><span class="line">    DI（依赖注入）：容器自动将对象所需的依赖（如 Service 注入到 Controller）通过构造器、setter 或字段注入的方式组装好，而不是由对象自己查找或创建。</span><br><span class="line">    配置方式：XML、注解（<span class="meta">@Component</span>/<span class="meta">@Service</span>/<span class="meta">@Autowired</span>）、Java Config（<span class="meta">@Configuration</span> + <span class="meta">@Bean</span>）。</span><br><span class="line">    </span><br><span class="line">优点:</span><br><span class="line">解耦：组件之间依赖接口而非具体实现，容易替换和测试。</span><br><span class="line">可维护性：集中管理 Bean 的作用域（单例、原型等）、生命周期回调（<span class="meta">@PostConstruct</span>）。</span><br><span class="line">易测试：可以轻松注入 Mock 对象。</span><br></pre></td></tr></table></figure>
+<h4 id="3-spring事务">3.Spring事务</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">###Spring 事务本质上是对数据库事务的封装，提供了声明式事务和编程式事务两种方式，核心是AOP 代理。</span><br><span class="line"></span><br><span class="line">3.1-声明式事务@transactional</span><br><span class="line">	Spring 通过 AOP 生成代理对象，在方法执行前开启事务，执行后根据异常情况提交或回滚。在启动类上添加@EnableTransactionManagement 开启事务管理</span><br><span class="line">	</span><br><span class="line">3.2-事务传播行为</span><br><span class="line">	REQUIRED（默认）：当前有事务则加入，无则新建。还有很多其他形式</span><br><span class="line">	编程式事务</span><br><span class="line">	使用 TransactionTemplate 或 PlatformTransactionManager，更细粒度控制。</span><br><span class="line"></span><br><span class="line">3.3-事务隔离级别</span><br><span class="line">	DEFAULT：数据库默认（MySQL 可重复读，Oracle 读已提交）</span><br><span class="line">	READ_UNCOMMITTED（读未提交）、READ_COMMITTED（读已提交）、REPEATABLE_READ（可重复读）、SERIALIZABLE</span><br><span class="line">	</span><br><span class="line">3.4-回滚规则</span><br><span class="line">	默认只回滚 RuntimeException 和 Error，检查异常（Exception）不会回滚。</span><br><span class="line">	可配置：@Transactional(rollbackFor = Exception.class) 让所有异常都回滚。</span><br></pre></td></tr></table></figure>
+<h4 id="4-循环依赖问题-三级缓存">4.循环依赖问题&amp;&amp;三级缓存</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">#### 5.事务失效原因</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>【同一个类内部调用（没有走代理）】。<br>
+同一个类中的无事务方法直接调用本类的 @Transactional 方法，不走代理，事务失效。<br>
+例如：orderService.createOrder() 内部调用 this.updateStock()（带事务注解），<br>
+更新库存不会开启新事务。</p>
+<p>【方法非 public（代理无法拦截）。】<br>
+@Transactional 只能作用于 public 方法，否则代理无法拦截。</p>
+<p>【异常被 catch 后没有重新抛出。】<br>
+代码中 try-catch 了异常但没有 throw，框架感知不到异常，不会回滚。</p>
+<p>【数据库引擎不支持事务（MyISAM）。】<br>
+MySQL 表使用了 MyISAM 引擎（常见于旧项目或建表语句遗漏），该引擎不支持事务。需改为 InnoDB。</p>
+<p>【配置了错误的传播行为（如 SUPPORTS）。】<br>
+SUPPORTS 不会主动创建事务，在无事务环境下执行等于“事务失效”了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 6.@Autowired和@Resource区别？</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>####@Autowired是Spring框架，@Resource是JDK标准下的</p>
+<h4 id="当一个接口有多个实现类时-只用-autowired-会报错-必须配合-qualifier；而-resource-默认会按字段名去匹配-如果字段名与某个实现类-bean-名称一致-会自动注入">当一个接口有多个实现类时，只用 @Autowired 会报错，必须配合 @Qualifier；而 @Resource 默认会按字段名去匹配，如果字段名与某个实现类 Bean 名称一致，会自动注入。</h4>
+<p>@Resource 如果没指定 name，则先按字段名匹配，失败再按类型匹配；而 @Autowired 始终先按类型。<br>
+####@Autowired 是 Spring 按类型注入的首选；@Resource 是 JDK 标准，按名称注入更直接。混合使用时注意各自的行为差异。</p>
+<p>【不同之处】<br>
+（1）默认注入方式不同，@autowired是根据类型注入（bytype）@resource是根据名称（byname）<br>
+（2）指定名称@autowired需要结合@qualifier(“name”) 而resource直接指定@resource(name=&quot;&quot;)<br>
+（3）@Autowired支持require属性：<br>
+@Resource 没有 required 属性，如果指定了 name 但 Bean 不存在，也会抛异常，无法像 @Autowired 那样允许为 null。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 7.Spring中的设计模式？</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">【工厂模式】</span><br><span class="line"> //----------Spring IOC用了什么设计模式？有什么好处？</span><br><span class="line"> BeanFactory 和 ApplicationContext 是工厂模式的体现。把对象的创建和管理交给容器，业务代码只需 @Autowired 使用，解耦了创建和使用。</span><br><span class="line">加分点：能说出 FactoryBean 接口（更灵活的生产 Bean 的方式），以及 ObjectFactory / Provider。   </span><br><span class="line">    </span><br><span class="line">【代理模式】</span><br><span class="line"> //----------AOP 底层用了什么模式？JDK 动态代理和 CGLIB 区别？</span><br><span class="line"> 代理模式。Spring AOP 通过动态代理为目标对象生成代理，在方法调用前后织入增强（事务、日志等）。JDK 基于接口，CGLIB 基于子类。</span><br><span class="line">加分点：能说出 Spring 如何选择两种代理方式（默认有接口用 JDK，无接口用 CGLIB），以及 @EnableAspectJAutoProxy(proxyTargetClass=true) 强制 CGLIB。  </span><br><span class="line">    </span><br><span class="line">【单例模式】</span><br><span class="line"> //---------Spring 中 Bean 默认是单例的吗？怎么保证线程安全？</span><br><span class="line"> 默认作用域是 singleton，容器内只有一个实例。Spring 通过 ConcurrentHashMap 缓存单例 Bean，启动时或懒加载创建。但单例 Bean 自身要处理线程安全（内部尽量无状态，有状态用 ThreadLocal 或锁）。</span><br><span class="line">加分点：能对比 prototype 作用域，说出单例模式的优缺点（节省内存但需注意并发）</span><br><span class="line">    </span><br><span class="line">【模板方法模式】</span><br><span class="line">//----------JdbcTemplate、RedisTemplate 用了什么设计模式？解决了什么问题？</span><br><span class="line"> 模板方法模式。封装固定算法（连接获取、异常处理、资源释放），变化部分通过回调接口（如 RowMapper、RedisCallback）让用户自定义。避免了重复的样板代码。</span><br><span class="line">加分点：能说出手动实现一个简单的模板类，或者类比 RestTemplate、KafkaTemplate</span><br><span class="line">    </span><br><span class="line">【观察者模式】</span><br><span class="line">//----------Spring 的事件监听机制是怎么实现的？</span><br><span class="line">观察者模式。通过 ApplicationEvent（事件）、ApplicationListener（监听器）、ApplicationEventPublisher（发布器）实现。可用于解耦业务逻辑，比如用户注册成功后发布事件，异步发送邮件、优惠券等。</span><br><span class="line">加分点：能说出 @EventListener 注解原理，以及配合 @Async 实现异步事件。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="8-springboot的程序是怎么启动起来的-启动过程做了什么？">8.SpringBoot的程序是怎么启动起来的，启动过程做了什么？</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">###加载工厂 → 监听事件 → 准备环境 → 创建容器 → 刷新（扫描 + 自动配置 + 创建 Bean）→ 启动 Tomcat → 发布就绪</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>入口：<span class="meta">@SpringBootApplication</span> + SpringApplication.run()</span><br><span class="line"><span class="number">2.</span> SpringApplication 初始化阶段</span><br><span class="line"><span class="number">3.</span> 运行阶段（核心）</span><br><span class="line">·启动计时器，记录启动时间。</span><br><span class="line">·创建并启动监听器：SpringApplicationRunListeners（同样是 spring.factories 加载），并发布 ApplicationStartingEvent。</span><br><span class="line">·准备环境：Environment 加载系统属性、配置文件（application.properties / application.yml），并发布 ApplicationEnvironmentPreparedEvent。</span><br><span class="line">·创建 ApplicationContext：根据 Web 类型创建 AnnotationConfigServletWebServerApplicationContext 等。</span><br><span class="line">·初始化 ApplicationContext：</span><br><span class="line">	·调用之前加载的 ApplicationContextInitializer。</span><br><span class="line">	·注册主类：将启动类（MyApplication）注册为配置类（<span class="meta">@Configuration</span>）。</span><br><span class="line">	·发布 ApplicationPreparedEvent。</span><br><span class="line">·刷新上下文（最关键）：调用 refresh()（最终进入 Spring 的 AbstractApplicationContext.refresh()）：</span><br><span class="line">	扫描 Bean 定义（<span class="meta">@ComponentScan</span>）。</span><br><span class="line">	处理 <span class="meta">@Configuration</span>、<span class="meta">@Import</span>、<span class="meta">@Bean</span>。</span><br><span class="line">	触发自动配置：<span class="meta">@EnableAutoConfiguration</span> 通过 AutoConfigurationImportSelector 从 spring.factories 加载所有 AutoConfiguration 类，并根据条件注解（<span class="meta">@Conditional</span>）决定是否配置。</span><br><span class="line">	创建并初始化所有单例 Bean。</span><br><span class="line">	启动内嵌 Web 容器（如果是 Servlet Web 应用）：创建 Tomcat / Jetty / 		Undertow 服务，并注册 DispatcherServlet。</span><br><span class="line">·运行后置操作：调用 afterRefresh()，发布 ApplicationStartedEvent / 				ApplicationReadyEvent。</span><br><span class="line">·返回 ApplicationContext。</span><br><span class="line"></span><br><span class="line">·如果启动失败，发布 ApplicationFailedEvent。</span><br></pre></td></tr></table></figure>
+<h4 id="9-spring-bean的作用域">9.Spring Bean的作用域</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">###Scope决定了Bean的生命周期和可见范围</span><br><span class="line"></span><br><span class="line">默认：singleton-&gt;容器内只有一个实例，所有请求共享</span><br><span class="line">prototype-&gt;每次获取（getBean或<span class="meta">@autowired</span>）都会创建新实例。Spring容器只负责创建，不管理其完整生命周期（不自动销毁）</span><br><span class="line">request（仅web应用）-&gt;每个HTTP请求创建一个新实例，请求结束Bean销毁</span><br><span class="line">session（仅web应用）-&gt;每个HTTP session共享一个实例</span><br><span class="line">application（仅web）-&gt;整个ServletContext级别，类似singleton但作用域在web上下文</span><br><span class="line">websocket（仅web）-&gt;每个websocket会话一个实例</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">作用域声明：<span class="meta">@Scope(&quot;prototype&quot;)</span> <span class="meta">@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</span></span><br><span class="line">作用域代理:当 singleton Bean 注入 request/session Bean 时，需要插入一个代理（<span class="meta">@Scope(value = &quot;request&quot;, proxyMode = ScopedProxyMode.TARGET_CLASS)</span>）。因为每次 HTTP 请求需要获取不同实例，代理会在每次调用时从当前请求中查找真实 Bean。</span><br><span class="line">自定义作用域：实现 Scope 接口</span><br><span class="line">    </span><br><span class="line">Q：request 作用域的 Bean 如何注入到 singleton Controller 中？</span><br><span class="line">A：使用 <span class="meta">@Scope(value = &quot;request&quot;, proxyMode = ScopedProxyMode.TARGET_CLASS)</span> 注入代理。</span><br></pre></td></tr></table></figure>
+<h4 id="10-springboot自动装配原理">10.SpringBoot自动装配原理</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">### 能让第三方库的组件自动注入 IoC 容器，开发者无需手动编写繁琐的配置。</span><br><span class="line">### 与普通 Spring 项目区别：传统 Spring 需要自己写 &lt;context:component-scan&gt; 和 &lt;bean&gt; 配置，Spring Boot 则把这些默认配置封装在 starter 里，只需引入依赖即可。</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> 在SpringBoot项目的引导类上有一个注解叫 <span class="meta">@SpringBootApplication</span>，</span><br><span class="line">在这个注解的里面，又有一个注解叫做：<span class="meta">@EnableAutoConfiguration</span> 即触发了自动装配</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> <span class="meta">@EnableAutoConfiguration</span> 是实现自动化配置的核心注解。</span><br><span class="line">该注解里面 通过 <span class="meta">@Import</span> 注解导入了一个 自动配置导入选择器类 AutoConfigurationImportSelector</span><br><span class="line">在 自动配置导入选择器类 里会读取（该项目和该项目引用的）Jar 包的 META-INF/spring.factories文件</span><br><span class="line">在这些文件中记录了配置类的全类名，通过全类名找到对应的配置类，配置类中定义了Bean，</span><br><span class="line">再判断定义的Bean是否加了条件注解是否生效决定是否将其Bean的实例加载到Sping容器中</span><br><span class="line">（条件注解例如<span class="meta">@ConditionalOnClass(xx)</span>判断是否有对应的class文件(依赖)，如果有则加载该Bean）</span><br><span class="line">    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+        
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2026/04/16/SpringBoot/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+    </footer>
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2026/04/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            计算机网络
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2026/04/16/Redis/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Redis</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+    
+<div class="giscus-container" style="margin-top: 2rem; padding: 0 1rem;">
+  <script
+    src="https://giscus.app/client.js"
+    data-repo="1JHT1/1JHT1.github.io"
+    data-repo-id="R_kgDOSDBesg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOSDBess4C64Wo"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="dark"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async
+  ></script>
+  <script>
+    /* giscus 通过 async 加载，iframe 可能在 ayeria.js 初始化之后才就绪。
+       站点默认暗色模式所以 data-theme="dark" 覆盖多数情况，
+       但若用户之前选择了亮色模式（sessionStorage darkmode==0），
+       需要在 iframe 就绪后修正主题。 */
+    if (sessionStorage.getItem("darkmode") == 0) {
+      window.addEventListener("message", function _giscusThemeFix(e) {
+        if (e.origin !== "https://giscus.app") return;
+        if (!(typeof e.data === "object" && e.data.giscus)) return;
+        var f = document.querySelector("iframe.giscus-frame");
+        if (f) {
+          f.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: "light" } } },
+            "https://giscus.app"
+          );
+        }
+        window.removeEventListener("message", _giscusThemeFix);
+      });
+    }
+  </script>
+</div>
+
+
+  
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2026
+        <i class="ri-heart-fill heart_icon"></i> 蒋洪涛
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+    <!-- 随机句子模块 -->
+    
+    <ul>
+      <li>
+        <div id="random-sentence" class="random-sentence" 
+             data-random-sentences-config='{"use_local_file": false}'></div>
+      </li>
+    </ul>
+    
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="float-btn totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="float-btn todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="float-btn navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.svg" alt="计算机学习"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">全部文章</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">文章分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">全部标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友情链接</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于本站</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+
+
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<!-- Tocbot -->
+
+  
+<script src="/js/tocbot.min.js"></script>
+
+  <script>
+    tocbot.init({
+      tocSelector: ".tocbot",
+      contentSelector: ".article-entry",
+      headingSelector: "h1, h2, h3, h4, h5, h6",
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      scrollContainer: "main",
+      positionFixedSelector: ".tocbot",
+      positionFixedClass: "is-position-fixed",
+      fixedSidebarOffset: "auto",
+    });
+  </script>
+
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css" />
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/dist/main.js"></script>
+
+
+<!-- ImageViewer -->
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<!-- MathJax -->
+
+
+<!-- Katex -->
+
+  
+    
+        <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.css">
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.js"></script>
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/contrib/auto-render.min.js"></script>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            });
+        </script>
+    
+
+
+
+<!-- busuanzi -->
+
+
+<!-- ClickLove -->
+
+
+<!-- ClickBoom1 -->
+
+
+<!-- ClickBoom2 -->
+
+
+<!-- CodeCopy -->
+
+  
+<link rel="stylesheet" href="/css/clipboard.css">
+
+  <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+<!-- CanvasBackground -->
+
+  
+<script src="/js/dz.js"></script>
+
+
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
