@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>MyBatis-Plus |  计算机学习</title>
+      <title>关于浏览器外部链接跳转失效的问题解决 |  计算机学习</title>
   <meta name="generator" content="hexo-theme-ayeria">
       
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -53,7 +53,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-MyBatis-Plus"
+  id="post-关于浏览器外部链接跳转失效的问题解决"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -64,7 +64,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  MyBatis-Plus
+  关于浏览器外部链接跳转失效的问题解决
 </h1>
  
 
@@ -74,8 +74,8 @@
 
     
     <div class="article-meta">
-      <a href="/2026/04/30/MyBatis-Plus/" class="article-date">
-  <time datetime="2026-04-30T13:30:43.000Z" itemprop="datePublished">2026-04-30</time>
+      <a href="/2026/05/02/%E5%85%B3%E4%BA%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E8%B7%B3%E8%BD%AC%E5%A4%B1%E6%95%88%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" class="article-date">
+  <time datetime="2026-05-02T01:45:27.000Z" itemprop="datePublished">2026-05-02</time>
 </a>
       
       
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">0</span>
+            <span class="post-count">1.4k</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">5 min</span>
         </span>
     </span>
 </div>
@@ -105,6 +105,8 @@
 
     
       
+    <div class="tocbot"></div>
+
 
 
 
@@ -118,7 +120,88 @@
 
 
       
-        
+        <h2><center>关于浏览器外部链接跳转失效的问题解决</center></h2>
+<p>问题：在浏览器外的所有连接，在点击后不能直接跳转到浏览器进行浏览，包括支付链接，内容链接等。</p>
+<p>起初的最暴力的解决是直接关闭后台进程：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl+shift+Esc</span><br></pre></td></tr></table></figure>
+<p>进到任务管理器，找到浏览器的后台进程进行强制关闭，但这会导致浏览器的固定页面也会全部丢失，相当于重新打开浏览器，里面固定的所有快捷页面都会丢失，这十分影响我需要同时固定若干页面以便快速获取内容信息。</p>
+<p>后来，当我使用git bash推送内容的时候出现了一个推送失败的问题：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/1JHT1/1JHT1.github.io.git/&#x27;: Failed</span><br><span class="line">to connect to github.com port 443 after 21072 ms: Could not connect to server</span><br></pre></td></tr></table></figure>
+<p>这个问题表示 Git 无法与远程仓库建立网络连接，出现问题的可能原因如下：</p>
+<ul>
+<li>DNS 解析错误（比如 hosts 文件将 <code>github.com</code> 指向 <code>127.0.0.1</code>）</li>
+<li>代理配置错误或代理服务器未运行</li>
+<li>防火墙或网络策略阻止了对 443 端口的出站连接</li>
+<li>GitHub 服务器不可达（极少见）</li>
+</ul>
+<p>由于我使用了Steam++(Watt Toolkit)的“加速”功能，默认使用 <strong>hosts 劫持</strong> 的方式，把大量域名的解析结果强制改为 <code>127.0.0.1</code>，然后它自己运行一个本地代理服务来转发请求。然而，它可能<strong>并没有覆盖所有被劫持的域名</strong>，或者代理服务没有正确处理某些跳转链接，导致这些域名实际上无法被访问。</p>
+<p>Steam++的hosts文件放在C:\Windows\System32\drivers\etc\hosts下，在这里可以获得一个如下的劫持文件</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"># Steam++ Start</span><br><span class="line">127.0.0.1 steamcdn-a.akamaihd.net</span><br><span class="line">127.0.0.1 steamuserimages-a.akamaihd.net</span><br><span class="line">127.0.0.1 cdn.akamai.steamstatic.com</span><br><span class="line">127.0.0.1 community.akamai.steamstatic.com</span><br><span class="line">127.0.0.1 avatars.akamai.steamstatic.com</span><br><span class="line">127.0.0.1 store.akamai.steamstatic.com</span><br><span class="line">127.0.0.1 community.steamstatic.com</span><br><span class="line">127.0.0.1 media.steampowered.com</span><br><span class="line">127.0.0.1 steamcommunity.com</span><br><span class="line">127.0.0.1 www.steamcommunity.com</span><br><span class="line">127.0.0.1 store.steampowered.com</span><br><span class="line">127.0.0.1 api.steampowered.com</span><br><span class="line">127.0.0.1 help.steampowered.com</span><br><span class="line">127.0.0.1 login.steampowered.com</span><br><span class="line">127.0.0.1 checkout.steampowered.com</span><br><span class="line">127.0.0.1 img.youtube.com</span><br><span class="line">127.0.0.1 huggingface.co</span><br><span class="line">127.0.0.1 github.dev</span><br><span class="line">127.0.0.1 api.github.com</span><br><span class="line">127.0.0.1 github.githubassets.com</span><br><span class="line">127.0.0.1 support-assets.githubassets.com</span><br><span class="line">127.0.0.1 education.github.com</span><br><span class="line">127.0.0.1 resources.github.com</span><br><span class="line">127.0.0.1 uploads.github.com</span><br><span class="line">127.0.0.1 archiveprogram.github.com</span><br><span class="line">127.0.0.1 raw.github.com</span><br><span class="line">127.0.0.1 githubusercontent.com</span><br><span class="line">127.0.0.1 raw.githubusercontent.com</span><br><span class="line">127.0.0.1 camo.githubusercontent.com</span><br><span class="line">127.0.0.1 cloud.githubusercontent.com</span><br><span class="line">127.0.0.1 avatars.githubusercontent.com</span><br><span class="line">127.0.0.1 avatars0.githubusercontent.com</span><br><span class="line">127.0.0.1 avatars1.githubusercontent.com</span><br><span class="line">127.0.0.1 avatars2.githubusercontent.com</span><br><span class="line">127.0.0.1 avatars3.githubusercontent.com</span><br><span class="line">127.0.0.1 user-images.githubusercontent.com</span><br><span class="line">127.0.0.1 objects.githubusercontent.com</span><br><span class="line">127.0.0.1 private-user-images.githubusercontent.com</span><br><span class="line">127.0.0.1 github.com</span><br><span class="line">127.0.0.1 pages.github.com</span><br><span class="line">127.0.0.1 gist.github.com</span><br><span class="line">127.0.0.1 githubapp.com</span><br><span class="line">127.0.0.1 hub.docker.com</span><br><span class="line">127.0.0.1 greasyfork.org</span><br><span class="line">127.0.0.1 update.greasyfork.org</span><br><span class="line">127.0.0.1 github.io</span><br><span class="line">127.0.0.1 www.github.io</span><br><span class="line"># Steam++ End</span><br></pre></td></tr></table></figure>
+<p><strong>浏览器的 DNS 缓存</strong>：重启浏览器或系统后才会生效。</p>
+<h4 id="为什么-steam-会导致外部链接无法跳转？">为什么 Steam++ 会导致外部链接无法跳转？</h4>
+<h5 id="问题现象">问题现象</h5>
+<ul>
+<li>点击某些外部链接（例如跳转到 <code>github.com</code>）时，浏览器无反应或提示无法连接。</li>
+<li>删除 Steam++ 添加到 <code>hosts</code> 文件中的规则后，跳转恢复正常。</li>
+</ul>
+<h5 id="根本原因">根本原因</h5>
+<p><strong>Steam++ 的 hosts 劫持生效，但它的本地代理服务未正常运行。</strong></p>
+<h5 id="steam-的加速原理">Steam++ 的加速原理</h5>
+<ol>
+<li>
+<p><strong>修改 hosts 文件</strong><br>
+将大量域名（如 <code>github.com</code>、<code>steamcommunity.com</code> 等）强制解析到本地回环地址 <code>127.0.0.1</code>。</p>
+</li>
+<li>
+<p><strong>启动本地代理服务</strong><br>
+在后台监听 <code>127.0.0.1</code> 的 80、443 等端口，捕获指向本机的请求，并通过“加速通道”转发到真实服务器。</p>
+</li>
+</ol>
+<h5 id="当时失败的状态">当时失败的状态</h5>
+<ul>
+<li><strong>hosts 劫持已生效</strong><br>
+系统将目标域名解析为 <code>127.0.0.1</code>。</li>
+<li><strong>本地代理服务未运行</strong><br>
+可能原因：未点击“加速”按钮、服务崩溃、端口被占用、防火墙拦截等。</li>
+<li><strong>结果</strong><br>
+浏览器尝试连接 <code>127.0.0.1:443</code>，但没有任何程序监听该端口 → 连接被拒绝（<code>ERR_CONNECTION_REFUSED</code>）→ 页面无法打开，跳转无响应。</li>
+</ul>
+<h5 id="为什么删除-hosts-规则后恢复？">为什么删除 hosts 规则后恢复？</h5>
+<ul>
+<li>移除 <code>127.0.0.1</code> 映射后，系统恢复正常 DNS 解析，直接访问真实服务器 IP，不再依赖本地代理。</li>
+<li>连接成功，跳转恢复正常。</li>
+</ul>
+<h5 id="如何复现该问题-测试用">如何复现该问题（测试用）</h5>
+<ol>
+<li>在 <code>hosts</code> 文件中添加测试行：<br>
+<code>127.0.0.1 www.baidu.com</code></li>
+<li><strong>确保没有代理服务监听 80/443 端口</strong>：
+<ul>
+<li>退出 Steam++、Clash 等所有代理软件。</li>
+<li>关闭浏览器的 DNS over HTTPS（DoH）。</li>
+<li>关闭系统代理。</li>
+</ul>
+</li>
+<li>清除 DNS 缓存：<code>ipconfig /flushdns</code>。</li>
+<li>在浏览器中访问 <code>http://www.baidu.com</code> → 应显示“无法连接”。</li>
+<li>点击外部链接（指向 <code>www.baidu.com</code>）→ 跳转失败。</li>
+</ol>
+<h5 id="为什么你现在重新添加-hosts-规则却仍能跳转？">为什么你现在重新添加 hosts 规则却仍能跳转？</h5>
+<p>可能存在以下绕过 hosts 的机制：</p>
+<ul>
+<li>浏览器开启了 <strong>DNS over HTTPS (DoH)</strong>，加密 DNS 查询不读取系统 hosts。</li>
+<li>启用了 <strong>TUN 模式</strong>（虚拟网卡），网络流量被其他代理接管。</li>
+<li>系统代理或 VPN 仍在生效，覆盖了 hosts 设置。</li>
+</ul>
+<h5 id="总结">总结</h5>
+<ul>
+<li><strong>失败条件</strong> = hosts 劫持生效 + 本地无代理监听对应端口。</li>
+<li><strong>恢复正常</strong> = 移除 hosts 劫持 或 启动本地代理服务 或 通过其他方式绕过 hosts。</li>
+<li>若当前环境能正常跳转，说明存在某种机制接管了网络请求，使得 hosts 劫持被忽略。</li>
+</ul>
+<hr>
+<p><em>本文档解释了外部链接无法跳转的根本原因及测试方法。</em></p>
+
       
 
       <!-- reward -->
@@ -174,14 +257,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2026/04/30/MyBatis-Plus/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2026/05/02/%E5%85%B3%E4%BA%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E8%B7%B3%E8%BD%AC%E5%A4%B1%E6%95%88%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis-Plus/" rel="tag">MyBatis-Plus</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%97%AE%E9%A2%98/" rel="tag">计算机问题</a></li></ul>
 
     </footer>
   </div>
@@ -190,19 +273,10 @@
     
   <nav class="article-nav">
     
-      <a href="/2026/05/02/%E5%85%B3%E4%BA%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E8%B7%B3%E8%BD%AC%E5%A4%B1%E6%95%88%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            关于浏览器外部链接跳转失效的问题解决
-          
-        </div>
-      </a>
     
-    
-      <a href="/2026/04/28/leetcode-%E5%9B%BE%E8%AE%BA/" class="article-nav-link">
+      <a href="/2026/04/30/MyBatis-Plus/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">leetcode-图论</div>
+        <div class="article-nav-title">MyBatis-Plus</div>
       </a>
     
   </nav>
