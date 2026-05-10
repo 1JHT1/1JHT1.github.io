@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">428</span>
+            <span class="post-count">533</span>
         </span>
     </span>
 
@@ -98,7 +98,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -160,8 +160,11 @@
 </tr>
 </tbody>
 </table>
-<h4 id="2-不适用中间变量交换两个整数">2.不适用中间变量交换两个整数</h4>
+<h4 id="2-不使用中间变量交换两个整数">2.不使用中间变量交换两个整数</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> t,<span class="type">int</span> s)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(t==s)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    t=t^s;</span><br><span class="line">    s=s^t;</span><br><span class="line">    t=t^s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//异或运算法则: a^a=0;a^0=a;相同元素异或一定是0，任何整数与0异或一定是自身</span></span><br><span class="line"><span class="comment">//但是不适用于浮点数等其他数据类型！</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-滚动数组">3.滚动数组</h4>
+<p>滚动数组是一种空间优化技巧，通过重复使用固定大小的数组（通常只保留前后几步的状态），将动态规划的空间复杂度从 O(n²) 或 O(n) 降为 O(1) 或 O(k)。例如斐波那契数列只需两个变量交替更新，背包问题用一维数组逆序滚动代替二维数组。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
       
 

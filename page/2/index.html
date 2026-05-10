@@ -105,6 +105,322 @@
     
     
     <article
+  id="post-leetcode-技巧"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/21/leetcode-%E6%8A%80%E5%B7%A7/"
+    >leetcode-技巧</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/21/leetcode-%E6%8A%80%E5%B7%A7/" class="article-date">
+  <time datetime="2026-04-21T14:02:38.000Z" itemprop="datePublished">2026-04-21</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="169-多个元素">169—多个元素</h4>
+<p>给定一个大小为 <code>n</code> 的数组 <code>nums</code> ，返回其中的多数元素。多数元素是指在数组中出现次数 <strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">majorityElement</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> number=nums.length/<span class="number">2</span>;</span><br><span class="line">        <span class="comment">//可以用HashMap来统计数量</span></span><br><span class="line">       Map&lt;Integer,Integer&gt; map=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> x:nums)&#123;</span><br><span class="line">            map.put(x,map.getOrDefault(x,<span class="number">0</span>)+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> x:nums)&#123;</span><br><span class="line">            <span class="keyword">if</span>(map.get(x)&gt;number)&#123;</span><br><span class="line">                ans=x;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="keyword">return</span> ans;        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>**进阶：**尝试设计时间复杂度为 O(n)、空间复杂度为 O(1) 的算法解决此问题。</p>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
+  id="post-算法思考"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/21/%E7%AE%97%E6%B3%95%E6%80%9D%E8%80%83/"
+    >算法思考.md</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/21/%E7%AE%97%E6%B3%95%E6%80%9D%E8%80%83/" class="article-date">
+  <time datetime="2026-04-21T01:37:43.000Z" itemprop="datePublished">2026-04-21</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="1-前缀和技术">1.前缀和技术</h4>
+<p><code>前缀和：</code>前缀和是一种<strong>预处理技术</strong>，通过预先计算数组从起点到每个位置的累加和（一般不包含自己），从而能够<strong>快速（O(1) 时间）查询任意子数组的和</strong>。用空间换查询时间</p>
+<p>一维数组前缀和的构造和查询：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] pre = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>];<span class="comment">//创建一个用于存放前缀和的数组，注意是n+1个，第一个位置存放的是0，用于统一</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    pre[i + <span class="number">1</span>] = pre[i] + nums[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询</span></span><br><span class="line"><span class="comment">// 子数组 [left, rright] 的和（闭区间）</span></span><br><span class="line"><span class="type">int</span> <span class="variable">subSum</span> <span class="operator">=</span> pre[right + <span class="number">1</span>] - pre[left];</span><br></pre></td></tr></table></figure>
+<p>前缀和是算法竞赛和面试中最基础也最实用的技巧之一，<strong>一维用于区间和，二维用于子矩阵和，结合哈希表可高效解决子数组统计问题</strong>。</p>
+<h6 id="典型应用场景">典型应用场景</h6>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">问题类型</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>子数组和查询</strong></td>
+<td style="text-align:left">给定数组，多次询问不同子区间的和。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>统计和为 k 的子数组个数</strong></td>
+<td style="text-align:left">利用前缀和 + 哈希表，O(n) 解决。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>连续子数组的最大/最小和</strong></td>
+<td style="text-align:left">结合 Kadane 算法或前缀和极值。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>二维区域和检索</strong></td>
+<td style="text-align:left">LeetCode 304. Range Sum Query 2D – Immutable。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>差分数组的逆操作</strong></td>
+<td style="text-align:left">对原数组多次区间加减后，通过前缀和恢复原值。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-不使用中间变量交换两个整数">2.不使用中间变量交换两个整数</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> t,<span class="type">int</span> s)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(t==s)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    t=t^s;</span><br><span class="line">    s=s^t;</span><br><span class="line">    t=t^s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//异或运算法则: a^a=0;a^0=a;相同元素异或一定是0，任何整数与0异或一定是自身</span></span><br><span class="line"><span class="comment">//但是不适用于浮点数等其他数据类型！</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-滚动数组">3.滚动数组</h4>
+<p>滚动数组是一种空间优化技巧，通过重复使用固定大小的数组（通常只保留前后几步的状态），将动态规划的空间复杂度从 O(n²) 或 O(n) 降为 O(1) 或 O(k)。例如斐波那契数列只需两个变量交替更新，背包问题用一维数组逆序滚动代替二维数组。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
+  id="post-leetcode-普通数组"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/20/leetcode-%E6%99%AE%E9%80%9A%E6%95%B0%E7%BB%84/"
+    >leetcode-普通数组</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/20/leetcode-%E6%99%AE%E9%80%9A%E6%95%B0%E7%BB%84/" class="article-date">
+  <time datetime="2026-04-20T11:27:46.000Z" itemprop="datePublished">2026-04-20</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="53-最大子数组和">53—最大子数组和</h4>
+<p>给你一个整数数组 <code>nums</code> ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。<strong>子数组</strong>是数组中的一个连续部分。</p>
+<p>方法一：前缀和+贪心 时间复杂度O(n)、空间复杂度O(1)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxSubArray</span><span class="params">(<span class="type">int</span>[] nums)</span>&#123;</span><br><span class="line">        <span class="type">int</span> ans=Integer.MIN_VALUE;</span><br><span class="line">        <span class="type">int</span> minPreSum=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> preSum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> x:nums)&#123;</span><br><span class="line">            preSum+=x;<span class="comment">//计算前缀和</span></span><br><span class="line">            ans=Math.max(ans,preSum-minPreSum);<span class="comment">//获取当前的前缀和减去前面遍历的前缀和的最小值得到连续子数组的最大值</span></span><br><span class="line">            <span class="comment">//维护前缀和的最小值</span></span><br><span class="line">            minPreSum=Math.min(preSum,minPreSum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法二：动态规划 时间复杂度O(n)，空间复杂度O(n)</p>
+<p>思路解释：设f(i)为以nums[i]结尾的最大子数组之和，如果nums[i]左边的子数组元素和是负数就不和左边的子数组拼起来，取max（f[i-1]，0）</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>n</mi><mi>u</mi><mi>m</mi><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>+</mo><mi>n</mi><mi>u</mi><mi>m</mi><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mo>≥</mo><mn>1</mn></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">f[i] =
+\begin{cases}
+nums[i], &amp; i = 0 \\
+\max(f[i - 1], 0) + nums[i], &amp; i \geq 1
+\end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mpunct">,</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mop">max</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mpunct">,</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxSubArray</span><span class="params">(<span class="type">int</span>[] nums)</span>&#123;</span><br><span class="line">        <span class="type">int</span> [] f=<span class="keyword">new</span> <span class="title class_">int</span>[nums.length];<span class="comment">//初始化以nums[i]结尾的最大子数组和初始序列</span></span><br><span class="line">        f[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> ans=f[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">            f[i]=nums[i]+Math.max(f[i-<span class="number">1</span>],<span class="number">0</span>);</span><br><span class="line">            ans=Math.max(ans,f[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优化空间为O(1)：</p>
+<p>可以将原来存f(i)的数组在遍历的时候简化，即由于f(i)的计算不需要依赖数组的前面的值，只需要f(i-1)，故在遍历数组的时候我们只需要进行递推即可f=Math.max(f,0)+x;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxSubArray</span><span class="params">(<span class="type">int</span>[] nums)</span>&#123;</span><br><span class="line">        <span class="type">int</span> ans=Integer.MIN_VALUE;</span><br><span class="line">        <span class="type">int</span> f=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> x:nums)&#123;</span><br><span class="line">            f=Math.max(f,<span class="number">0</span>)+x;</span><br><span class="line">            ans=Math.max(ans,f);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="56-合并区间">56—合并区间</h4>
+<p>以数组 <code>intervals</code> 表示若干个区间的集合，其中单个区间为 <code>intervals[i] = [starti, endi]</code> 。请你合并所有重叠的区间，并返回 <em>一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间</em> 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[][] merge(<span class="type">int</span>[][] intervals) &#123;</span><br><span class="line">        <span class="comment">//自定义排序</span></span><br><span class="line">        Arrays.sort(intervals, (p, q) -&gt; p[<span class="number">0</span>] - q[<span class="number">0</span>]);</span><br><span class="line">        <span class="comment">//初始化结果</span></span><br><span class="line">        List&lt;<span class="type">int</span>[]&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">//遍历给的数组区间</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[] p : intervals) &#123;</span><br><span class="line">            <span class="comment">//获取当前收集到的答案区间</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> ans.size();</span><br><span class="line">            <span class="comment">//答案收集数组个数不等于0后开始判断是否需要进行合并，用获取的数组的第一个元素也就是区间左端点进行判断和答案的最新的也就是第（m-1）个区间进行的右端点判断是否重叠</span></span><br><span class="line">            <span class="keyword">if</span> (m &gt; <span class="number">0</span> &amp;&amp; p[<span class="number">0</span>] &lt;= ans.get(m - <span class="number">1</span>)[<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="comment">//更新方式就是将右端换成两者右端点之间的最大值</span></span><br><span class="line">                ans.get(m - <span class="number">1</span>)[<span class="number">1</span>] = Math.max(ans.get(m - <span class="number">1</span>)[<span class="number">1</span>], p[<span class="number">1</span>]);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//答案区间一开始小于0或者不用合并直接添加到答案中</span></span><br><span class="line">                ans.add(p);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans.toArray(<span class="keyword">new</span> <span class="title class_">int</span>[ans.size()][]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先为了后续集合的合并方便，我们对初始的集合区间数组按照左端点进行排序，这样在进行集合排序的时候只需要注意前面一个区间的右端点和后面区间的一个左端点的是否有重合，相等也视为重合，重合的话我们就对这两个区间的右端点取一个最大值，因为我们是按左端点来排序的，左端点自然是小于后面的。</p>
+<p>这里最需要注意的是区间合并的细节，我们用List制作了一个容器用来存放区间数组，当这个容器没有大小的时候直接添加我们遍历的数组的第一个，当有数组的时候我们就开始对区间是否重合进行判断与合并操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里也可以用右端点进行合并，操作是镜像的</span></span><br></pre></td></tr></table></figure>
+<h4 id="189-轮转数组">189—轮转数组</h4>
+<p>给定一个整数数组 <code>nums</code>，将数组中的元素向右轮转 <code>k</code> 个位置，其中 <code>k</code> 是非负数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line">输入: nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>], k = <span class="number">3</span></span><br><span class="line">输出: [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="comment">//解释:</span></span><br><span class="line">向右轮转 <span class="number">1</span> 步: [<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">向右轮转 <span class="number">2</span> 步: [<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">向右轮转 <span class="number">3</span> 步: [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>方法一：数学公式轮换</p>
+<p>当出现轮换这类字眼的时候，首先确定轮换的大小也就是n=nums.length，然后轮换次数k对于每一个数，它轮换k次后满足:</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>u</mi><mi>m</mi><mi>s</mi><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>i</mi><mo>+</mo><mi>k</mi><mo stretchy="false">)</mo><mi mathvariant="normal">%</mi><mi>n</mi><mo stretchy="false">]</mo><mo>=</mo><mi>n</mi><mi>u</mi><mi>m</mi><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">nums[(i+k)\%n]=nums[i]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mord">%</span><span class="mord mathdefault">n</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span></span></p>
+<p>可以这么理解，对于轮换k次还是小于n的我们值就变到原来i走k次对应的位置，但是当它轮换k次就大于n的那么它就会回到(i+k)模n的位置，可以想象这是一个环会它的位移时间就是模一个环长。</p>
+<p>时间复杂度O(n)、空间复杂度O(n)：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">rotate</span><span class="params">(<span class="type">int</span> [] nums ,<span class="type">int</span> k)</span>&#123;</span><br><span class="line">        <span class="comment">//用一个新的数组去取余存取</span></span><br><span class="line">        <span class="type">int</span> [] newnums=<span class="keyword">new</span> <span class="title class_">int</span>[nums.length];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">            newnums[(i+k)%nums.length]=nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        System.arraycopy(newnums,<span class="number">0</span>,nums,<span class="number">0</span>,nums.length);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法二：</p>
+<p>为了降低空间复杂度，我们不得不舍弃原来的创建的新数组，转而回到原数组本身用更巧妙的技术去进行改进。</p>
+<p>使用额外数组的原因在于如果我们直接将每个数字放至它最后的位置，这样被放置位置的元素会被覆盖从而丢失。因此，从另一个角度，我们可以将被替换的元素保存在变量 temp 中，从而避免了额外数组的开销。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">方法三：双指针+翻转</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">思路</span><br><span class="line">nums = &quot;-----&gt;--&gt;&quot;; k =3</span><br><span class="line">result = &quot;--&gt;-----&gt;&quot;;</span><br><span class="line"></span><br><span class="line">reverse &quot;-----&gt;--&gt;&quot; we can get &quot;&lt;--&lt;-----&quot;</span><br><span class="line">reverse &quot;&lt;--&quot; we can get &quot;--&gt;&lt;-----&quot;</span><br><span class="line">reverse &quot;&lt;-----&quot; we can get &quot;--&gt;-----&gt;&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">rotate</span><span class="params">(<span class="type">int</span> [] nums,<span class="type">int</span> k)</span>&#123;</span><br><span class="line">        k%=nums.length;<span class="comment">//这里需要取余数！！！因为会出现k大于nums.length的情况。。。这个时候相当于轮换了一轮又重新再轮换</span></span><br><span class="line">        reverse(nums,<span class="number">0</span>,nums.length-<span class="number">1</span>);</span><br><span class="line">        reverse(nums,<span class="number">0</span>,k-<span class="number">1</span>);</span><br><span class="line">        reverse(nums,k,nums.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] reverse(<span class="type">int</span> [] nums,<span class="type">int</span> left,<span class="type">int</span> right)&#123;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">            <span class="type">int</span> temp=nums[left];</span><br><span class="line">            nums[left]=nums[right];</span><br><span class="line">            nums[right]=temp;</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="238-除了自身以外数组的乘积">238—除了自身以外数组的乘积</h4>
+<p>给你一个整数数组 <code>nums</code>，返回 数组 <code>answer</code> ，其中 <code>answer[i]</code> 等于 <code>nums</code> 中除了 <code>nums[i]</code> 之外其余各元素的乘积 。题目数据 <strong>保证</strong> 数组 <code>nums</code>之中任意元素的全部前缀元素和后缀的乘积都在 <strong>32 位</strong> 整数范围内。请 **不要使用除法，**且在 <code>O(n)</code> 时间复杂度内完成此题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">示例:输入: nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">输出: [<span class="number">24</span>,<span class="number">12</span>,<span class="number">8</span>,<span class="number">6</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] productExceptSelf(<span class="type">int</span>[] nums)&#123;</span><br><span class="line">        <span class="type">int</span> length=nums.length;</span><br><span class="line">        <span class="type">int</span>[] ans=<span class="keyword">new</span> <span class="title class_">int</span>[length];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//ans[i]为表示下标为i左侧所有元素乘积(前缀乘积)</span></span><br><span class="line">        <span class="comment">//索引0左侧没有元素故值设为1</span></span><br><span class="line">        ans[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;length;i++)&#123;</span><br><span class="line">            ans[i]=ans[i-<span class="number">1</span>]*nums[i-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//R为右侧所有元素乘积</span></span><br><span class="line">        <span class="type">int</span> r=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=length-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            ans[i]=ans[i]*r;<span class="comment">//每个索引对应乘以右边所有元素的乘积</span></span><br><span class="line">            r*=nums[i];<span class="comment">//更新r为下一次乘积准备</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="41-缺失的第一个正数">41—缺失的第一个正数</h4>
+<p>给你一个未排序的整数数组 <code>nums</code> ，请你找出其中没有出现的最小的正整数。请你实现时间复杂度为 <code>O(n)</code> 并且只使用常数级别额外空间的解决方案。</p>
+<p>思路解析：</p>
+<p>在一个数组中我们数组长度为n，那么我们的最小正整数一定在[1,n]里(因为最坏的情况是数组正好是1到n之间每一个元素都有)</p>
+<p>其次我们应该只对这个数组进行操作，因为是常数级别的空间复杂度，那么思考一下，n个元素的数组里充斥着正、负、0三种数，我们应该如何得到最小正整数呢？</p>
+<p>试想如果我们按照1到n的顺序去获取数组里的每一个值，如果当前索引的值对应不在那个位置，我们就与其对应的位置交换，这样的交换会我们尽可能的把原来的数组按照1到n的顺序排列，且其中不按顺序排列的数都不会影响最终的结果（数在[1-n]之外），这时候，我们再次遍历数组得到第一个与当前位置索引值不一样的位置索引，此时该索引+1就是对应最小正整数(因为索引从0开始)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">firstMissingPositive</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="comment">// 如果当前学生的学号在 [1,n] 中，但（真身）没有坐在正确的座位上</span></span><br><span class="line">            <span class="keyword">while</span> (<span class="number">1</span> &lt;= nums[i] &amp;&amp; nums[i] &lt;= n &amp;&amp; nums[nums[i] - <span class="number">1</span>] != nums[i]) &#123;</span><br><span class="line">                <span class="comment">// 那么就交换 nums[i] 和 nums[j]，其中 j 是 i 的学号</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> nums[i] - <span class="number">1</span>; <span class="comment">// 减一是因为数组下标从 0 开始</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> nums[i];</span><br><span class="line">                nums[i] = nums[j];</span><br><span class="line">                nums[j] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找第一个学号与座位编号不匹配的学生</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] != i + <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 所有学生都坐在正确的座位上</span></span><br><span class="line">        <span class="keyword">return</span> n + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="215-数组中的第k个最大元素">215—数组中的第k个最大元素</h4>
+<p>给定整数数组 <code>nums</code> 和整数 <code>k</code>，请返回数组中第 <code>**k**</code> 个最大的元素。请注意，你需要找的是数组排序后的第 <code>k</code> 个最大的元素，而不是第 <code>k</code> 个不同的元素。你必须设计并实现时间复杂度为 <code>O(n)</code> 的算法解决此问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Random</span> <span class="variable">rand</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查找第 k 大的元素（k 从 1 开始）</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findKthLargest</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">targetIndex</span> <span class="operator">=</span> n - k;  <span class="comment">// 第 k 大对应排序后的索引</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">pivotIndex</span> <span class="operator">=</span> partition(nums, left, right);</span><br><span class="line">            <span class="keyword">if</span> (pivotIndex == targetIndex) &#123;</span><br><span class="line">                <span class="keyword">return</span> nums[pivotIndex];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pivotIndex &gt; targetIndex) &#123;</span><br><span class="line">                right = pivotIndex - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                left = pivotIndex + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">        <span class="comment">// 随机选择 pivot 并与 left 交换</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">randomIndex</span> <span class="operator">=</span> left + rand.nextInt(right - left + <span class="number">1</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">pivot</span> <span class="operator">=</span> nums[randomIndex];</span><br><span class="line">        swap(nums, left, randomIndex);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> left + <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> right;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">while</span> (i &lt;= j &amp;&amp; nums[i] &lt; pivot) i++;</span><br><span class="line">            <span class="keyword">while</span> (i &lt;= j &amp;&amp; nums[j] &gt; pivot) j--;</span><br><span class="line">            <span class="keyword">if</span> (i &gt;= j) <span class="keyword">break</span>;</span><br><span class="line">            swap(nums, i, j);</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(nums, left, j);</span><br><span class="line">        <span class="keyword">return</span> j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> i, <span class="type">int</span> j)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> nums[i];</span><br><span class="line">        nums[i] = nums[j];</span><br><span class="line">        nums[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" rel="tag">前缀和</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
   id="post-ACM"
   class="article article-type-post"
   itemscope
@@ -304,12 +620,12 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">每次在<span class="keyword">for</span>循环或者其他循环里嵌套循环的时候，应该时刻问自己一个问题:如果条件成立，我希望这段代码只运行一次，还是希望它一直运行到条件不成立为止？</span><br></pre></td></tr></table></figure>
 <h4 id="4-java集合分类">4.Java集合分类</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Java集合分为单列集合Collection和双列集合Map</span><br><span class="line">单列集合Collection接口下面有两个接口一个是List，一个是Set</span><br><span class="line">List接口下有三个实现类，ArrayList、LinkedList、vector；</span><br><span class="line">Set接口下有实现类，HashSet、TreeSet；还有LinkedHashSet继承HashSet</span><br><span class="line"></span><br><span class="line">双列集合Map接口下有两个实现类分别是常用的HashMap、和TreeMap；</span><br><span class="line">LinkedHashMap继承HashMap;</span><br></pre></td></tr></table></figure>
-<h4 id="5-arraylist-底层数据结构是动态数组-1-5扩容">5.ArrayList（底层数据结构是动态数组）-1.5扩容</h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5.1</span>-为什么建议在创建对象的时候初始化容量值</span><br><span class="line">	<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();建议指定初始化容量值，设置合适的初始值可以避免数组扩容(每次扩容会创建新的数组并拷贝旧数据)，避免扩容就提高了性能也避免内存浪费</span><br><span class="line">    </span><br><span class="line"><span class="number">5.2</span>-为什么扩容因子是<span class="number">1.5</span>？</span><br><span class="line">    扩容因子太大会浪费内存，太小会频繁扩容影响性能，这个<span class="number">1.5</span>是经验值来权衡性能和内存。</span><br><span class="line">    </span><br><span class="line"><span class="number">5.3</span>-ArrayList是线程安全的吗？</span><br><span class="line">    不是线程安全的，作为多线程共享数据，多线程并发修改ArrayList，如同时add()导致元素覆盖，同时扩容导致数据丢失。</span><br><span class="line">    解决方法：使用<span class="keyword">synchronized</span>(lock)&#123;&#125;代码块包裹操作;使用CopyOnWirteArrayList</span><br></pre></td></tr></table></figure>
+<h4 id="5-arraylist-底层数据结构是动态数组object-1-5扩容">5.ArrayList（底层数据结构是动态数组Object[]）-1.5扩容</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5.1</span>-为什么建议在创建对象的时候初始化容量值</span><br><span class="line">	<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();建议指定初始化容量值，设置合适的初始值可以避免数组扩容(每次扩容会创建新的数组并拷贝旧数据)，避免扩容就提高了性能也避免内存浪费</span><br><span class="line">    </span><br><span class="line"><span class="number">5.2</span>-为什么扩容因子是<span class="number">1.5</span>？</span><br><span class="line">    扩容因子太大会浪费内存，太小会频繁扩容影响性能，这个<span class="number">1.5</span>是经验值来权衡性能和内存。</span><br><span class="line"> 会调用Arrays.copyOf（）拷贝引用，属于浅拷贝！</span><br><span class="line">    </span><br><span class="line"><span class="number">5.3</span>-ArrayList是线程安全的吗？</span><br><span class="line">    不是线程安全的，作为多线程共享数据，多线程并发修改ArrayList，如同时add()导致元素覆盖，同时扩容导致数据丢失。</span><br><span class="line">    解决方法：使用<span class="keyword">synchronized</span>(lock)&#123;&#125;代码块包裹操作;使用CopyOnWirteArrayList</span><br></pre></td></tr></table></figure>
 <h4 id="6-copyonwritearraylist实现原理？-0-75扩容因子">6.CopyOnWriteArrayList实现原理？-0.75扩容因子</h4>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.底层数据结构时是数组,在向CopyOnWriteArrayList添加元素时，会复制一个数组将读写分离，原数组进行读操作，新数组进行写操作。</span><br><span class="line">2.写操作上会加锁，防止出现并发写入时元素覆盖的问题</span><br><span class="line">3.写操作结束之后会把原数组指向新数组。</span><br><span class="line"></span><br><span class="line">优势：适合读多写少场景，读性能高（在写操作读时不用加锁）</span><br><span class="line">劣势：较占内存，读到数据不是实时的，不适合实时性要求很高的场景</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>底层数据结构时是数组,在向CopyOnWriteArrayList添加元素时，会复制一个数组将读写分离，原数组进行读操作，新数组进行写操作。</span><br><span class="line"><span class="number">2.</span>写操作上会加锁，防止出现并发写入时元素覆盖的问题</span><br><span class="line"><span class="number">3.</span>写操作结束之后会把原数组指向新数组。</span><br><span class="line"></span><br><span class="line">优势：适合读多写少场景，读性能高（在写操作读时不用加锁）</span><br><span class="line">劣势：较占内存，读到数据不是实时的，不适合实时性要求很高的场景</span><br></pre></td></tr></table></figure>
 <h4 id="7-hashmap底层原理">7.HashMap底层原理</h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">底层数据结构在JDk1<span class="number">.7</span>之前时数组+链表；在<span class="number">1.8</span>是数组+链表+红黑树</span><br><span class="line">    </span><br><span class="line"><span class="number">7.1</span>-添加元素流程</span><br><span class="line">    put时，用(数组长度-<span class="number">1</span>)&amp;键的哈希值计算元素在数组对应下标：一种是数字该位置是<span class="literal">null</span>直接添加，一种是不为<span class="literal">null</span>，则遍历该桶位置下的链表或者红黑树，调用equals方法遍历比较键:若键一致，则会覆盖数组原有的Entry对象的value，然后返回。</span><br><span class="line">    如果没有一致的键，则把元素加入链表（<span class="number">1.7</span>头插。<span class="number">1.8</span>尾插）或红黑树</span><br><span class="line">   	在JDK8以后链表长度&gt;=<span class="number">8</span>且数组长度&gt;=<span class="number">64</span>的时候，将链表转为红黑树。</span><br><span class="line">    当红黑树节点数&lt;= <span class="number">6</span> 时，退化为链表。</span><br><span class="line"></span><br><span class="line">###树化可以提高大量哈希冲突时的查找效率（从 O(n) 降至 O(log n)）</span><br><span class="line">    </span><br><span class="line"><span class="number">7.2</span>-扩容加载因子<span class="number">0.75</span></span><br><span class="line">    如果HashMap中元素达到数组长度的<span class="number">0.75</span>就会扩容为原来的<span class="number">2</span>倍，这个<span class="number">0.75</span>是基于possion分布的统计规律的，在此时扩容发生哈希冲突的概率显著降低且控制内存占用。</span><br><span class="line">    </span><br><span class="line"><span class="number">7.3</span>-扩容为数组长度的<span class="number">2</span>倍</span><br><span class="line">    为什么是<span class="number">2</span>倍？因为在插入键值对元素，是通过（数组长度-<span class="number">1</span>）&amp;键的哈希值去确定在数组的索引位置，若数组长度是<span class="number">2</span>的次幂，则公式的左边二进制就全是<span class="number">1</span>，此时索引位置完全取决于键的hash值，降低hash碰撞的概率，提高查询效率</span><br><span class="line"></span><br><span class="line"><span class="number">7.4</span>-HashMap线程安全吗？</span><br><span class="line">    不是线程安全的，jdk1<span class="number">.7</span>的多线程环境下扩容时会造成环形链或数据丢失</span><br><span class="line">    jdk1<span class="number">.8</span>的多线程环境下插入元素到空桶会发生数据覆盖的情况！</span><br><span class="line">   	解决方案：<span class="keyword">synchronized</span>代码块包裹</span><br><span class="line">    使用ConcurrentHashMap</span><br><span class="line">    </span><br><span class="line"><span class="number">7.5</span>-初始容量不是<span class="number">2</span>的幂次怎么办？</span><br><span class="line">    初始容量必须是 <span class="number">2</span> 的幂，如果不是，构造函数会通过 tableSizeFor 方法调整到大于等于给定值的最近 <span class="number">2</span> 的幂。</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">底层数据结构在JDk1<span class="number">.7</span>之前时数组+链表；在<span class="number">1.8</span>是数组+链表+红黑树</span><br><span class="line">    </span><br><span class="line"><span class="number">7.1</span>-添加元素流程</span><br><span class="line">    put时，用(数组长度-<span class="number">1</span>)和键的哈希值按位与运算计算元素在数组对应下标：一种是数字该位置是<span class="literal">null</span>直接添加，一种是不为<span class="literal">null</span>，则遍历该桶位置下的链表或者红黑树，调用equals方法遍历比较键:若键一致，则会覆盖数组原有的Entry对象的value，然后返回。</span><br><span class="line">    如果没有一致的键，则把元素加入链表（<span class="number">1.7</span>头插。<span class="number">1.8</span>尾插）或红黑树</span><br><span class="line">   	在JDK8以后链表长度&gt;=<span class="number">8</span>且数组长度&gt;=<span class="number">64</span>的时候，将链表转为红黑树。</span><br><span class="line">    当红黑树节点数&lt;= <span class="number">6</span> 时，退化为链表。</span><br><span class="line"></span><br><span class="line">###树化可以提高大量哈希冲突时的查找效率（从 O(n) 降至 O(log n)）</span><br><span class="line">    </span><br><span class="line"><span class="number">7.2</span>-扩容加载因子<span class="number">0.75</span></span><br><span class="line">    如果HashMap中元素达到数组长度的<span class="number">0.75</span>就会扩容为原来的<span class="number">2</span>倍，这个<span class="number">0.75</span>是基于possion分布的统计规律的，在此时扩容发生哈希冲突的概率显著降低且控制内存占用。</span><br><span class="line">    </span><br><span class="line"><span class="number">7.3</span>-扩容为数组长度的<span class="number">2</span>倍-----降低hash碰撞的概率，提高查询效率</span><br><span class="line">    为什么是<span class="number">2</span>倍？因为在插入键值对元素，是通过（数组长度-<span class="number">1</span>）&amp;键的哈希值去确定在数组的索引位置，若数组长度是<span class="number">2</span>的次幂，则公式的左边二进制就全是<span class="number">1</span>，此时索引位置完全取决于键的hash值，降低hash碰撞的概率，提高查询效率</span><br><span class="line"></span><br><span class="line"><span class="number">7.4</span>-HashMap线程安全吗？</span><br><span class="line">    不是线程安全的，jdk1<span class="number">.7</span>的多线程环境下扩容时会造成环形链或数据丢失</span><br><span class="line">    jdk1<span class="number">.8</span>的多线程环境下插入元素到空桶会发生数据覆盖的情况！</span><br><span class="line">   	解决方案：<span class="keyword">synchronized</span>代码块包裹</span><br><span class="line">    使用ConcurrentHashMap</span><br><span class="line">    </span><br><span class="line"><span class="number">7.5</span>-初始容量不是<span class="number">2</span>的幂次怎么办？</span><br><span class="line">    初始容量必须是 <span class="number">2</span> 的幂，如果不是，构造函数会通过 tableSizeFor 方法调整到大于等于给定值的最近 <span class="number">2</span> 的幂。</span><br></pre></td></tr></table></figure>
 <h4 id="8-concurrenthashmap实现原理">8.ConcurrentHashMap实现原理</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8.1</span>-底层数据结构</span><br><span class="line">	Jdk1<span class="number">.7</span>底层是数组+链表，使用分段锁保证线程安全，默认将数组分成<span class="number">16</span>段，同时给每一段来配一把锁，因此最多有<span class="number">16</span>个线程同时操作集合，这样降低并发操作时的锁竞争，提高并发性能</span><br><span class="line">	jdk1<span class="number">.8</span>底层是数组+链表+红黑树，在并发处理上去掉了分段锁得到设计，采用CAS+synchronzied实现更加细粒度(为读写删除等操作单独授权，甚至限制都某条数据)的锁</span><br><span class="line"></span><br><span class="line"><span class="number">8.2</span>-添加元素过程</span><br><span class="line">	添加元素时会判断数组是否为空，如果为空则用CAS来初始化数组，非空判断元素存入桶的位置是否为空，如果桶位置为空则使用CAS设置桶上的头节点，不为空则用<span class="keyword">synchronized</span>加锁，锁住桶位置的头节点，遍历桶中的数据，替换或新增节点到桶中，并且判断链表是否需要转成红黑树</span><br><span class="line"></span><br><span class="line"><span class="number">8.3</span>-锁粒度细化</span><br><span class="line">锁的粒度从段缩小到单个桶(链表/树的头结点)，减少竞争概率，JDK1.8ConcurrentHashMap设计了无锁化编程和锁粒度细化的优化思想是Java并发容器的经典实现</span><br><span class="line"></span><br><span class="line"><span class="number">8.4</span>-为什么不全用CAS或者全用<span class="keyword">synchronized</span>加锁实现线程安全，为什么不同操作用不同方式保证呢？</span><br><span class="line">	CAS保证线程安全时做的事是初始化数组或者初始化头结点;</span><br><span class="line">	<span class="keyword">synchronized</span>做的是遍历桶的节点，比较key是否相等然后插入或替换元素，再判断链表是否转为红黑树;</span><br><span class="line">	CAS无锁适合做短时间任务，执行时间太长，就会有线程不断自旋尝试，过度占用CPU</span><br><span class="line">	<span class="keyword">synchronized</span>适合做长时间，高竞争的任务，加锁后，其余线程进入休眠，不会占用CPU。</span><br></pre></td></tr></table></figure>
 <h4 id="9-什么是反射-举例子解释？">9.什么是反射，举例子解释？</h4>
@@ -319,7 +635,14 @@
 <h4 id="11-深拷贝和浅拷贝">11.深拷贝和浅拷贝</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">11.1</span>-深拷贝和浅拷贝是在复制对象或数据结构时所用的两种不同的拷贝方式</span><br><span class="line"></span><br><span class="line"><span class="number">11.2</span>-浅拷贝</span><br><span class="line">    创建一个新的对象，只复制原始对象的基本数据类型的字段或引用地址，不复制引用指向的对象，这种拷贝方式的新对象和原始对象指向同一个对象，共用一个对象，所以新的对象修改会影响原始的数据</span><br><span class="line"></span><br><span class="line"><span class="number">11.3</span>-深拷贝</span><br><span class="line">    创建一个新的对象，递归地复制原始对象的所有字段和引用指向的对象，不仅仅只复制引用本身</span><br><span class="line">会递归的复制整个对象结构包括对象内部的对象，确保新对象和原对象是独立的，原对象不会受到影响。</span><br><span class="line">    </span><br><span class="line"><span class="number">11.4</span>-克隆</span><br><span class="line">    （<span class="number">1</span>）手动<span class="keyword">new</span>对象和递归复制</span><br><span class="line">    （<span class="number">2</span>）实现Cloneable接口并重写clone方法---<span class="built_in">super</span>.clone()这是浅拷贝;如果需要深拷贝那么需要再clone()方法里手动克隆字段。</span><br><span class="line">    （<span class="number">3</span>）实现Serializable接口通过序列化将对象写入流再读回</span><br><span class="line">    （<span class="number">4</span>）外部库（Apache commons）</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
 <h4 id="12-linkedlist">12.LinkedList</h4>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">#### 13.private修饰的方法</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>private 方法只能在定义它的类内部被调用，无法被其他类（包括子类）或包外访问。具体来说：<br>
+本类的其他实例方法可以直接调用私有方法。<br>
+本类的[静态方法]不能直接调用实例私有方法，但可以通过创建对象后调用。<br>
+不能通过子类继承或覆盖私有方法。<br>
+不能通过反射（但反射可以强行调用，这属于破坏封装）。</p>
+<pre><code>
+</code></pre>
 
       
 
@@ -794,240 +1117,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">在 Redis 主从异步复制的架构下，确实存在这种极端情况导致数据丢失的风险。为了在秒杀场景下保证数据不丢失，我的项目采用了以下策略：</span><br><span class="line"><span class="number">1.</span>Redis 仅作为热数据缓存，不作为最终权威数据源。Lua 脚本扣减的是 Redis 中的“虚拟库存”，即使丢失，也可以从数据库恢复。</span><br><span class="line"><span class="number">2.</span>同步写入 Kafka，再由消费者异步落库。数据库事务保证最终一致性，并且通过消息重试机制防止丢失。</span><br><span class="line"><span class="number">3.</span>主从切换时，如果脚本执行了一半，可能会出现 Redis 与数据库不一致。我会设置一个 定时对账任务，扫描数据库订单和 Redis 库存的差异，进行补偿修复。</span><br><span class="line"><span class="number">4.</span>如果对一致性要求极高，可以使用 WAIT 命令 或 Redisson 的分布式锁，但会牺牲部分性能。在秒杀场景下，我更倾向于异步补偿 + 最终一致性。</span><br><span class="line"></span><br><span class="line"><span class="comment">//“为什么不用 Zookeeper 或 etcd 来保证强一致性？”</span></span><br><span class="line"></span><br><span class="line">Zookeeper 使用 ZAB 协议，写操作需要多数节点确认，能保证强一致性，但吞吐量远低于 Redis（ZK 适合配置管理，不适合秒杀）。秒杀场景更看重 高吞吐 + 最终一致性，Redis + 异步落库是更合适的组合。</span><br></pre></td></tr></table></figure>
 <p><img src="C:/Users/%E8%92%8B%E6%B4%AA%E6%B6%9B/AppData/Roaming/Typora/typora-user-images/image-20260417205619599.png" alt="image-20260417205619599"></p>
 <h4 id="9-秒杀结束后-库存key和用户记录key还需要保留吗？如何设计清理策略？">9.秒杀结束后，库存key和用户记录key还需要保留吗？如何设计清理策略？</h4>
-
-      
-
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-
-  
-
-  
-
-  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
-
-  
-</article>
-
-    
-    <article
-  id="post-名词介绍"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2026/04/17/%E5%90%8D%E8%AF%8D%E4%BB%8B%E7%BB%8D/"
-    >名词介绍</a> 
-</h2>
- 
-
-      
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2026/04/17/%E5%90%8D%E8%AF%8D%E4%BB%8B%E7%BB%8D/" class="article-date">
-  <time datetime="2026-04-17T08:41:27.000Z" itemprop="datePublished">2026-04-17</time>
-</a>
-      
-      
-        
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-
-      
-        <p><code>并发量：</code>每一秒的请求数(QPS)</p>
-<p><code>TPS：</code>每一秒的事务数</p>
-<p><code>ACK：</code>确认。用于确认收到数据。在三次握手中，服务器收到 SYN 后回复 SYN+ACK 表示“我收到了你的请求，这是我的序列号，并且确认你的序列号”。最后客户端再发 ACK 确认，连接建立。</p>
-<p><code>SYN</code>： 同步序列号。用于发起一个新连接。在三次握手中，客户端发送 SYN 包给服务器，表示“我想建立连接，这是我的初始序列号”。</p>
-<p><code>FIN:</code>   TCP 协议中用于 <strong>终止连接</strong> 的控制报文，全称为 <strong>Finish</strong>（结束）。当一个通信方完成数据发送后，会发送 FIN 包，表示“我没有数据要发了，请求关闭连接”。</p>
-<p><code>transient:</code> 是一个关键字，用于修饰类的成员变量（字段）。它的作用是：<strong>当该类的对象被序列化时，被 <code>transient</code> 修饰的字段不会参与序列化过程</strong>。换句话说，这个字段的值在序列化时会被忽略，反序列化后会被重置为默认值（如 <code>null</code>、<code>0</code>、<code>false</code> 等）</p>
-<p><code>序列化</code> 是指将程序中的对象（内存中的数据结构）转换为<strong>字节序列</strong>（或文本格式如 JSON/XML）的过程，以便通过网络传输或保存到文件中。反序列化则是逆向过程，将字节流恢复为原来的对象。</p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">为什么需要序列化？</span><br><span class="line">- 持久化：将对象状态保存在磁盘上（例如存文件、数据库）。</span><br><span class="line">- 网络通信：在进程间或服务器间传递对象（如 RPC、HTTP API）。</span><br><span class="line">- 深度复制：通过序列化后再反序列化得到对象的副本。</span><br></pre></td></tr></table></figure>
-
-      
-
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8D%E8%AF%8D%E4%BB%8B%E7%BB%8D/" rel="tag">名词介绍</a></li></ul>
-
-    </footer>
-  </div>
-
-  
-
-  
-
-  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
-
-  
-</article>
-
-    
-    <article
-  id="post-面试题"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2026/04/16/%E9%9D%A2%E8%AF%95%E9%A2%98/"
-    >面试题</a> 
-</h2>
- 
-
-      
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2026/04/16/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
-  <time datetime="2026-04-16T12:05:59.000Z" itemprop="datePublished">2026-04-16</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
-  </div>
-
-      
-        
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-
-      
-        <h4 id="1-说一下hashmap的底层数据结构吗？jdk-1-7和1-8有什么不同？什么时候会转换为红黑树？">1.<strong>说一下HashMap的底层数据结构吗？JDK 1.7和1.8有什么不同？什么时候会转换为红黑树？</strong></h4>
-<p>HashMap底层是<strong>数组 + 链表/红黑树</strong>。</p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JDK 1.7：数组 + 链表，头插法，扩容时容易产生死循环。</span><br><span class="line">JDK 1.8：数组 + 链表 + 红黑树，尾插法；当链表长度 ≥ 8 且数组长度 ≥ 64 时，链表转为红黑树；当红黑树节点数 ≤ 6 时，退化为链表。</span><br></pre></td></tr></table></figure>
-<p>转换目的是提高极端哈希冲突下的查询性能，从 O(n) 降到 O(log n)。</p>
-<h4 id="2-你了解深浅拷贝-请问如何实现深拷贝？有哪些方式？">2.你了解深浅拷贝，请问如何实现深拷贝？有哪些方式？</h4>
-
-      
-
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li></ul>
-
-    </footer>
-  </div>
-
-  
-
-  
-
-  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
-
-  
-</article>
-
-    
-    <article
-  id="post-并发编程"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2026/04/16/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"
-    >并发编程</a> 
-</h2>
- 
-
-      
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2026/04/16/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="article-date">
-  <time datetime="2026-04-16T11:57:15.000Z" itemprop="datePublished">2026-04-16</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>
-  </div>
-
-      
-        
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-
-      
-        <h4 id="1-并发编程和分布式系统的区别？">1.并发编程和分布式系统的区别？</h4>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">并发编程:单个进程内，多个线程同时执行，共享内存；关注竞态、锁、可见性</span><br><span class="line">分布式系统：多个独立节点，也就是在不同的进程内，通过网络通信，它不共响内存；关注网络延迟、部分失败、数据一致性</span><br><span class="line">并发是一个JVM的事，分布式是多个JVM之间的事</span><br></pre></td></tr></table></figure>
 
       
 

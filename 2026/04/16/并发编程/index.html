@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">111</span>
+            <span class="post-count">226</span>
         </span>
     </span>
 
@@ -126,6 +126,8 @@
       
         <h4 id="1-并发编程和分布式系统的区别？">1.并发编程和分布式系统的区别？</h4>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">并发编程:单个进程内，多个线程同时执行，共享内存；关注竞态、锁、可见性</span><br><span class="line">分布式系统：多个独立节点，也就是在不同的进程内，通过网络通信，它不共响内存；关注网络延迟、部分失败、数据一致性</span><br><span class="line">并发是一个JVM的事，分布式是多个JVM之间的事</span><br></pre></td></tr></table></figure>
+<h4 id="2-开启一个线程的方法">2.开启一个线程的方法</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Java 中开启线程的核心方法是调用 Thread.start()，它会启动新线程并执行 run() 方法。常见方式有：</span><br><span class="line">继承 Thread，重写 run()，然后 <span class="keyword">new</span> <span class="title class_">MyThread</span>().start()</span><br><span class="line">实现 Runnable，传入 Thread 构造器，然后 start()</span><br><span class="line">使用 ExecutorService 线程池提交任务（execute() 或 submit()）</span><br><span class="line">通过 Callable + FutureTask 结合线程池或 Thread 启动</span><br><span class="line">注意：直接调用 run() 只是普通方法调用，不会开启新线程。</span><br></pre></td></tr></table></figure>
 
       
 

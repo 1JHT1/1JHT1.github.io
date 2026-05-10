@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">161</span>
+            <span class="post-count">249</span>
         </span>
     </span>
 
@@ -128,7 +128,14 @@
 <p>HashMap底层是<strong>数组 + 链表/红黑树</strong>。</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JDK 1.7：数组 + 链表，头插法，扩容时容易产生死循环。</span><br><span class="line">JDK 1.8：数组 + 链表 + 红黑树，尾插法；当链表长度 ≥ 8 且数组长度 ≥ 64 时，链表转为红黑树；当红黑树节点数 ≤ 6 时，退化为链表。</span><br></pre></td></tr></table></figure>
 <p>转换目的是提高极端哈希冲突下的查询性能，从 O(n) 降到 O(log n)。</p>
-<h4 id="2-你了解深浅拷贝-请问如何实现深拷贝？有哪些方式？">2.你了解深浅拷贝，请问如何实现深拷贝？有哪些方式？</h4>
+<h4 id="字节抖音服务架构一面">字节抖音服务架构一面</h4>
+<p>手撕多叉树的一个组合结果！</p>
+<p>1.介绍一下项目的核心功能？</p>
+<p>2.redis的lua脚本是怎么设计的？</p>
+<p>3.redis的缓存击穿、缓存穿透、缓存雪崩介绍一下和解决方案？</p>
+<p>4.redis的lua脚本执行到一半，redis突然宕机原来的数据会丢失吗？</p>
+<p>5.lua脚本怎么保持原子性的？</p>
+<p>6.反问环节</p>
 
       
 
@@ -192,8 +199,6 @@
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li></ul>
-
     </footer>
   </div>
 

@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">429</span>
+            <span class="post-count">455</span>
         </span>
     </span>
 
@@ -126,6 +126,7 @@
 <p><code>transient:</code> 是一个关键字，用于修饰类的成员变量（字段）。它的作用是：<strong>当该类的对象被序列化时，被 <code>transient</code> 修饰的字段不会参与序列化过程</strong>。换句话说，这个字段的值在序列化时会被忽略，反序列化后会被重置为默认值（如 <code>null</code>、<code>0</code>、<code>false</code> 等）</p>
 <p><code>序列化</code> 是指将程序中的对象（内存中的数据结构）转换为<strong>字节序列</strong>（或文本格式如 JSON/XML）的过程，以便通过网络传输或保存到文件中。反序列化则是逆向过程，将字节流恢复为原来的对象。</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">为什么需要序列化？</span><br><span class="line">- 持久化：将对象状态保存在磁盘上（例如存文件、数据库）。</span><br><span class="line">- 网络通信：在进程间或服务器间传递对象（如 RPC、HTTP API）。</span><br><span class="line">- 深度复制：通过序列化后再反序列化得到对象的副本。</span><br></pre></td></tr></table></figure>
+<p><code>protected</code> 成员可以被<strong>同一个包中的任何类</strong>以及<strong>不同包中的子类</strong>访问。</p>
 
       
 
