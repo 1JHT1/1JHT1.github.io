@@ -105,6 +105,91 @@
     
     
     <article
+  id="post-数据结构-Hash"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-Hash/"
+    >数据结构-Hash</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-Hash/" class="article-date">
+  <time datetime="2026-04-16T08:10:01.000Z" itemprop="datePublished">2026-04-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </div>
+
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <center><h2> Hash</h2></center>
+<p>在 Java 的集合框架中，基于哈希（Hash）实现的数据结构主要有以下几种:<code>HashMap</code>、<code>HashSet</code>、<code>LinkedHashMap</code>、<code>Hashtable</code>、<code>ConcurrentHashMap</code>…</p>
+<h3 id="1-hashmap">1.HashMap</h3>
+<p>最常用的哈希表实现，允许一个 <code>null</code> 键和多个 <code>null</code> 值，线程不安全，无序（不保证顺序）。</p>
+<p>Hashmap只允许一个键存在，如果键重复会实现值的覆盖！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">常用方法</span><br><span class="line">HashMap&lt;String, Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">map.put(<span class="string">&quot;apple&quot;</span>, <span class="number">1</span>);                <span class="comment">// 添加键值对</span></span><br><span class="line">map.get(<span class="string">&quot;apple&quot;</span>);                   <span class="comment">// 获取值，返回 1</span></span><br><span class="line">map.containsKey(<span class="string">&quot;apple&quot;</span>);           <span class="comment">// 判断键是否存在，true</span></span><br><span class="line">map.containsValue(<span class="number">1</span>);               <span class="comment">// 判断值是否存在，true</span></span><br><span class="line"></span><br><span class="line">map.remove(<span class="string">&quot;apple&quot;</span>);                <span class="comment">// 删除键值对，返回被删的值</span></span><br><span class="line">map.size();                         <span class="comment">// 键值对数量</span></span><br><span class="line"></span><br><span class="line">map.isEmpty();                      <span class="comment">// 是否为空</span></span><br><span class="line">map.keySet();                       <span class="comment">// 返回所有键的 Set 视图</span></span><br><span class="line">map.values();                       <span class="comment">// 返回所有值的 Collection</span></span><br><span class="line">map.entrySet();                     <span class="comment">// 返回所有键值对的 Set</span></span><br><span class="line"></span><br><span class="line">map.forEach((k, v) -&gt; System.out.println(k + <span class="string">&quot;=&quot;</span> + v)); <span class="comment">// 遍历</span></span><br><span class="line"></span><br><span class="line">map.replace(<span class="string">&quot;apple&quot;</span>, <span class="number">2</span>);            <span class="comment">// 替换值（键存在时）</span></span><br><span class="line"></span><br><span class="line">map.getOrDefault(<span class="string">&quot;orange&quot;</span>, <span class="number">0</span>);      <span class="comment">// 获取值，不存在则返回默认值</span></span><br><span class="line"></span><br><span class="line">map.putIfAbsent(<span class="string">&quot;banana&quot;</span>, <span class="number">3</span>);       <span class="comment">// 仅当键不存在时放入</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="2-hashset">2.HashSet</h3>
+<p>底层基于 <code>HashMap</code> 实现，存储不重复的元素，允许一个 <code>null</code> 值，线程不安全，无序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;String&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">set.add(<span class="string">&quot;cat&quot;</span>);                     <span class="comment">// 添加元素，返回是否添加成功</span></span><br><span class="line">set.remove(<span class="string">&quot;cat&quot;</span>);                  <span class="comment">// 删除元素，返回是否删除成功</span></span><br><span class="line">set.contains(<span class="string">&quot;cat&quot;</span>);                <span class="comment">// 判断元素是否存在</span></span><br><span class="line">set.size();                         <span class="comment">// 元素个数</span></span><br><span class="line">set.isEmpty();                      <span class="comment">// 是否为空</span></span><br><span class="line">set.clear();                        <span class="comment">// 清空所有元素</span></span><br><span class="line">set.iterator();                     <span class="comment">// 获取迭代器</span></span><br><span class="line">set.forEach(System.out::println);   <span class="comment">// 遍历</span></span><br></pre></td></tr></table></figure>
+<h3 id="3">3.</h3>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hash/" rel="tag">Hash</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
   id="post-leetcode-Hash"
   class="article article-type-post"
   itemscope
