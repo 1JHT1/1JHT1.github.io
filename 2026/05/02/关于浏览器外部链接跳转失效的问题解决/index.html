@@ -130,7 +130,7 @@
 <p>这个问题表示 Git 无法与远程仓库建立网络连接，出现问题的可能原因如下：</p>
 <ul>
 <li>DNS 解析错误（比如 hosts 文件将 <code>github.com</code> 指向 <code>127.0.0.1</code>）</li>
-<li>代理配置错误或代理服务器未运行</li>
+<li>代理配置错误或代理服务器未运行【解决方式   git config --global --unset https.proxy】</li>
 <li>防火墙或网络策略阻止了对 443 端口的出站连接</li>
 <li>GitHub 服务器不可达（极少见）</li>
 </ul>
