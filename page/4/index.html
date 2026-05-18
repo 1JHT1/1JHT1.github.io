@@ -105,6 +105,289 @@
     
     
     <article
+  id="post-StringBuilder"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/16/StringBuilder/"
+    >StringBuilder</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/16/StringBuilder/" class="article-date">
+  <time datetime="2026-04-16T08:45:05.000Z" itemprop="datePublished">2026-04-16</time>
+</a>
+      
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <center><h2>StringBuilder</h2></center>
+<p><code>StringBuilder</code>是对动态数组（<code>char[]</code>）的封装，用于高效处理可变字符串。 是 Java 中用于创建可变字符串的类，位于 <code>java.lang</code> 包中。它提供了一个可变的字符序列，适合在需要频繁修改字符串内容（例如拼接、插入、删除）的场景下使用，比直接使用 <code>String</code> 更加高效。</p>
+<hr>
+<h4 id="1-为什么需要-stringbuilder？">1. 为什么需要 <code>StringBuilder</code>？</h4>
+<ul>
+<li><strong><code>String</code> 是不可变的</strong>：每次对 <code>String</code> 进行拼接、替换等操作，都会创建一个新的 <code>String</code> 对象。如果频繁操作，会产生大量临时对象，降低性能并增加垃圾回收压力。</li>
+<li><strong><code>StringBuilder</code> 是可变的</strong>：它内部维护一个可变的字符数组，修改操作直接在原数组上进行，避免了创建中间对象。</li>
+</ul>
+<hr>
+<h4 id="2-与-stringbuffer-的区别">2. 与 <code>StringBuffer</code> 的区别</h4>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th><code>StringBuilder</code></th>
+<th><code>StringBuffer</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线程安全</td>
+<td>否</td>
+<td>是（方法用 <code>synchronized</code> 修饰）</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>更高（无同步开销）</td>
+<td>较低</td>
+</tr>
+<tr>
+<td>使用场景</td>
+<td>单线程环境</td>
+<td>多线程环境</td>
+</tr>
+</tbody>
+</table>
+<p>在实际开发中，绝大多数情况使用 <code>StringBuilder</code> 即可，除非明确需要线程安全。</p>
+<hr>
+<h4 id="3-常用构造方法">3. 常用构造方法</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();                 <span class="comment">// 默认容量16</span></span><br><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(<span class="number">50</span>);               <span class="comment">// 指定初始容量</span></span><br><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(<span class="string">&quot;Hello&quot;</span>);          <span class="comment">// 初始包含字符串 &quot;Hello&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-常用方法">4. 常用方法</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">sb.append(<span class="string">&quot;Hello&quot;</span>);          <span class="comment">// 追加字符串</span></span><br><span class="line">sb.append(<span class="string">&#x27; &#x27;</span>);              <span class="comment">// 追加字符</span></span><br><span class="line">sb.append(<span class="number">123</span>);              <span class="comment">// 追加整数（自动转换为字符串）</span></span><br><span class="line">sb.append(<span class="literal">true</span>);             <span class="comment">// 追加布尔值</span></span><br><span class="line"><span class="comment">// 链式调用</span></span><br><span class="line">sb.append(<span class="string">&quot;World&quot;</span>).append(<span class="string">&quot;!&quot;</span>);</span><br><span class="line"></span><br><span class="line">sb.insert(<span class="number">5</span>, <span class="string">&quot;Java &quot;</span>);       <span class="comment">// 在索引5处插入 &quot;Java &quot;</span></span><br><span class="line"></span><br><span class="line">sb.delete(<span class="number">0</span>, <span class="number">5</span>);             <span class="comment">// 删除 [0,5) 范围内的字符</span></span><br><span class="line">sb.deleteCharAt(<span class="number">3</span>);          <span class="comment">// 删除索引3处的字符</span></span><br><span class="line"></span><br><span class="line">sb.replace(<span class="number">0</span>, <span class="number">3</span>, <span class="string">&quot;Hey&quot;</span>);     <span class="comment">// 将 [0,3) 替换为 &quot;Hey&quot;</span></span><br><span class="line"></span><br><span class="line">sb.reverse();                <span class="comment">// 反转字符序列</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> sb.length();       <span class="comment">// 实际字符数</span></span><br><span class="line"><span class="type">int</span> <span class="variable">cap</span> <span class="operator">=</span> sb.capacity();     <span class="comment">// 内部数组当前容量</span></span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> sb.toString();</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> <span class="variable">ch</span> <span class="operator">=</span> sb.charAt(<span class="number">2</span>);      <span class="comment">// 获取指定位置的字符</span></span><br><span class="line">sb.setCharAt(<span class="number">2</span>, <span class="string">&#x27;X&#x27;</span>);        <span class="comment">// 设置指定位置的字符</span></span><br><span class="line"><span class="type">int</span> <span class="variable">idx</span> <span class="operator">=</span> sb.indexOf(<span class="string">&quot;lo&quot;</span>);  <span class="comment">// 查找子串第一次出现的位置</span></span><br><span class="line"><span class="type">String</span> <span class="variable">sub</span> <span class="operator">=</span> sb.substring(<span class="number">2</span>, <span class="number">5</span>); <span class="comment">// 截取子串（返回 String）</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-扩容机制">5.扩容机制</h4>
+<p>当内部字符数组容量不足时，<code>StringBuilder</code> 会自动扩容：<strong>新容量 = 旧容量 * 2 + 2</strong>，然后将原数组内容复制到新数组中。频繁扩容会影响性能，因此如果能预估最终字符串长度，建议在构造时指定合适的初始容量。</p>
+<h4 id="6-小结">6. 小结</h4>
+<ul>
+<li><strong>用途</strong>：解决频繁修改字符串时的性能问题。</li>
+<li><strong>特点</strong>：可变、非线程安全、效率高。</li>
+<li><strong>注意</strong>：不需要线程安全时优先使用 <code>StringBuilder</code>，否则用 <code>StringBuffer</code>。</li>
+<li><strong>重要方法</strong>：<code>append</code>、<code>insert</code>、<code>delete</code>、<code>replace</code>、<code>reverse</code>、<code>toString</code>。</li>
+</ul>
+<h4 id="7-所有对象的to方法">7.所有对象的to方法</h4>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>所属类</th>
+<th>功能</th>
+<th>返回值</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toString()</code></td>
+<td><code>Object</code>（所有类）</td>
+<td>返回对象的字符串表示</td>
+<td><code>String</code></td>
+<td><code>Integer num = 123; num.toString();</code></td>
+</tr>
+<tr>
+<td><code>toCharArray()</code></td>
+<td><code>String</code></td>
+<td>将字符串转换为字符数组</td>
+<td><code>char[]</code></td>
+<td><code>&quot;hello&quot;.toCharArray();</code></td>
+</tr>
+<tr>
+<td><code>toArray()</code></td>
+<td><code>Collection</code>（如 <code>List</code>, <code>Set</code>）</td>
+<td>将集合转换为数组</td>
+<td><code>Object[]</code> 或指定类型 <code>T[]</code></td>
+<td><code>list.toArray(new String[0]);</code></td>
+</tr>
+<tr>
+<td><code>toArray(T[] a)</code></td>
+<td><code>Collection</code></td>
+<td>将集合转换为指定类型的数组</td>
+<td><code>T[]</code></td>
+<td><code>list.toArray(new String[list.size()]);</code></td>
+</tr>
+<tr>
+<td><code>toLowerCase()</code></td>
+<td><code>String</code></td>
+<td>将字符串转换为小写</td>
+<td><code>String</code></td>
+<td><code>&quot;HELLO&quot;.toLowerCase();</code></td>
+</tr>
+<tr>
+<td><code>toUpperCase()</code></td>
+<td><code>String</code></td>
+<td>将字符串转换为大写</td>
+<td><code>String</code></td>
+<td><code>&quot;hello&quot;.toUpperCase();</code></td>
+</tr>
+<tr>
+<td><code>trim()</code></td>
+<td><code>String</code></td>
+<td>去除字符串首尾空白字符</td>
+<td><code>String</code></td>
+<td><code>&quot;  hi  &quot;.trim();</code></td>
+</tr>
+<tr>
+<td><code>toCharArray()</code></td>
+<td><code>StringBuilder</code> / <code>StringBuffer</code></td>
+<td>先调用 <code>toString()</code> 再转数组（间接）</td>
+<td><code>char[]</code></td>
+<td><code>sb.toString().toCharArray();</code></td>
+</tr>
+<tr>
+<td><code>toByteArray()</code></td>
+<td><code>ByteArrayOutputStream</code></td>
+<td>将缓冲区数据转为字节数组</td>
+<td><code>byte[]</code></td>
+<td><code>baos.toByteArray();</code></td>
+</tr>
+<tr>
+<td><code>toArray()</code></td>
+<td><code>Vector</code></td>
+<td>将 Vector 转为数组</td>
+<td><code>Object[]</code></td>
+<td><code>vector.toArray();</code></td>
+</tr>
+<tr>
+<td><code>toArray(T[] a)</code></td>
+<td><code>Vector</code></td>
+<td>同上，指定类型</td>
+<td><code>T[]</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>toFile()</code></td>
+<td><code>Path</code>（Java NIO）</td>
+<td>将 <code>Path</code> 转为 <code>File</code></td>
+<td><code>File</code></td>
+<td><code>path.toFile();</code></td>
+</tr>
+<tr>
+<td><code>toAbsolutePath()</code></td>
+<td><code>Path</code></td>
+<td>转为绝对路径</td>
+<td><code>Path</code></td>
+<td><code>path.toAbsolutePath();</code></td>
+</tr>
+<tr>
+<td><code>toURI()</code></td>
+<td><code>File</code> / <code>Path</code></td>
+<td>转为 URI</td>
+<td><code>URI</code></td>
+<td><code>file.toURI();</code></td>
+</tr>
+<tr>
+<td><code>toURL()</code></td>
+<td><code>File</code>（已过时）</td>
+<td>转为 URL</td>
+<td><code>URL</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>toInstant()</code></td>
+<td><code>Date</code> / <code>Calendar</code></td>
+<td>转为 <code>Instant</code></td>
+<td><code>Instant</code></td>
+<td><code>new Date().toInstant();</code></td>
+</tr>
+<tr>
+<td><code>toLocalDate()</code></td>
+<td><code>java.sql.Date</code></td>
+<td>转为 <code>LocalDate</code></td>
+<td><code>LocalDate</code></td>
+<td><code>sqlDate.toLocalDate();</code></td>
+</tr>
+<tr>
+<td><code>toLocalTime()</code></td>
+<td><code>java.sql.Time</code></td>
+<td>转为 <code>LocalTime</code></td>
+<td><code>LocalTime</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>toLocalDateTime()</code></td>
+<td><code>java.sql.Timestamp</code></td>
+<td>转为 <code>LocalDateTime</code></td>
+<td><code>LocalDateTime</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>toEpochSecond()</code></td>
+<td><code>LocalDateTime</code></td>
+<td>转为从 1970-01-01 开始的秒数</td>
+<td><code>long</code></td>
+<td><code>ldt.toEpochSecond(ZoneOffset.UTC);</code></td>
+</tr>
+<tr>
+<td><code>toMillis()</code></td>
+<td><code>Instant</code></td>
+<td>转为毫秒时间戳</td>
+<td><code>long</code></td>
+<td><code>instant.toEpochMilli();</code></td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/StringBuilder/" rel="tag">StringBuilder</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
   id="post-数据结构-Hash"
   class="article article-type-post"
   itemscope
@@ -627,7 +910,7 @@
        
 <h2 itemprop="name">
   <a class="article-title" href="/2026/04/14/leetcode-%E8%B4%AA%E5%BF%83/"
-    >leetcode</a> 
+    >leetcode-贪心</a> 
 </h2>
  
 
@@ -660,7 +943,7 @@
 
 
       
-        <p>121—买股票最佳时机</p>
+        <h4 id="121-买股票最佳时机">121—买股票最佳时机</h4>
 <p>最容易的思路-暴力求解</p>
 <p>时间复杂度(O(n^2))、空间复杂度(O(1))：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> profit=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//遍历每一个买入的天</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;prices.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=i+<span class="number">1</span>;j&lt;prices.length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(prices[i]&lt;prices[j])&#123;</span><br><span class="line">                    <span class="comment">//每次遇到比买入天高的更新利润</span></span><br><span class="line">                    profit=Math.max(profit,prices[j]-prices[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -670,7 +953,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> profit=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//当前遇到的最小价格</span></span><br><span class="line">        <span class="type">int</span> minprice=Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;prices.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i]&lt;minprice)&#123;</span><br><span class="line">                minprice=prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//更新最大利润</span></span><br><span class="line">            profit=Math.max(profit,prices[i]-minprice);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> profit=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//当前遇到的最大卖出价格</span></span><br><span class="line">        <span class="type">int</span> maxprice=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=prices.length-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i]&gt;maxprice)&#123;</span><br><span class="line">                maxprice=prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//更新</span></span><br><span class="line">            profit=Math.max(profit,maxprice-prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​		降低时间复杂度的原因是我们在遍历一次数组的情况下通过维护最大的卖出或者最小的买入确定了最大利润计算的一个变量，这个时候只需要遍历一次另一个变量就能获得结果，前提是不会影响到全局最优才可以。</p>
-<p>45—跳跃游戏II</p>
+<h4 id="45-跳跃游戏ii">45—跳跃游戏II</h4>
 <p>​			一个长度固定的数组nums，从起始位置0出发，每个元素nums[i]表示当前位置可以往后跳的最大步数，可以少走，问到达数组末尾的最小跳跃次数。</p>
 <p>​		一种方法是维护当前距离末尾最远的一个位置，一直到回到数组开头，定义一个走一步就能到数组末尾的实时更新的position，只要position更新了一次说明我们走了一步，而且每次都是走的最长的到末尾的路，一直到position回到开头，此时，我们的最小次数也就计算出来了。</p>
 <p>时间复杂度O(n^2)、空间复杂度O(1):</p>
@@ -681,6 +964,10 @@
 <p>在遍历数组时，我们不访问最后一个元素，这是因为在访问最后一个元素之前，我们的边界一定大于等于最后一个位置，否则就无法跳到最后一个位置了。如果访问最后一个元素，在边界正好为最后一个位置的情况下，我们会增加一次「不必要的跳跃次数」，因此我们不必访问最后一个元素。</p>
 <p>时间复杂度O(n)、空间复杂度O(1)：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">jump</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> steps=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> maxposition=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> end=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;nums.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            maxposition=Math.max(i+nums[i],maxposition);</span><br><span class="line">            <span class="keyword">if</span>(i==end)&#123;</span><br><span class="line">                end=maxposition;</span><br><span class="line">                steps++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/*可达判断</span></span><br><span class="line"><span class="comment">        if(maxpostion&gt;=nums.length-1)&#123;</span></span><br><span class="line"><span class="comment">            return steps;</span></span><br><span class="line"><span class="comment">        &#125;else&#123;</span></span><br><span class="line"><span class="comment">        	return false;</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">        <span class="keyword">return</span> steps;     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="763-划分字母区间">763—划分字母区间</h4>
+<p>给你一个字符串 <code>s</code> 。我们要把这个字符串划分为尽可能多的片段，同一字母最多出现在一个片段中。例如，字符串 <code>&quot;ababcc&quot;</code> 能够被分为 <code>[&quot;abab&quot;, &quot;cc&quot;]</code>，但类似 <code>[&quot;aba&quot;, &quot;bcc&quot;]</code> 或 <code>[&quot;ab&quot;, &quot;ab&quot;, &quot;cc&quot;]</code> 的划分是非法的。</p>
+<p>注意，划分结果需要满足：将所有划分结果按顺序连接，得到的字符串仍然是 <code>s</code> 。返回一个表示每个字符串片段的长度的列表。</p>
+<p>分析：</p>
 
       
 

@@ -105,6 +105,78 @@
     
     
     <article
+  id="post-自我介绍"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/04/24/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/"
+    >自我介绍</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/04/24/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/" class="article-date">
+  <time datetime="2026-04-24T02:03:28.000Z" itemprop="datePublished">2026-04-24</time>
+</a>
+      
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E7%A8%BF%E5%AD%90/" rel="tag">面试稿子</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
   id="post-leetcode-矩阵"
   class="article article-type-post"
   itemscope
@@ -409,6 +481,40 @@
 <h4 id="3-滚动数组">3.滚动数组</h4>
 <p>滚动数组是一种空间优化技巧，通过重复使用固定大小的数组（通常只保留前后几步的状态），将动态规划的空间复杂度从 O(n²) 或 O(n) 降为 O(1) 或 O(k)。例如斐波那契数列只需两个变量交替更新，背包问题用一维数组逆序滚动代替二维数组。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="4-深度优先遍历和广度优先遍历">4.深度优先遍历和广度优先遍历</h4>
+<h4 id="5-前序中序后序遍历">5.前序中序后序遍历</h4>
+<p>介绍一下前中后序遍历，主要是左子树、右子树、根节点的顺序关系：</p>
+<p>前序：根节点-&gt;左子树-&gt;右子树</p>
+<p>中序：左子树-&gt;根-&gt;右子树</p>
+<p>后序：左子树-&gt;右子树-&gt;根</p>
+<p>（可以形象的理解成根在左子树、右子树相对的位置顺序）左子树输出的优先级高一些！</p>
+<h6 id="应用场景">应用场景</h6>
+<table>
+<thead>
+<tr>
+<th>遍历方式</th>
+<th>顺序</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前序</td>
+<td>根 → 左 → 右</td>
+<td>用于树的复制、前缀表达式</td>
+</tr>
+<tr>
+<td>中序</td>
+<td>左 → 根 → 右</td>
+<td>BST输出有序序列</td>
+</tr>
+<tr>
+<td>后序</td>
+<td>左 → 右 → 根</td>
+<td>用于删除树、后缀表达式</td>
+</tr>
+</tbody>
+</table>
 
       
 
@@ -607,7 +713,7 @@ nums[i], &amp; i = 0 \\
 
 
       
-        <p>本篇blog用于记录每一个leetcode的ACM解法</p>
+        <p>本篇blog用于记录一些ACM格式的题目解法用于理解ACM</p>
 <h4 id="141-环形链表">141-环形链表</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//导包</span></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">//数据结构</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>&#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    ListNode next;</span><br><span class="line">    ListNode(<span class="type">int</span> val)&#123;</span><br><span class="line">        <span class="built_in">this</span>.val=val;</span><br><span class="line">        next=<span class="literal">null</span>;<span class="comment">//初始下一个指针为null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LinkedListCycle</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//解决方案--leetcode解法</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">hasCycle</span><span class="params">(ListNode head)</span>&#123;</span><br><span class="line">        <span class="comment">//非空判断</span></span><br><span class="line">        <span class="keyword">if</span>(head==<span class="literal">null</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">//快慢指针</span></span><br><span class="line">        ListNode fast=head,slow=head;</span><br><span class="line">        <span class="comment">//边界条件当fast指针指向null或者.next指向null说明链表无环</span></span><br><span class="line">        <span class="keyword">while</span>(fast!=<span class="literal">null</span>&amp;&amp; fast.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">            fast=fast.next.next;</span><br><span class="line">            slow=slow.next;</span><br><span class="line">            <span class="keyword">if</span>(slow==fast)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//程序主入口main函数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="comment">//创建输入对象</span></span><br><span class="line">        Scanner sc=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> n=sc.nextInt();<span class="comment">//输入链表长度</span></span><br><span class="line">        <span class="type">int</span> [] vals=<span class="keyword">new</span> <span class="title class_">int</span>[n];<span class="comment">//初始化链表值</span></span><br><span class="line">        <span class="comment">//依次赋值</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            vals[i]=sc.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> pos=sc.nextInt();<span class="comment">//输入</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="comment">//构建链表(不带环)</span></span><br><span class="line">        ListNode head=<span class="literal">null</span>,tail=<span class="literal">null</span>;<span class="comment">//链表头尾初始化第一个节点和最后一个节点</span></span><br><span class="line">        ListNode[] nodes=<span class="keyword">new</span> <span class="title class_">ListNode</span>[n];<span class="comment">//初始化一个节点数组</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            ListNode node=<span class="keyword">new</span> <span class="title class_">ListNode</span>(vals[i]);<span class="comment">//为每一个节点付对应数组的值</span></span><br><span class="line">            nodes[i]=node;<span class="comment">//将每个节点放近节点数组</span></span><br><span class="line">            <span class="comment">//开始构造链表，每次循环会对应一个链表节点node</span></span><br><span class="line">            <span class="keyword">if</span>(head==<span class="literal">null</span>)&#123;</span><br><span class="line">                head=node;</span><br><span class="line">                tail=node;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                tail.next=node;</span><br><span class="line">                tail=node;<span class="comment">//更新新链表的最后一个节点</span></span><br><span class="line">            &#125;</span><br><span class="line">       </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//构造环(如果pos！=-1说明有环，此时将尾部的下一个节点连接到pos处即可)</span></span><br><span class="line">        <span class="keyword">if</span>(pos!=-<span class="number">1</span> &amp;&amp; pos&lt;n)&#123;</span><br><span class="line">            tail.next=nodes[pos];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//判断是否有环并输出结果</span></span><br><span class="line">        System.out.println(hasCycle(head));</span><br><span class="line">        sc.close();<span class="comment">//关流</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="160-相交链表">160—相交链表</h4>
@@ -654,6 +760,8 @@ nums[i], &amp; i = 0 \\
     <footer class="article-footer">
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/" rel="tag">ACM</a></li></ul>
+
     </footer>
   </div>
 
@@ -1097,88 +1205,6 @@ nums[i], &amp; i = 0 \\
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li></ul>
-
-    </footer>
-  </div>
-
-  
-
-  
-
-  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
-
-  
-</article>
-
-    
-    <article
-  id="post-leetcode-双指针"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2026/04/17/leetcode-%E5%8F%8C%E6%8C%87%E9%92%88/"
-    >leetcode-双指针</a> 
-</h2>
- 
-
-      
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2026/04/17/leetcode-%E5%8F%8C%E6%8C%87%E9%92%88/" class="article-date">
-  <time datetime="2026-04-17T13:36:46.000Z" itemprop="datePublished">2026-04-17</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-  </div>
-
-      
-        
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-
-      
-        <h3 id="42-接雨水">42—接雨水</h3>
-<p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：height = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">输出：<span class="number">6</span></span><br><span class="line">解释：上面是由数组 [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>] 表示的高度图，在这种情况下，可以接 <span class="number">6</span> 个单位的雨水（蓝色部分表示雨水）。 </span><br></pre></td></tr></table></figure>
-<p><img src="%E6%8E%A5%E9%9B%A8%E6%B0%B4.png" alt=""></p>
-<p>分析：我们把每一个节点看成是一个两侧有板的桶，这个桶的装水量是当前的短板去掉桶里的石头，这两个板子的最大值在移动的时候需要进行维护！因为水流只会往低处流，那么这个桶的左右板可以看出是它局部的左右最大高度！那么在这样的结构下我们在左右两边设置双指针进行遍历，当left&lt;=right的时候，如果左边的板高度大于右边的板，那么用右边的板减去当前的高度（石头）即为这个桶的装水量，随后right指针往左移一格表示当前桶已计算。反之，用左边的板高度减去当前的高度。left指针向右移动。一直遍历下去并累加会得到整个模型能装的水总量。</p>
-<p>时间复杂度O(n)、空间复杂度O(1)：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">trap</span><span class="params">(<span class="type">int</span>[] height)</span> &#123;</span><br><span class="line">        <span class="comment">//初始结果</span></span><br><span class="line">        <span class="type">int</span>  res=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//双指针</span></span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right=height.length-<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//初始前缀最大值</span></span><br><span class="line">        <span class="type">int</span> left_max=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right_max=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//指针移动,等于的时候也能计算</span></span><br><span class="line">        <span class="keyword">while</span>(left&lt;=right)&#123;</span><br><span class="line">            <span class="comment">//更新左右前缀最大值</span></span><br><span class="line">            left_max=Math.max(left_max,height[left]);</span><br><span class="line">            right_max=Math.max(right_max,height[right]);</span><br><span class="line">            <span class="keyword">if</span>(left_max&lt;right_max)&#123;</span><br><span class="line">                res=res+left_max-height[left];</span><br><span class="line">                left++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                res=res+right_max-height[right];</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
 
     </footer>
   </div>

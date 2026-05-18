@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">533</span>
+            <span class="post-count">708</span>
         </span>
     </span>
 
@@ -165,6 +165,40 @@
 <h4 id="3-滚动数组">3.滚动数组</h4>
 <p>滚动数组是一种空间优化技巧，通过重复使用固定大小的数组（通常只保留前后几步的状态），将动态规划的空间复杂度从 O(n²) 或 O(n) 降为 O(1) 或 O(k)。例如斐波那契数列只需两个变量交替更新，背包问题用一维数组逆序滚动代替二维数组。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="4-深度优先遍历和广度优先遍历">4.深度优先遍历和广度优先遍历</h4>
+<h4 id="5-前序中序后序遍历">5.前序中序后序遍历</h4>
+<p>介绍一下前中后序遍历，主要是左子树、右子树、根节点的顺序关系：</p>
+<p>前序：根节点-&gt;左子树-&gt;右子树</p>
+<p>中序：左子树-&gt;根-&gt;右子树</p>
+<p>后序：左子树-&gt;右子树-&gt;根</p>
+<p>（可以形象的理解成根在左子树、右子树相对的位置顺序）左子树输出的优先级高一些！</p>
+<h6 id="应用场景">应用场景</h6>
+<table>
+<thead>
+<tr>
+<th>遍历方式</th>
+<th>顺序</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前序</td>
+<td>根 → 左 → 右</td>
+<td>用于树的复制、前缀表达式</td>
+</tr>
+<tr>
+<td>中序</td>
+<td>左 → 根 → 右</td>
+<td>BST输出有序序列</td>
+</tr>
+<tr>
+<td>后序</td>
+<td>左 → 右 → 根</td>
+<td>用于删除树、后缀表达式</td>
+</tr>
+</tbody>
+</table>
 
       
 

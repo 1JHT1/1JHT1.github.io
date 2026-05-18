@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>leetcode |  计算机学习</title>
+      <title>leetcode-贪心 |  计算机学习</title>
   <meta name="generator" content="hexo-theme-ayeria">
       
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -64,7 +64,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  leetcode
+  leetcode-贪心
 </h1>
  
 
@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.4k</span>
+            <span class="post-count">1.6k</span>
         </span>
     </span>
 
@@ -98,7 +98,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">5 min</span>
+            <span class="post-count">6 min</span>
         </span>
     </span>
 </div>
@@ -109,6 +109,8 @@
 
     
       
+    <div class="tocbot"></div>
+
 
 
 
@@ -122,7 +124,7 @@
 
 
       
-        <p>121—买股票最佳时机</p>
+        <h4 id="121-买股票最佳时机">121—买股票最佳时机</h4>
 <p>最容易的思路-暴力求解</p>
 <p>时间复杂度(O(n^2))、空间复杂度(O(1))：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> profit=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//遍历每一个买入的天</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;prices.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=i+<span class="number">1</span>;j&lt;prices.length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(prices[i]&lt;prices[j])&#123;</span><br><span class="line">                    <span class="comment">//每次遇到比买入天高的更新利润</span></span><br><span class="line">                    profit=Math.max(profit,prices[j]-prices[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -132,7 +134,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> profit=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//当前遇到的最小价格</span></span><br><span class="line">        <span class="type">int</span> minprice=Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;prices.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i]&lt;minprice)&#123;</span><br><span class="line">                minprice=prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//更新最大利润</span></span><br><span class="line">            profit=Math.max(profit,prices[i]-minprice);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> profit=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//当前遇到的最大卖出价格</span></span><br><span class="line">        <span class="type">int</span> maxprice=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=prices.length-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i]&gt;maxprice)&#123;</span><br><span class="line">                maxprice=prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//更新</span></span><br><span class="line">            profit=Math.max(profit,maxprice-prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​		降低时间复杂度的原因是我们在遍历一次数组的情况下通过维护最大的卖出或者最小的买入确定了最大利润计算的一个变量，这个时候只需要遍历一次另一个变量就能获得结果，前提是不会影响到全局最优才可以。</p>
-<p>45—跳跃游戏II</p>
+<h4 id="45-跳跃游戏ii">45—跳跃游戏II</h4>
 <p>​			一个长度固定的数组nums，从起始位置0出发，每个元素nums[i]表示当前位置可以往后跳的最大步数，可以少走，问到达数组末尾的最小跳跃次数。</p>
 <p>​		一种方法是维护当前距离末尾最远的一个位置，一直到回到数组开头，定义一个走一步就能到数组末尾的实时更新的position，只要position更新了一次说明我们走了一步，而且每次都是走的最长的到末尾的路，一直到position回到开头，此时，我们的最小次数也就计算出来了。</p>
 <p>时间复杂度O(n^2)、空间复杂度O(1):</p>
@@ -143,6 +145,10 @@
 <p>在遍历数组时，我们不访问最后一个元素，这是因为在访问最后一个元素之前，我们的边界一定大于等于最后一个位置，否则就无法跳到最后一个位置了。如果访问最后一个元素，在边界正好为最后一个位置的情况下，我们会增加一次「不必要的跳跃次数」，因此我们不必访问最后一个元素。</p>
 <p>时间复杂度O(n)、空间复杂度O(1)：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">jump</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> steps=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> maxposition=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> end=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;nums.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            maxposition=Math.max(i+nums[i],maxposition);</span><br><span class="line">            <span class="keyword">if</span>(i==end)&#123;</span><br><span class="line">                end=maxposition;</span><br><span class="line">                steps++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/*可达判断</span></span><br><span class="line"><span class="comment">        if(maxpostion&gt;=nums.length-1)&#123;</span></span><br><span class="line"><span class="comment">            return steps;</span></span><br><span class="line"><span class="comment">        &#125;else&#123;</span></span><br><span class="line"><span class="comment">        	return false;</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">        <span class="keyword">return</span> steps;     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="763-划分字母区间">763—划分字母区间</h4>
+<p>给你一个字符串 <code>s</code> 。我们要把这个字符串划分为尽可能多的片段，同一字母最多出现在一个片段中。例如，字符串 <code>&quot;ababcc&quot;</code> 能够被分为 <code>[&quot;abab&quot;, &quot;cc&quot;]</code>，但类似 <code>[&quot;aba&quot;, &quot;bcc&quot;]</code> 或 <code>[&quot;ab&quot;, &quot;ab&quot;, &quot;cc&quot;]</code> 的划分是非法的。</p>
+<p>注意，划分结果需要满足：将所有划分结果按顺序连接，得到的字符串仍然是 <code>s</code> 。返回一个表示每个字符串片段的长度的列表。</p>
+<p>分析：</p>
 
       
 
