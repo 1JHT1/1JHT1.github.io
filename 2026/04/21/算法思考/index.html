@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">708</span>
+            <span class="post-count">907</span>
         </span>
     </span>
 
@@ -98,7 +98,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -163,8 +163,14 @@
 <h4 id="2-不使用中间变量交换两个整数">2.不使用中间变量交换两个整数</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> t,<span class="type">int</span> s)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(t==s)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    t=t^s;</span><br><span class="line">    s=s^t;</span><br><span class="line">    t=t^s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//异或运算法则: a^a=0;a^0=a;相同元素异或一定是0，任何整数与0异或一定是自身</span></span><br><span class="line"><span class="comment">//但是不适用于浮点数等其他数据类型！</span></span><br></pre></td></tr></table></figure>
 <h4 id="3-滚动数组">3.滚动数组</h4>
-<p>滚动数组是一种空间优化技巧，通过重复使用固定大小的数组（通常只保留前后几步的状态），将动态规划的空间复杂度从 O(n²) 或 O(n) 降为 O(1) 或 O(k)。例如斐波那契数列只需两个变量交替更新，背包问题用一维数组逆序滚动代替二维数组。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p>滚动数组（Rolling Array）是动态规划中常用的空间优化技巧，适用于<strong>当前状态只依赖于前一个或前几个状态</strong>的情况。它将原本需要 O(n) 的数组压缩为 O(1) 或 O(k) 的固定大小，通过不断复用数组中的位置来“滚动”更新。</p>
+<p>分析：</p>
+<ul>
+<li>如果 DP 递推式只依赖前一个或前两个状态，那么只需要用有限的变量（或固定大小的数组）覆盖旧值。</li>
+<li>每一轮迭代时，用新值覆盖不再需要的历史值，就像车轮滚动一样。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">dp[i]=dp[i-<span class="number">1</span>]+dp[i-<span class="number">2</span>];</span><br><span class="line"><span class="comment">//启动条件</span></span><br><span class="line">dp[<span class="number">0</span>]=<span class="number">1</span>,dp[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//滚动计算,包含第n次</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    <span class="comment">//计算下次结果</span></span><br><span class="line">    <span class="type">int</span> next=dp[<span class="number">0</span>]+dp[<span class="number">1</span>];</span><br><span class="line">    <span class="comment">//滚动</span></span><br><span class="line">    dp[<span class="number">0</span>]=dp[<span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">1</span>]=next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回</span></span><br><span class="line"><span class="keyword">return</span> dp[<span class="number">1</span>];<span class="comment">//dp[1]是最后一次计算的结果，因为next赋值给了dp[1]</span></span><br></pre></td></tr></table></figure>
+<p>滚动数组通常要求依赖前 <code>k</code> 个<strong>连续</strong>状态（如斐波那契、爬楼梯），对于每次结果的依赖是“跳跃”的，无法用一个固定大小的滑动窗口覆盖所有需要的旧状态。</p>
 <h4 id="4-深度优先遍历和广度优先遍历">4.深度优先遍历和广度优先遍历</h4>
 <h4 id="5-前序中序后序遍历">5.前序中序后序遍历</h4>
 <p>介绍一下前中后序遍历，主要是左子树、右子树、根节点的顺序关系：</p>

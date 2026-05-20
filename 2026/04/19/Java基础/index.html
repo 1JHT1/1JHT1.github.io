@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">3.2k</span>
+            <span class="post-count">3.3k</span>
         </span>
     </span>
 
@@ -98,7 +98,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">11 min</span>
+            <span class="post-count">12 min</span>
         </span>
     </span>
 </div>
@@ -194,6 +194,12 @@
 不能通过子类继承或覆盖私有方法。<br>
 不能通过反射（但反射可以强行调用，这属于破坏封装）。</p>
 <pre><code>
+#### 14.List和数组
+
+数组和 `List` 不是相互替代的关系，而是**互补**的：
+
+- 需要**动态增删、便捷操作** → 用 `List`。（封装）里面的元素都是引用数据类型，有装箱开销
+- 需要**最高性能、基本类型、固定大小、多维简洁** → 用数组。
 </code></pre>
 
       
