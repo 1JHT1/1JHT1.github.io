@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>leetcode-双指针 |  计算机学习</title>
+      <title>leetcode-堆 |  计算机学习</title>
   <meta name="generator" content="hexo-theme-ayeria">
       
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -53,7 +53,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-leetcode-双指针"
+  id="post-leetcode-堆"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -64,7 +64,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  leetcode-双指针
+  leetcode-堆
 </h1>
  
 
@@ -74,8 +74,8 @@
 
     
     <div class="article-meta">
-      <a href="/2026/04/17/leetcode-%E5%8F%8C%E6%8C%87%E9%92%88/" class="article-date">
-  <time datetime="2026-04-17T13:36:46.000Z" itemprop="datePublished">2026-04-17</time>
+      <a href="/2026/05/21/leetcode-%E5%A0%86/" class="article-date">
+  <time datetime="2026-05-21T08:29:54.000Z" itemprop="datePublished">2026-05-21</time>
 </a>
       
   <div class="article-category">
@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">588</span>
+            <span class="post-count">862</span>
         </span>
     </span>
 
@@ -98,7 +98,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -124,16 +124,22 @@
 
 
       
-        <h4 id="283-移动零">283—移动零</h4>
-<p>给定一个数组 <code>nums</code>，编写一个函数将所有 <code>0</code> 移动到数组的末尾，同时保持非零元素的相对顺序。<strong>请注意</strong> ，必须在不复制数组的情况下原地对数组进行操作。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">moveZeroes</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> right=<span class="number">0</span>;right&lt;nums.length;right++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[right]!=<span class="number">0</span>)&#123;</span><br><span class="line">                swap(nums,left,right);</span><br><span class="line">                left++;</span><br><span class="line">      </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] nums,<span class="type">int</span> left,<span class="type">int</span> right)</span>&#123;</span><br><span class="line">        <span class="type">int</span> t=nums[left];</span><br><span class="line">        nums[left]=nums[right];</span><br><span class="line">        nums[right]=t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="42-接雨水">42—接雨水</h3>
-<p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：height = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">输出：<span class="number">6</span></span><br><span class="line">解释：上面是由数组 [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>] 表示的高度图，在这种情况下，可以接 <span class="number">6</span> 个单位的雨水（蓝色部分表示雨水）。 </span><br></pre></td></tr></table></figure>
-<p><img src="%E6%8E%A5%E9%9B%A8%E6%B0%B4.png" alt=""></p>
-<p>分析：我们把每一个节点看成是一个两侧有板的桶，这个桶的装水量是当前的短板去掉桶里的石头，这两个板子的最大值在移动的时候需要进行维护！因为水流只会往低处流，那么这个桶的左右板可以看出是它局部的左右最大高度！那么在这样的结构下我们在左右两边设置双指针进行遍历，当left&lt;=right的时候，如果左边的板高度大于右边的板，那么用右边的板减去当前的高度（石头）即为这个桶的装水量，随后right指针往左移一格表示当前桶已计算。反之，用左边的板高度减去当前的高度。left指针向右移动。一直遍历下去并累加会得到整个模型能装的水总量。</p>
-<p>时间复杂度O(n)、空间复杂度O(1)：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">trap</span><span class="params">(<span class="type">int</span>[] height)</span> &#123;</span><br><span class="line">        <span class="comment">//初始结果</span></span><br><span class="line">        <span class="type">int</span>  res=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//双指针</span></span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right=height.length-<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//初始前缀最大值</span></span><br><span class="line">        <span class="type">int</span> left_max=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> right_max=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//指针移动,等于的时候也能计算</span></span><br><span class="line">        <span class="keyword">while</span>(left&lt;=right)&#123;</span><br><span class="line">            <span class="comment">//更新左右前缀最大值</span></span><br><span class="line">            left_max=Math.max(left_max,height[left]);</span><br><span class="line">            right_max=Math.max(right_max,height[right]);</span><br><span class="line">            <span class="keyword">if</span>(left_max&lt;right_max)&#123;</span><br><span class="line">                res=res+left_max-height[left];</span><br><span class="line">                left++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                res=res+right_max-height[right];</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">堆常用来实现优先队列，能够高效地获取最大或最小元素（O(1)），并支持插入和删除操作（O(log n)）。</span><br><span class="line"></span><br><span class="line">-----最小堆的基本性质</span><br><span class="line">堆顶（根节点）是堆中最小的元素。</span><br><span class="line">-----插入新元素时，先放在数组末尾（堆底），然后通过上浮（与父节点比较，如果小于父节点则交换）来调整位置！</span><br><span class="line">-----这种数据结构只能保证堆顶是第K大的，其他数据不保持对应的大小关系，只有父节点一定小于子节点的值</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//最小堆的实现原理----</span></span><br><span class="line">首先与堆顶比较：</span><br><span class="line">如果当前堆大小已经达到 K，则先判断 num 是否大于堆顶。</span><br><span class="line">若 num &lt;= 堆顶，说明它比当前第 K 大的数还小或相等，不可能进入前 K 大，直接跳过。</span><br><span class="line">若 num &gt; 堆顶，则说明它应该被纳入前 K 大，于是弹出堆顶（删除最小值），然后插入 num。</span><br><span class="line"></span><br><span class="line">插入后的堆内调整（上浮）：</span><br><span class="line">当插入新元素时，会将其放在堆的末尾，然后不断与其父节点比较（上浮操作），如果新元素小于父节点，就交换，直到满足堆性质（父节点 ≤ 子节点）。这个过程是比较并交换，但只沿着一条路径向上，不会比较所有元素。</span><br><span class="line"></span><br><span class="line">弹出堆顶后的调整（下沉）：</span><br><span class="line">删除堆顶后，将堆尾元素移到堆顶，然后不断与它的两个子节点中较小的比较（下沉操作），如果子节点更小就交换，直到满足堆性质。这也只沿着一条路径向下比较。</span><br></pre></td></tr></table></figure>
+<h4 id="215-数组中的第k个最大元素">215—数组中的第K个最大元素</h4>
+<p>给定整数数组 <code>nums</code> 和整数 <code>k</code>，请返回数组中第 <code>**k**</code> 个最大的元素。请注意，你需要找的是数组排序后的第 <code>k</code> 个最大的元素，而不是第 <code>k</code> 个不同的元素。你必须设计并实现时间复杂度为 <code>O(n)</code> 的算法解决此问题。</p>
+<p>对于堆用来解决这类问题，Java 中可以直接使用 <code>PriorityQueue</code> 实现，其默认是最小堆。</p>
+<ul>
+<li>遍历数组，将元素入堆；</li>
+<li>如果堆大小超过 K，则弹出堆顶（最小值）；</li>
+<li>遍历结束后，堆顶即为第 K 大的元素。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findKthLargest</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">    	PriorityQueue&lt;Integer&gt; heap = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;();</span><br><span class="line">    	<span class="keyword">for</span> (<span class="type">int</span> num : nums) &#123;</span><br><span class="line">       		heap.offer(num);</span><br><span class="line">            <span class="comment">//维护大小为K的最小堆，如果堆中的元素大于k个就弹出栈顶即可，因为每次插入的时候首先进堆会有相应的判断，最后通过上浮和下层操作确保新的堆顶是第K大的</span></span><br><span class="line">        	<span class="keyword">if</span> (heap.size() &gt; k) &#123;</span><br><span class="line">            	heap.poll();<span class="comment">//在插入到k+1个的时候，堆顶是第K+1大的，弹出后才能确保堆顶是第K大的</span></span><br><span class="line">        	&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> heap.peek();<span class="comment">//</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//时间复杂度O(nlog(n))\空间复杂度O(n)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//时间复杂度O(n)--快速选择</span></span><br></pre></td></tr></table></figure>
+<h4 id="347-前k个高频元素">347—前K个高频元素</h4>
+<p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> ，请你返回其中出现频率前 <code>k</code> 高的元素。你可以按 <strong>任意顺序</strong> 返回答案。</p>
+<p>你所设计算法的时间复杂度 <strong>必须</strong> 优于 <code>O(n log n)</code> ，其中 <code>n</code> 是数组大小。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] topKFrequent(<span class="type">int</span>[] nums, <span class="type">int</span> k) &#123;</span><br><span class="line">        Map&lt;Integer,Integer&gt; map=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -190,14 +196,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2026/04/17/leetcode-%E5%8F%8C%E6%8C%87%E9%92%88/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2026/05/21/leetcode-%E5%A0%86/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A0%86/" rel="tag">堆</a></li></ul>
 
     </footer>
   </div>
@@ -206,19 +212,19 @@
     
   <nav class="article-nav">
     
-      <a href="/2026/04/18/leetcode-%E9%93%BE%E8%A1%A8/" class="article-nav-link">
+      <a href="/2026/05/21/leetcode-%E5%A4%9A%E7%BB%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            leetcode-链表
+            leetcode-多维动态规划
           
         </div>
       </a>
     
     
-      <a href="/2026/04/17/%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/" class="article-nav-link">
+      <a href="/2026/05/20/leetcode-%E5%9B%9E%E6%BA%AF/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">项目问题</div>
+        <div class="article-nav-title">leetcode-回溯</div>
       </a>
     
   </nav>
