@@ -105,6 +105,80 @@
     
     
     <article
+  id="post-agent问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2026/05/25/agent%E9%97%AE%E9%A2%98/"
+    >agent问题</a> 
+</h2>
+ 
+
+      
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2026/05/25/agent%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2026-05-25T08:56:16.000Z" itemprop="datePublished">2026-05-25</time>
+</a>
+      
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="1-项目所使用的-lombok-版本与当前的-java-编译器版本不兼容">1.项目所使用的 Lombok 版本与当前的 Java 编译器版本不兼容</h4>
+<h4 id="2-spring-bean的循环依赖">2.Spring Bean的循环依赖</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">The dependencies of some of the beans in the application context form a cycle:</span><br><span class="line">   marketingCopyAgent defined in file [D:\DSAGENT\target\classes\com\ecommerce\agent\MarketingCopyAgent.class]</span><br><span class="line">┌─────┐</span><br><span class="line">|  chatClientBuilder defined in <span class="keyword">class</span> <span class="title class_">path</span> resource [com/ecommerce/config/LLMConfig.class]</span><br></pre></td></tr></table></figure>
+
+      
+
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/" rel="tag">项目问题</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+
+  
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+</article>
+
+    
+    <article
   id="post-leetcode-多维动态规划"
   class="article article-type-post"
   itemscope
@@ -152,12 +226,30 @@
       
         <h4 id="62-不同路径">62—不同路径</h4>
 <p>一个机器人位于一个 <code>m x n</code> 网格的左上角 （起始点在下图中标记为 “Start” ）。机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。问总共有多少条不同的路径？</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">#### 64—最小路径和</span><br><span class="line"></span><br><span class="line">给定一个包含非负整数的 `*m* x *n*` 网格 `grid` ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。**说明：**每次只能向下或者向右移动一步。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 5—最长回文子串</span><br><span class="line"></span><br><span class="line">给你一个字符串 `s`，找到 `s` 中最长的 回文 子串。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 1143—最长公共子序列</span><br><span class="line"></span><br><span class="line">给定两个字符串 `text1` 和 `text2`，返回这两个字符串的最长 **公共子序列** 的长度。如果不存在 **公共子序列** ，返回 `0` 。</span><br><span class="line"></span><br><span class="line">一个字符串的 **子序列** 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。</span><br><span class="line"></span><br><span class="line">- 例如，`&quot;ace&quot;` 是 `&quot;abcde&quot;` 的子序列，但 `&quot;aec&quot;` 不是 `&quot;abcde&quot;` 的子序列。</span><br><span class="line"></span><br><span class="line">两个字符串的 **公共子序列** 是这两个字符串所共同拥有的子序列。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 72—编辑距离</span><br><span class="line"></span><br><span class="line">给你两个单词 `word1` 和 `word2`， *请返回将 `word1` 转换成 `word2` 所使用的最少操作数* 。</span><br><span class="line"></span><br><span class="line">你可以对一个单词进行如下三种操作：</span><br><span class="line"></span><br><span class="line">- 插入一个字符</span><br><span class="line">- 删除一个字符</span><br><span class="line">- 替换一个字符</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">uniquePaths</span><span class="params">(<span class="type">int</span> m, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[][] f = <span class="keyword">new</span> <span class="title class_">int</span>[m][n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            f[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">            f[<span class="number">0</span>][j] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; n; ++j) &#123;</span><br><span class="line">                f[i][j] = f[i - <span class="number">1</span>][j] + f[i][j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[m - <span class="number">1</span>][n - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="64-最小路径和">64—最小路径和</h4>
+<p>给定一个包含非负整数的 <code>*m* x *n*</code> 网格 <code>grid</code> ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。**说明：**每次只能向下或者向右移动一步。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minPathSum</span><span class="params">(<span class="type">int</span>[][] grid)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> grid.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="type">int</span>[] f = grid[<span class="number">0</span>]; <span class="comment">// 这里没有拷贝，f 和 grid[0] 都持有同一段内存</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">            f[j] += f[j - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">            f[<span class="number">0</span>] += grid[i][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">                f[j] = Math.min(f[j - <span class="number">1</span>], f[j]) + grid[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[n - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="5-最长回文子串">5—最长回文子串</h4>
+<p>给你一个字符串 <code>s</code>，找到 <code>s</code> 中最长的 回文 子串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">longestPalindrome</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> s.length();</span><br><span class="line">        <span class="keyword">if</span> (len &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">maxLen</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">begin</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// dp[i][j] 表示 s[i..j] 是否是回文串</span></span><br><span class="line">        <span class="type">boolean</span>[][] dp = <span class="keyword">new</span> <span class="title class_">boolean</span>[len][len];</span><br><span class="line">        <span class="comment">// 初始化：所有长度为 1 的子串都是回文串</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            dp[i][i] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">char</span>[] charArray = s.toCharArray();</span><br><span class="line">        <span class="comment">// 递推开始</span></span><br><span class="line">        <span class="comment">// 先枚举子串长度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">L</span> <span class="operator">=</span> <span class="number">2</span>; L &lt;= len; L++) &#123;</span><br><span class="line">            <span class="comment">// 枚举左边界，左边界的上限设置可以宽松一些</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">                <span class="comment">// 由 L 和 i 可以确定右边界，即 j - i + 1 = L 得</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> L + i - <span class="number">1</span>;</span><br><span class="line">                <span class="comment">// 如果右边界越界，就可以退出当前循环</span></span><br><span class="line">                <span class="keyword">if</span> (j &gt;= len) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (charArray[i] != charArray[j]) &#123;</span><br><span class="line">                    dp[i][j] = <span class="literal">false</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (j - i &lt; <span class="number">3</span>) &#123;</span><br><span class="line">                        dp[i][j] = <span class="literal">true</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        dp[i][j] = dp[i + <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 只要 dp[i][L] == true 成立，就表示子串 s[i..L] 是回文，此时记录回文长度和起始位置</span></span><br><span class="line">                <span class="keyword">if</span> (dp[i][j] &amp;&amp; j - i + <span class="number">1</span> &gt; maxLen) &#123;</span><br><span class="line">                    maxLen = j - i + <span class="number">1</span>;</span><br><span class="line">                    begin = i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.substring(begin, begin + maxLen);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="1143-最长公共子序列">1143—最长公共子序列</h4>
+<p>给定两个字符串 <code>text1</code> 和 <code>text2</code>，返回这两个字符串的最长 <strong>公共子序列</strong> 的长度。如果不存在 <strong>公共子序列</strong> ，返回 <code>0</code> 。</p>
+<p>一个字符串的 <strong>子序列</strong> 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。</p>
+<ul>
+<li>例如，<code>&quot;ace&quot;</code> 是 <code>&quot;abcde&quot;</code> 的子序列，但 <code>&quot;aec&quot;</code> 不是 <code>&quot;abcde&quot;</code> 的子序列。</li>
+</ul>
+<p>两个字符串的 <strong>公共子序列</strong> 是这两个字符串所共同拥有的子序列。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">longestCommonSubsequence</span><span class="params">(String text1, String text2)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> text1.length(), n = text2.length();</span><br><span class="line">        <span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[m + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            <span class="type">char</span> <span class="variable">c1</span> <span class="operator">=</span> text1.charAt(i - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">                <span class="type">char</span> <span class="variable">c2</span> <span class="operator">=</span> text2.charAt(j - <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span> (c1 == c2) &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = Math.max(dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="72-编辑距离">72—编辑距离</h4>
+<p>给你两个单词 <code>word1</code> 和 <code>word2</code>， <em>请返回将 <code>word1</code> 转换成 <code>word2</code> 所使用的最少操作数</em> 。</p>
+<p>你可以对一个单词进行如下三种操作：</p>
+<ul>
+<li>插入一个字符</li>
+<li>删除一个字符</li>
+<li>替换一个字符</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minDistance</span><span class="params">(String word1, String word2)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> word1.length();</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> word2.length();</span><br><span class="line">        <span class="comment">// 有一个字符串为空串</span></span><br><span class="line">        <span class="keyword">if</span> (n * m == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n + m;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// DP 数组</span></span><br><span class="line">        <span class="type">int</span>[][] D = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>][m + <span class="number">1</span>];</span><br><span class="line">        <span class="comment">// 边界状态初始化</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            D[i][<span class="number">0</span>] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; m + <span class="number">1</span>; j++) &#123;</span><br><span class="line">            D[<span class="number">0</span>][j] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 计算所有 DP 值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; m + <span class="number">1</span>; j++) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> D[i - <span class="number">1</span>][j] + <span class="number">1</span>;</span><br><span class="line">                <span class="type">int</span> <span class="variable">down</span> <span class="operator">=</span> D[i][j - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                <span class="type">int</span> <span class="variable">left_down</span> <span class="operator">=</span> D[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span> (word1.charAt(i - <span class="number">1</span>) != word2.charAt(j - <span class="number">1</span>)) &#123;</span><br><span class="line">                    left_down += <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                D[i][j] = Math.min(left, Math.min(down, left_down));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> D[n][m];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
 
@@ -248,7 +340,20 @@
 <h4 id="347-前k个高频元素">347—前K个高频元素</h4>
 <p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> ，请你返回其中出现频率前 <code>k</code> 高的元素。你可以按 <strong>任意顺序</strong> 返回答案。</p>
 <p>你所设计算法的时间复杂度 <strong>必须</strong> 优于 <code>O(n log n)</code> ，其中 <code>n</code> 是数组大小。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] topKFrequent(<span class="type">int</span>[] nums, <span class="type">int</span> k) &#123;</span><br><span class="line">        Map&lt;Integer,Integer&gt; map=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] topKFrequent(<span class="type">int</span>[] nums, <span class="type">int</span> k) &#123;</span><br><span class="line">        <span class="comment">// 第一步：统计每个元素的出现次数</span></span><br><span class="line">        Map&lt;Integer, Integer&gt; cnt = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> x : nums) &#123;</span><br><span class="line">            cnt.merge(x, <span class="number">1</span>, Integer::sum); <span class="comment">// cnt[x]++</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">maxCnt</span> <span class="operator">=</span> Collections.max(cnt.values());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 第二步：把出现次数相同的元素，放到同一个桶中</span></span><br><span class="line">        List&lt;Integer&gt;[] buckets = <span class="keyword">new</span> <span class="title class_">ArrayList</span>[maxCnt + <span class="number">1</span>];</span><br><span class="line">        Arrays.setAll(buckets, _ -&gt; <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;());</span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;Integer, Integer&gt; e : cnt.entrySet()) &#123;</span><br><span class="line">            buckets[e.getValue()].add(e.getKey());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 第三步：倒序遍历 buckets，把出现次数前 k 大的元素加入答案</span></span><br><span class="line">        <span class="type">int</span>[] ans = <span class="keyword">new</span> <span class="title class_">int</span>[k];</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> maxCnt; j &lt; k; i--) &#123;</span><br><span class="line">            <span class="comment">// 注意题目保证答案唯一，一定会出现某次循环结束后 j 恰好等于 k 的情况</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> x : buckets[i]) &#123;</span><br><span class="line">                ans[j++] = x;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="295-数据流的中位数">295—数据流的中位数</h4>
+<p><strong>中位数</strong>是有序整数列表中的中间值。如果列表的大小是偶数，则没有中间值，中位数是两个中间值的平均值。</p>
+<ul>
+<li>例如 <code>arr = [2,3,4]</code> 的中位数是 <code>3</code> 。</li>
+<li>例如 <code>arr = [2,3]</code> 的中位数是 <code>(2 + 3) / 2 = 2.5</code> 。</li>
+</ul>
+<p>实现 MedianFinder 类:</p>
+<ul>
+<li><code>MedianFinder()</code> 初始化 <code>MedianFinder</code> 对象。</li>
+<li><code>void addNum(int num)</code> 将数据流中的整数 <code>num</code> 添加到数据结构中。</li>
+<li><code>double findMedian()</code> 返回到目前为止所有元素的中位数。与实际答案相差 <code>10-5</code> 以内的答案将被接受。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MedianFinder</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> PriorityQueue&lt;Integer&gt; left = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;((a, b) -&gt; b - a); <span class="comment">// 最大堆</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> PriorityQueue&lt;Integer&gt; right = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;(); <span class="comment">// 最小堆</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addNum</span><span class="params">(<span class="type">int</span> num)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (left.size() == right.size()) &#123;</span><br><span class="line">            right.offer(num);</span><br><span class="line">            left.offer(right.poll());</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            left.offer(num);</span><br><span class="line">            right.offer(left.poll());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">findMedian</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (left.size() &gt; right.size()) &#123;</span><br><span class="line">            <span class="keyword">return</span> left.peek();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (left.peek() + right.peek()) / <span class="number">2.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
 
@@ -499,6 +604,13 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <p>给你一个整数数组 <code>nums</code> ，请你找出数组中乘积最大的非空连续 子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。</p>
 <p>测试用例的答案是一个 <strong>32-位</strong> 整数。</p>
 <p><strong>请注意</strong>，一个只包含一个元素的数组的乘积是这个元素的值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProduct</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">long</span> <span class="variable">maxF</span> <span class="operator">=</span> nums[<span class="number">0</span>], minF = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; length; ++i) &#123;</span><br><span class="line">            <span class="type">long</span> <span class="variable">mx</span> <span class="operator">=</span> maxF, mn = minF;</span><br><span class="line">            maxF = Math.max(mx * nums[i], Math.max(nums[i], mn * nums[i]));</span><br><span class="line">            minF = Math.min(mn * nums[i], Math.min(nums[i], mx * nums[i]));</span><br><span class="line">            <span class="keyword">if</span>(minF&lt;-<span class="number">1</span>&lt;&lt;<span class="number">31</span>)&#123;</span><br><span class="line">                minF=nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            ans = Math.max((<span class="type">int</span>)maxF, ans);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="416-分割等和子集">416—分割等和子集</h4>
+<p>给你一个 <strong>只包含正整数</strong> 的 <strong>非空</strong> 数组 <code>nums</code> 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canPartition</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>, maxNum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums) &#123;</span><br><span class="line">            sum += num;</span><br><span class="line">            maxNum = Math.max(maxNum, num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (sum % <span class="number">2</span> != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">target</span> <span class="operator">=</span> sum / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (maxNum &gt; target) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">boolean</span>[][] dp = <span class="keyword">new</span> <span class="title class_">boolean</span>[n][target + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        dp[<span class="number">0</span>][nums[<span class="number">0</span>]] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> nums[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= target; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt;= num) &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j] | dp[i - <span class="number">1</span>][j - num];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n - <span class="number">1</span>][target];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="32-最长有效括号">32—最长有效括号</h4>
+<p>给你一个只包含 <code>'('</code> 和 <code>')'</code> 的字符串，找出最长有效（格式正确且连续）括号 子串 的长度。左右括号匹配，即每个左括号都有对应的右括号将其闭合的字符串是格式正确的，比如 <code>&quot;(()())&quot;</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">longestValidParentheses</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">maxans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span>[] dp = <span class="keyword">new</span> <span class="title class_">int</span>[s.length()];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.charAt(i) == <span class="string">&#x27;)&#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (s.charAt(i - <span class="number">1</span>) == <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">                    dp[i] = (i &gt;= <span class="number">2</span> ? dp[i - <span class="number">2</span>] : <span class="number">0</span>) + <span class="number">2</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i - dp[i - <span class="number">1</span>] &gt; <span class="number">0</span> &amp;&amp; s.charAt(i - dp[i - <span class="number">1</span>] - <span class="number">1</span>) == <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">                    dp[i] = dp[i - <span class="number">1</span>] + ((i - dp[i - <span class="number">1</span>]) &gt;= <span class="number">2</span> ? dp[i - dp[i - <span class="number">1</span>] - <span class="number">2</span>] : <span class="number">0</span>) + <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                maxans = Math.max(maxans, dp[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
 
@@ -1265,167 +1377,6 @@ B. 如果mostRight的右指针指向cur，让其指向null，然后cur向右移�
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" rel="tag">项目中的问题</a></li></ul>
-
-    </footer>
-  </div>
-
-  
-
-  
-
-  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
-
-  
-</article>
-
-    
-    <article
-  id="post-关于浏览器外部链接跳转失效的问题解决"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2026/05/02/%E5%85%B3%E4%BA%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E8%B7%B3%E8%BD%AC%E5%A4%B1%E6%95%88%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"
-    >关于浏览器外部链接跳转失效的问题解决</a> 
-</h2>
- 
-
-      
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2026/05/02/%E5%85%B3%E4%BA%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E8%B7%B3%E8%BD%AC%E5%A4%B1%E6%95%88%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" class="article-date">
-  <time datetime="2026-05-02T01:45:27.000Z" itemprop="datePublished">2026-05-02</time>
-</a>
-      
-      
-        
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-
-      
-        <h2><center>关于浏览器外部链接跳转失效的问题解决</center></h2>
-<p>问题：在浏览器外的所有连接，在点击后不能直接跳转到浏览器进行浏览，包括支付链接，内容链接等。</p>
-<p>起初的最暴力的解决是直接关闭后台进程：</p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl+shift+Esc</span><br></pre></td></tr></table></figure>
-<p>进到任务管理器，找到浏览器的后台进程进行强制关闭，但这会导致浏览器的固定页面也会全部丢失，相当于重新打开浏览器，里面固定的所有快捷页面都会丢失，这十分影响我需要同时固定若干页面以便快速获取内容信息。</p>
-<p>后来，当我使用git bash推送内容的时候出现了一个推送失败的问题：</p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/1JHT1/1JHT1.github.io.git/&#x27;: Failed</span><br><span class="line">to connect to github.com port 443 after 21072 ms: Could not connect to server</span><br></pre></td></tr></table></figure>
-<p>这个问题表示 Git 无法与远程仓库建立网络连接，出现问题的可能原因如下：</p>
-<ul>
-<li>DNS 解析错误（比如 hosts 文件将 <code>github.com</code> 指向 <code>127.0.0.1</code>）</li>
-<li>代理配置错误或代理服务器未运行【解决方式   git config --global --unset https.proxy】</li>
-<li>防火墙或网络策略阻止了对 443 端口的出站连接</li>
-<li>GitHub 服务器不可达（极少见）</li>
-</ul>
-<p>由于我使用了Steam++(Watt Toolkit)的“加速”功能，默认使用 <strong>hosts 劫持</strong> 的方式，把大量域名的解析结果强制改为 <code>127.0.0.1</code>，然后它自己运行一个本地代理服务来转发请求。然而，它可能<strong>并没有覆盖所有被劫持的域名</strong>，或者代理服务没有正确处理某些跳转链接，导致这些域名实际上无法被访问。</p>
-<p>Steam++的hosts文件放在C:\Windows\System32\drivers\etc\hosts下，在这里可以获得一个如下的劫持文件</p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"># Steam++ Start</span><br><span class="line">127.0.0.1 steamcdn-a.akamaihd.net</span><br><span class="line">127.0.0.1 steamuserimages-a.akamaihd.net</span><br><span class="line">127.0.0.1 cdn.akamai.steamstatic.com</span><br><span class="line">127.0.0.1 community.akamai.steamstatic.com</span><br><span class="line">127.0.0.1 avatars.akamai.steamstatic.com</span><br><span class="line">127.0.0.1 store.akamai.steamstatic.com</span><br><span class="line">127.0.0.1 community.steamstatic.com</span><br><span class="line">127.0.0.1 media.steampowered.com</span><br><span class="line">127.0.0.1 steamcommunity.com</span><br><span class="line">127.0.0.1 www.steamcommunity.com</span><br><span class="line">127.0.0.1 store.steampowered.com</span><br><span class="line">127.0.0.1 api.steampowered.com</span><br><span class="line">127.0.0.1 help.steampowered.com</span><br><span class="line">127.0.0.1 login.steampowered.com</span><br><span class="line">127.0.0.1 checkout.steampowered.com</span><br><span class="line">127.0.0.1 img.youtube.com</span><br><span class="line">127.0.0.1 huggingface.co</span><br><span class="line">127.0.0.1 github.dev</span><br><span class="line">127.0.0.1 api.github.com</span><br><span class="line">127.0.0.1 github.githubassets.com</span><br><span class="line">127.0.0.1 support-assets.githubassets.com</span><br><span class="line">127.0.0.1 education.github.com</span><br><span class="line">127.0.0.1 resources.github.com</span><br><span class="line">127.0.0.1 uploads.github.com</span><br><span class="line">127.0.0.1 archiveprogram.github.com</span><br><span class="line">127.0.0.1 raw.github.com</span><br><span class="line">127.0.0.1 githubusercontent.com</span><br><span class="line">127.0.0.1 raw.githubusercontent.com</span><br><span class="line">127.0.0.1 camo.githubusercontent.com</span><br><span class="line">127.0.0.1 cloud.githubusercontent.com</span><br><span class="line">127.0.0.1 avatars.githubusercontent.com</span><br><span class="line">127.0.0.1 avatars0.githubusercontent.com</span><br><span class="line">127.0.0.1 avatars1.githubusercontent.com</span><br><span class="line">127.0.0.1 avatars2.githubusercontent.com</span><br><span class="line">127.0.0.1 avatars3.githubusercontent.com</span><br><span class="line">127.0.0.1 user-images.githubusercontent.com</span><br><span class="line">127.0.0.1 objects.githubusercontent.com</span><br><span class="line">127.0.0.1 private-user-images.githubusercontent.com</span><br><span class="line">127.0.0.1 github.com</span><br><span class="line">127.0.0.1 pages.github.com</span><br><span class="line">127.0.0.1 gist.github.com</span><br><span class="line">127.0.0.1 githubapp.com</span><br><span class="line">127.0.0.1 hub.docker.com</span><br><span class="line">127.0.0.1 greasyfork.org</span><br><span class="line">127.0.0.1 update.greasyfork.org</span><br><span class="line">127.0.0.1 github.io</span><br><span class="line">127.0.0.1 www.github.io</span><br><span class="line"># Steam++ End</span><br></pre></td></tr></table></figure>
-<p><strong>浏览器的 DNS 缓存</strong>：重启浏览器或系统后才会生效。</p>
-<h4 id="为什么-steam-会导致外部链接无法跳转？">为什么 Steam++ 会导致外部链接无法跳转？</h4>
-<h5 id="问题现象">问题现象</h5>
-<ul>
-<li>点击某些外部链接（例如跳转到 <code>github.com</code>）时，浏览器无反应或提示无法连接。</li>
-<li>删除 Steam++ 添加到 <code>hosts</code> 文件中的规则后，跳转恢复正常。</li>
-</ul>
-<h5 id="根本原因">根本原因</h5>
-<p><strong>Steam++ 的 hosts 劫持生效，但它的本地代理服务未正常运行。</strong></p>
-<h5 id="steam-的加速原理">Steam++ 的加速原理</h5>
-<ol>
-<li>
-<p><strong>修改 hosts 文件</strong><br>
-将大量域名（如 <code>github.com</code>、<code>steamcommunity.com</code> 等）强制解析到本地回环地址 <code>127.0.0.1</code>。</p>
-</li>
-<li>
-<p><strong>启动本地代理服务</strong><br>
-在后台监听 <code>127.0.0.1</code> 的 80、443 等端口，捕获指向本机的请求，并通过“加速通道”转发到真实服务器。</p>
-</li>
-</ol>
-<h5 id="当时失败的状态">当时失败的状态</h5>
-<ul>
-<li><strong>hosts 劫持已生效</strong><br>
-系统将目标域名解析为 <code>127.0.0.1</code>。</li>
-<li><strong>本地代理服务未运行</strong><br>
-可能原因：未点击“加速”按钮、服务崩溃、端口被占用、防火墙拦截等。</li>
-<li><strong>结果</strong><br>
-浏览器尝试连接 <code>127.0.0.1:443</code>，但没有任何程序监听该端口 → 连接被拒绝（<code>ERR_CONNECTION_REFUSED</code>）→ 页面无法打开，跳转无响应。</li>
-</ul>
-<h5 id="为什么删除-hosts-规则后恢复？">为什么删除 hosts 规则后恢复？</h5>
-<ul>
-<li>移除 <code>127.0.0.1</code> 映射后，系统恢复正常 DNS 解析，直接访问真实服务器 IP，不再依赖本地代理。</li>
-<li>连接成功，跳转恢复正常。</li>
-</ul>
-<h5 id="如何复现该问题-测试用">如何复现该问题（测试用）</h5>
-<ol>
-<li>在 <code>hosts</code> 文件中添加测试行：<br>
-<code>127.0.0.1 www.baidu.com</code></li>
-<li><strong>确保没有代理服务监听 80/443 端口</strong>：
-<ul>
-<li>退出 Steam++、Clash 等所有代理软件。</li>
-<li>关闭浏览器的 DNS over HTTPS（DoH）。</li>
-<li>关闭系统代理。</li>
-</ul>
-</li>
-<li>清除 DNS 缓存：<code>ipconfig /flushdns</code>。</li>
-<li>在浏览器中访问 <code>http://www.baidu.com</code> → 应显示“无法连接”。</li>
-<li>点击外部链接（指向 <code>www.baidu.com</code>）→ 跳转失败。</li>
-</ol>
-<h5 id="为什么你现在重新添加-hosts-规则却仍能跳转？">为什么你现在重新添加 hosts 规则却仍能跳转？</h5>
-<p>可能存在以下绕过 hosts 的机制：</p>
-<ul>
-<li>浏览器开启了 <strong>DNS over HTTPS (DoH)</strong>，加密 DNS 查询不读取系统 hosts。</li>
-<li>启用了 <strong>TUN 模式</strong>（虚拟网卡），网络流量被其他代理接管。</li>
-<li>系统代理或 VPN 仍在生效，覆盖了 hosts 设置。</li>
-</ul>
-<h5 id="总结">总结</h5>
-<ul>
-<li><strong>失败条件</strong> = hosts 劫持生效 + 本地无代理监听对应端口。</li>
-<li><strong>恢复正常</strong> = 移除 hosts 劫持 或 启动本地代理服务 或 通过其他方式绕过 hosts。</li>
-<li>若当前环境能正常跳转，说明存在某种机制接管了网络请求，使得 hosts 劫持被忽略。</li>
-</ul>
-<hr>
-<p><em>本文档解释了外部链接无法跳转的根本原因及测试方法。</em></p>
-<h2 id="重启后不能链接跳转的核心原因">重启后不能链接跳转的核心原因</h2>
-<p><strong>之前：hosts 劫持生效 + Steam++ 代理服务未运行 → 连接失败</strong><br>
-<strong>现在：hosts 劫持生效 + Steam++ 代理服务自动运行 → 连接成功</strong></p>
-<p>你看到的 <code>hosts</code> 文件中，Steam++ 已经把 <code>github.com</code> 等域名都指向了 <code>127.0.0.1</code>（你自己的电脑）。这意味着任何访问这些域名的请求，都会被发往本机的某个端口（比如 33210）。</p>
-<p>Steam++ 加速的原理是：它同时启动一个本地代理服务，监听 <code>127.0.0.1:33210</code>，专门接收这些被劫持的请求，然后通过它的“加速通道”转发到真实的服务器。</p>
-<ul>
-<li><strong>以前重启后不能跳转</strong>：因为 Steam++ 没有开机自启，所以重启后 hosts 劫持虽然在，但代理服务没运行。浏览器访问 <code>github.com</code> 时，系统解析到 <code>127.0.0.1:33210</code>，发现那里没有程序在监听，导致连接被拒绝（<code>ERR_CONNECTION_REFUSED</code>），所以页面打不开，外部链接也无法跳转。</li>
-<li><strong>现在开机自启后能跳转</strong>：系统一启动，Steam++ 就自动运行并开启代理服务，监听在 <code>127.0.0.1:33210</code>。当浏览器再次访问被劫持的域名时，请求成功被本地代理接收并转发出去，因此能正常跳转。</li>
-</ul>
-
-      
-
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%97%AE%E9%A2%98/" rel="tag">计算机问题</a></li></ul>
 
     </footer>
   </div>
