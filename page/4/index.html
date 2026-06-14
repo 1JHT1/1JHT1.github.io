@@ -870,6 +870,171 @@ SUPPORTS 不会主动创建事务，在无事务环境下执行等于“事务�
 </tr>
 </tbody>
 </table>
+<h4 id="collections工具类的常用方法">Collections工具类的常用方法</h4>
+<blockquote>
+<p>文档以 Java 17 为基础，提供了更准确的类型描述。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类别</th>
+<th style="text-align:left">方法名</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>排序与重排</strong></td>
+<td style="text-align:left"><code>sort(List)</code></td>
+<td style="text-align:left">对 List 进行升序排序</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>sort(List, Comparator)</code></td>
+<td style="text-align:left">使用指定比较器排序</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>reverse(List)</code></td>
+<td style="text-align:left">反转 List 顺序</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>shuffle(List)</code></td>
+<td style="text-align:left">随机打乱 List 顺序</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>shuffle(List, Random)</code></td>
+<td style="text-align:left">使用指定随机源打乱</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>rotate(List, int)</code></td>
+<td style="text-align:left">循环移动元素（正右/负左）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>swap(List, int, int)</code></td>
+<td style="text-align:left">交换指定位置的两个元素</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>查找与统计</strong></td>
+<td style="text-align:left"><code>binarySearch(List, T)</code></td>
+<td style="text-align:left">二分查找</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>binarySearch(List, T, Comparator)</code></td>
+<td style="text-align:left">使用指定比较器进行二分查找</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>max(Collection)</code></td>
+<td style="text-align:left">返回自然顺序的最大元素</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>max(Collection, Comparator)</code></td>
+<td style="text-align:left">根据比较器返回最大元素</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>min(Collection)</code></td>
+<td style="text-align:left">返回自然顺序的最小元素</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>min(Collection, Comparator)</code></td>
+<td style="text-align:left">根据比较器返回最小元素</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>frequency(Collection, Object)</code></td>
+<td style="text-align:left">返回指定元素出现次数</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>indexOfSubList(List, List)</code></td>
+<td style="text-align:left">返回目标 List 首次出现位置</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>lastIndexOfSubList(List, List)</code></td>
+<td style="text-align:left">返回目标 List 最后出现位置</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>disjoint(Collection, Collection)</code></td>
+<td style="text-align:left">判断两集合有无公共元素</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>批量修改</strong></td>
+<td style="text-align:left"><code>addAll(Collection, T...)</code></td>
+<td style="text-align:left">添加所有指定元素</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>fill(List, T)</code></td>
+<td style="text-align:left">用指定元素替换 List 全部元素</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>replaceAll(List, T, T)</code></td>
+<td style="text-align:left">替换 List 中的旧值为新值</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>copy(List, List)</code></td>
+<td style="text-align:left">复制源列表到目标列表</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>集合包装 (Wrapper)</strong></td>
+<td style="text-align:left"><code>synchronizedXXX()</code></td>
+<td style="text-align:left">转为线程安全的集合</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>unmodifiableXXX()</code></td>
+<td style="text-align:left">转为只读不可变视图</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>checkedXXX(..., Class)</code></td>
+<td style="text-align:left">提供动态类型安全检查视图</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>创建特殊集合</strong></td>
+<td style="text-align:left"><code>emptyXXX()</code></td>
+<td style="text-align:left">返回空集合（如 <code>emptyList()</code>）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>singletonXXX(T)</code></td>
+<td style="text-align:left">返回只含指定元素的不可变集合</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>nCopies(int, T)</code></td>
+<td style="text-align:left">返回包含 n 个重复元素的不可变 List</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>视图转换</strong></td>
+<td style="text-align:left"><code>asLifoQueue(Deque)</code></td>
+<td style="text-align:left">将 Deque 转为 LIFO 的 Queue 视图</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>enumeration(Collection)</code></td>
+<td style="text-align:left">获取旧版 Enumeration 对象</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>list(Enumeration)</code></td>
+<td style="text-align:left">将 Enumeration 转换为 ArrayList</td>
+</tr>
+</tbody>
+</table>
 
       
 
