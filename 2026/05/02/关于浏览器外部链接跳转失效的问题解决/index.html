@@ -205,6 +205,7 @@
 <p><strong>之前：hosts 劫持生效 + Steam++ 代理服务未运行 → 连接失败</strong><br>
 <strong>现在：hosts 劫持生效 + Steam++ 代理服务自动运行 → 连接成功</strong></p>
 <p>你看到的 <code>hosts</code> 文件中，Steam++ 已经把 <code>github.com</code> 等域名都指向了 <code>127.0.0.1</code>（你自己的电脑）。这意味着任何访问这些域名的请求，都会被发往本机的某个端口（比如 33210）。</p>
+<img src="\images\链接跳转.png" >
 <p>Steam++ 加速的原理是：它同时启动一个本地代理服务，监听 <code>127.0.0.1:33210</code>，专门接收这些被劫持的请求，然后通过它的“加速通道”转发到真实的服务器。</p>
 <ul>
 <li><strong>以前重启后不能跳转</strong>：因为 Steam++ 没有开机自启，所以重启后 hosts 劫持虽然在，但代理服务没运行。浏览器访问 <code>github.com</code> 时，系统解析到 <code>127.0.0.1:33210</code>，发现那里没有程序在监听，导致连接被拒绝（<code>ERR_CONNECTION_REFUSED</code>），所以页面打不开，外部链接也无法跳转。</li>
