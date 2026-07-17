@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>Archives: 2026/6 |  计算机学习</title>
+      <title>HTTP状态码 |  计算机学习</title>
   <meta name="generator" content="hexo-theme-ayeria">
       
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -52,104 +52,251 @@
     
     <main class="content on">
       <section class="outer">
-  
-  <ul class="ads">
+  <article
+  id="post-HTTP状态码"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
     
-        <li>
-            <a href="">
-                <img src="" width="" alt="">
-            </a>
-        </li>
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  HTTP状态码
+</h1>
+ 
+
+      
+    </header>
     
+
+    
+    <div class="article-meta">
+      <a href="/2026/06/25/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" class="article-date">
+  <time datetime="2026-06-25T09:15:21.000Z" itemprop="datePublished">2026-06-25</time>
+</a>
+      
+      
+        
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">928</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">3 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+      
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+
+      
+        <h4 id="http状态码">HTTP状态码</h4>
+<h3 id="1-信息响应-1xx-临时通知">1️⃣ 信息响应（1xx）—— 临时通知</h3>
+<p><em>平时不太常见，但有一个是“八股新宠”：</em></p>
+<ul>
+<li><strong>100 Continue</strong>：客户端发了大请求头，服务器回复“你继续发 body 吧”。</li>
+<li><strong>101 Switching Protocols</strong>：服务器同意切换协议（如从 HTTP 升级到 WebSocket）。</li>
 </ul>
-  
-  
-  <article class="articles">
-    
-    
-    <h1 class="page-type-title">2026/6</h1>
-    
-    
-  
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2026" class="archive-year">2026</a>
-    </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/06/25/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" class="archive-article-date">
-  <time datetime="2026-06-25T09:15:21.000Z" itemprop="datePublished">06/25</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2026/06/25/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/"
-    >HTTP状态码</a> 
-</h2>
- 
+<hr>
+<h3 id="2-成功响应-2xx-一切正常">2️⃣ 成功响应（2xx）—— 一切正常</h3>
+<ul>
+<li><strong>200 OK</strong>：<strong>最经典</strong>。表示请求成功。但对于 <code>DELETE</code> 操作，很多规范建议返回 204 更语义化。</li>
+<li><strong>201 Created</strong>：<strong>创建成功</strong>。通常在 <code>POST</code> 提交数据后返回，并建议在响应头中携带 <code>Location</code> 字段指向新资源的 URI。</li>
+<li><strong>204 No Content</strong>：<strong>处理成功，但没数据返回</strong>。常见于 <code>DELETE</code> 操作或 <code>PUT</code> 更新操作，告诉前端“我搞定了，但响应体是空的，你别解析”。</li>
+</ul>
+<hr>
+<h3 id="3-重定向-3xx-搬家了-请绕行">3️⃣ 重定向（3xx）—— 搬家了，请绕行</h3>
+<p><strong>这是面试中的“文字游戏”重灾区：</strong></p>
+<ul>
+<li><strong>301 Moved Permanently</strong>：<strong>永久重定向</strong>。浏览器会缓存这个地址，下次直接访问新地址（SEO 会将旧权重转移给新地址）。<strong>注意</strong>：请求方法可能从 POST 变为 GET。</li>
+<li><strong>302 Found</strong>：<strong>临时重定向</strong>（旧标准叫 302 Moved Temporarily）。每次还会访问旧地址，再由服务器指路。<strong>注意</strong>：早期规范会改变方法（POST 转 GET）。</li>
+<li><strong>303 See Other</strong>：<strong>明确要求改用 GET</strong>。常用于 <code>POST</code> 提交表单后重定向到结果页（PRG 模式），防止表单重复提交。</li>
+<li><strong>307 Temporary Redirect</strong>：<strong>临时重定向，但方法不变</strong>。如果原来是 POST，重定向时必须还是 POST（替代 302 的语义混乱）。</li>
+<li><strong>308 Permanent Redirect</strong>：<strong>永久重定向，但方法不变</strong>（替代 301 的语义混乱）。</li>
+<li><strong>304 Not Modified</strong>：<strong>缓存命中的身份证</strong>。客户端有缓存，服务器告诉你“内容没变，直接用你本地的”，不会返回响应体。<strong>注意</strong>：它不属于重定向，但归类在 3xx。</li>
+</ul>
+<hr>
+<h3 id="4-客户端错误-4xx-是你-前端-调用方-的问题">4️⃣ 客户端错误（4xx）—— 是你（前端/调用方）的问题</h3>
+<ul>
+<li><strong>400 Bad Request</strong>：<strong>语义错误或参数格式不对</strong>。比如 JSON 格式写错了、必填字段没传。<strong>千万别只返回“400”，一定要在响应体里告诉调用方具体哪个字段错了！</strong></li>
+<li><strong>401 Unauthorized</strong>：<strong>未认证</strong>。用户没登录，或者没提供 Token。<strong>关键</strong>：必须携带 <code>WWW-Authenticate</code> 头信息。</li>
+<li><strong>403 Forbidden</strong>：<strong>已认证，但没权限</strong>。比如普通用户想访问管理员页面。很多公司会用 403 代替 404 来防止目录枚举。</li>
+<li><strong>404 Not Found</strong>：<strong>资源不存在</strong>。可能是 URL 拼错了，也可能是数据库里查无此人。</li>
+<li><strong>405 Method Not Allowed</strong>：<strong>HTTP 方法不对</strong>。比如只支持 <code>POST</code>，你却发了 <code>GET</code>。响应头必须带上 <code>Allow: POST</code> 告知客户端。</li>
+<li><strong>409 Conflict</strong>：<strong>冲突</strong>。常见于编辑冲突（乐观锁版本号不一致），或者用户名已被占用。</li>
+<li><strong>429 Too Many Requests</strong>：<strong>限流了</strong>。请求频率超出限制，通常响应头会带 <code>Retry-After</code> 告诉客户端多久后再试。</li>
+</ul>
+<hr>
+<h3 id="5-服务端错误-5xx-服务器扛不住了">5️⃣ 服务端错误（5xx）—— 服务器扛不住了</h3>
+<ul>
+<li><strong>500 Internal Server Error</strong>：<strong>服务器内部未知错误</strong>。这是最通用的“万金油”报错，通常是代码抛了 NullPointerException 等未捕获异常。</li>
+<li><strong>501 Not Implemented</strong>：<strong>功能未实现</strong>。服务器不认识这个请求方法，或该功能还在开发中。</li>
+<li><strong>502 Bad Gateway</strong>：<strong>网关错误</strong>。通常发生在 Nginx 反向代理场景，意思是**“网关（Nginx）连不上上游服务器（如 Tomcat）”**，比如上游服务挂了或端口不通。</li>
+<li><strong>503 Service Unavailable</strong>：<strong>服务不可用</strong>。服务器超载或正在停机维护。通常运维会配合 Nginx 主动返回此状态码。</li>
+<li><strong>504 Gateway Timeout</strong>：<strong>网关超时</strong>。网关（Nginx）连上了上游服务器（Tomcat），但上游处理时间太久，没在规定时间内返回结果。</li>
+</ul>
 
-    </header>
-    
-    
-  </div>
-</article>
       
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/06/23/cmd%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  <time datetime="2026-06-23T11:37:22.000Z" itemprop="datePublished">06/23</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2026/06/23/cmd%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/"
-    >cmd一些命令</a> 
-</h2>
- 
 
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/06/05/%E9%A1%B9%E7%9B%AE%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
-  <time datetime="2026-06-05T06:30:07.000Z" itemprop="datePublished">06/05</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2026/06/05/%E9%A1%B9%E7%9B%AE%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/"
-    >项目功能实现</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
+
+    <footer class="article-footer">
+      
+        
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2026/06/25/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E6%B4%9B/" rel="tag">计算机网洛</a></li></ul>
+
+    </footer>
   </div>
+
   
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2026/06/23/cmd%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">cmd一些命令</div>
+      </a>
+    
+  </nav>
+
+
   
 
   
+
+  <!-- [2026-03] 评论系统已从 Gitalk/Twikoo 迁移至 giscus，详见 doc/audit-report.md #1 #9 -->
+
+  
+    
+<div class="giscus-container" style="margin-top: 2rem; padding: 0 1rem;">
+  <script
+    src="https://giscus.app/client.js"
+    data-repo="1JHT1/1JHT1.github.io"
+    data-repo-id="R_kgDOSDBesg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOSDBess4C64Wo"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="dark"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async
+  ></script>
+  <script>
+    /* giscus 通过 async 加载，iframe 可能在 ayeria.js 初始化之后才就绪。
+       站点默认暗色模式所以 data-theme="dark" 覆盖多数情况，
+       但若用户之前选择了亮色模式（sessionStorage darkmode==0），
+       需要在 iframe 就绪后修正主题。 */
+    if (sessionStorage.getItem("darkmode") == 0) {
+      window.addEventListener("message", function _giscusThemeFix(e) {
+        if (e.origin !== "https://giscus.app") return;
+        if (!(typeof e.data === "object" && e.data.giscus)) return;
+        var f = document.querySelector("iframe.giscus-frame");
+        if (f) {
+          f.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: "light" } } },
+            "https://giscus.app"
+          );
+        }
+        window.removeEventListener("message", _giscusThemeFix);
+      });
+    }
+  </script>
+</div>
+
+
+  
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">
@@ -267,6 +414,23 @@
 
 
 <!-- Tocbot -->
+
+  
+<script src="/js/tocbot.min.js"></script>
+
+  <script>
+    tocbot.init({
+      tocSelector: ".tocbot",
+      contentSelector: ".article-entry",
+      headingSelector: "h1, h2, h3, h4, h5, h6",
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      scrollContainer: "main",
+      positionFixedSelector: ".tocbot",
+      positionFixedClass: "is-position-fixed",
+      fixedSidebarOffset: "auto",
+    });
+  </script>
 
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>

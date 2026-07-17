@@ -10,14 +10,35 @@
   <rights>All rights reserved 2026, 蒋洪涛</rights>
   <subtitle>一个数学研究生自学计算机的</subtitle>
   <title>计算机学习</title>
-  <updated>2026-06-24T11:57:07.034Z</updated>
+  <updated>2026-06-25T09:16:31.588Z</updated>
+  <entry>
+    <author>
+      <name>蒋洪涛</name>
+    </author>
+    <category term="计算机网洛" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E6%B4%9B/"/>
+    <content>
+      <![CDATA[<h4 id="http状态码">HTTP状态码</h4><h3 id="1-信息响应-1xx-临时通知">1️⃣ 信息响应（1xx）—— 临时通知</h3><p><em>平时不太常见，但有一个是“八股新宠”：</em></p><ul><li><strong>100 Continue</strong>：客户端发了大请求头，服务器回复“你继续发 body 吧”。</li><li><strong>101 Switching Protocols</strong>：服务器同意切换协议（如从 HTTP 升级到 WebSocket）。</li></ul><hr><h3 id="2-成功响应-2xx-一切正常">2️⃣ 成功响应（2xx）—— 一切正常</h3><ul><li><strong>200 OK</strong>：<strong>最经典</strong>。表示请求成功。但对于 <code>DELETE</code> 操作，很多规范建议返回 204 更语义化。</li><li><strong>201 Created</strong>：<strong>创建成功</strong>。通常在 <code>POST</code> 提交数据后返回，并建议在响应头中携带 <code>Location</code> 字段指向新资源的 URI。</li><li><strong>204 No Content</strong>：<strong>处理成功，但没数据返回</strong>。常见于 <code>DELETE</code> 操作或 <code>PUT</code> 更新操作，告诉前端“我搞定了，但响应体是空的，你别解析”。</li></ul><hr><h3 id="3-重定向-3xx-搬家了-请绕行">3️⃣ 重定向（3xx）—— 搬家了，请绕行</h3><p><strong>这是面试中的“文字游戏”重灾区：</strong></p><ul><li><strong>301 Moved Permanently</strong>：<strong>永久重定向</strong>。浏览器会缓存这个地址，下次直接访问新地址（SEO 会将旧权重转移给新地址）。<strong>注意</strong>：请求方法可能从 POST 变为 GET。</li><li><strong>302 Found</strong>：<strong>临时重定向</strong>（旧标准叫 302 Moved Temporarily）。每次还会访问旧地址，再由服务器指路。<strong>注意</strong>：早期规范会改变方法（POST 转 GET）。</li><li><strong>303 See Other</strong>：<strong>明确要求改用 GET</strong>。常用于 <code>POST</code> 提交表单后重定向到结果页（PRG 模式），防止表单重复提交。</li><li><strong>307 Temporary Redirect</strong>：<strong>临时重定向，但方法不变</strong>。如果原来是 POST，重定向时必须还是 POST（替代 302 的语义混乱）。</li><li><strong>308 Permanent Redirect</strong>：<strong>永久重定向，但方法不变</strong>（替代 301 的语义混乱）。</li><li><strong>304 Not Modified</strong>：<strong>缓存命中的身份证</strong>。客户端有缓存，服务器告诉你“内容没变，直接用你本地的”，不会返回响应体。<strong>注意</strong>：它不属于重定向，但归类在 3xx。</li></ul><hr><h3 id="4-客户端错误-4xx-是你-前端-调用方-的问题">4️⃣ 客户端错误（4xx）—— 是你（前端/调用方）的问题</h3><ul><li><strong>400 Bad Request</strong>：<strong>语义错误或参数格式不对</strong>。比如 JSON 格式写错了、必填字段没传。<strong>千万别只返回“400”，一定要在响应体里告诉调用方具体哪个字段错了！</strong></li><li><strong>401 Unauthorized</strong>：<strong>未认证</strong>。用户没登录，或者没提供 Token。<strong>关键</strong>：必须携带 <code>WWW-Authenticate</code> 头信息。</li><li><strong>403 Forbidden</strong>：<strong>已认证，但没权限</strong>。比如普通用户想访问管理员页面。很多公司会用 403 代替 404 来防止目录枚举。</li><li><strong>404 Not Found</strong>：<strong>资源不存在</strong>。可能是 URL 拼错了，也可能是数据库里查无此人。</li><li><strong>405 Method Not Allowed</strong>：<strong>HTTP 方法不对</strong>。比如只支持 <code>POST</code>，你却发了 <code>GET</code>。响应头必须带上 <code>Allow: POST</code> 告知客户端。</li><li><strong>409 Conflict</strong>：<strong>冲突</strong>。常见于编辑冲突（乐观锁版本号不一致），或者用户名已被占用。</li><li><strong>429 Too Many Requests</strong>：<strong>限流了</strong>。请求频率超出限制，通常响应头会带 <code>Retry-After</code> 告诉客户端多久后再试。</li></ul><hr><h3 id="5-服务端错误-5xx-服务器扛不住了">5️⃣ 服务端错误（5xx）—— 服务器扛不住了</h3><ul><li><strong>500 Internal Server Error</strong>：<strong>服务器内部未知错误</strong>。这是最通用的“万金油”报错，通常是代码抛了 NullPointerException 等未捕获异常。</li><li><strong>501 Not Implemented</strong>：<strong>功能未实现</strong>。服务器不认识这个请求方法，或该功能还在开发中。</li><li><strong>502 Bad Gateway</strong>：<strong>网关错误</strong>。通常发生在 Nginx 反向代理场景，意思是**“网关（Nginx）连不上上游服务器（如 Tomcat）”**，比如上游服务挂了或端口不通。</li><li><strong>503 Service Unavailable</strong>：<strong>服务不可用</strong>。服务器超载或正在停机维护。通常运维会配合 Nginx 主动返回此状态码。</li><li><strong>504 Gateway Timeout</strong>：<strong>网关超时</strong>。网关（Nginx）连上了上游服务器（Tomcat），但上游处理时间太久，没在规定时间内返回结果。</li></ul>]]>
+    </content>
+    <id>http://example.com/2026/06/25/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</id>
+    <link href="http://example.com/2026/06/25/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/"/>
+    <published>2026-06-25T09:15:21.000Z</published>
+    <summary>
+      <![CDATA[<h4 id="http状态码">HTTP状态码</h4>
+<h3 id="1-信息响应-1xx-临时通知">1️⃣ 信息响应（1xx）—— 临时通知</h3>
+<p><em>平时不太常见，但有一个是“八股新宠”：</em></p>
+<ul>
+<li><strong>100 Co]]>
+    </summary>
+    <title>HTTP状态码</title>
+    <updated>2026-06-25T09:16:31.588Z</updated>
+  </entry>
   <entry>
     <author>
       <name>蒋洪涛</name>
     </author>
     <category term="cmd命令" scheme="http://example.com/tags/cmd%E5%91%BD%E4%BB%A4/"/>
     <content>
-      <![CDATA[<p>​//—————————————————————1.cmd八个命令：<br>（1）切换C盘、D盘——&gt;D:回车<br>（2）查看当前路径内容——&gt;dir<br>（3）进入单级目录——&gt; cd<br>（8）进入多级目录——&gt;cd 目录1\目录2…<br>（4）回退上一级目录——&gt;cd…<br>（5）回退到根目录——&gt;cd<br>（6）清空当前平面所有内容——&gt;cls<br>（7）退出cmd窗口——&gt;exit</p><p>//——————————————————————2.cmd直接打开电脑软件:<br>（1）环境变量记录各种地址，以便于可以通过cmd窗口直接访问<br>在任意文件夹里打开操作——&gt;需要配置环境变量（就是所谓打开的软件打开处在文件夹的地址）（2）环境变量配置：<br>我的电脑—&gt;空白处右键选择属性——&gt;高级系统设置——&gt;高级——&gt;环境变量——&gt;下方Path配置环境变量</p><p>//——————————————————————-3.JDK文件夹工能解释：<br>bin：存放工具命令（这个文件夹比较重要）conf：存放相关配置文件<br>include：存放一些平台特定头文件<br>jmods：存放各种模块<br>legal：各模块授权文档<br>lib：工具的一些补充JAR包</p>]]>
+      <![CDATA[<p>​//—————————————————————1.cmd八个命令：<br>（1）切换C盘、D盘——&gt;D:回车<br>（2）查看当前路径内容——&gt;dir<br>（3）进入单级目录——&gt; cd<br>（8）进入多级目录——&gt;cd 目录1\目录2…<br>（4）回退上一级目录——&gt;cd…(这里是两个点)<br>（5）回退到根目录——&gt;cd<br>（6）清空当前平面所有内容——&gt;cls<br>（7）退出cmd窗口——&gt;exit</p><p>//——————————————————————2.cmd直接打开电脑软件:<br>（1）环境变量记录各种地址，以便于可以通过cmd窗口直接访问<br>在任意文件夹里打开操作——&gt;需要配置环境变量（就是所谓打开的软件打开处在文件夹的地址）（2）环境变量配置：<br>我的电脑—&gt;空白处右键选择属性——&gt;高级系统设置——&gt;高级——&gt;环境变量——&gt;下方Path配置环境变量</p><p>//——————————————————————-3.JDK文件夹工能解释：<br>bin：存放工具命令（这个文件夹比较重要）conf：存放相关配置文件<br>include：存放一些平台特定头文件<br>jmods：存放各种模块<br>legal：各模块授权文档<br>lib：工具的一些补充JAR包</p>]]>
     </content>
     <id>http://example.com/2026/06/23/cmd%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/</id>
     <link href="http://example.com/2026/06/23/cmd%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/"/>
@@ -30,7 +51,7 @@
 （8）进入多级目录——&gt;	cd 目录]]>
     </summary>
     <title>cmd一些命令</title>
-    <updated>2026-06-24T11:57:07.034Z</updated>
+    <updated>2026-06-24T12:00:34.444Z</updated>
   </entry>
   <entry>
     <author>
@@ -377,23 +398,5 @@
     </summary>
     <title>leetcode-技巧</title>
     <updated>2026-04-21T14:12:06.625Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>蒋洪涛</name>
-    </author>
-    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
-    <content>
-      <![CDATA[<h4 id="1-前缀和技术">1.前缀和技术</h4><p><code>前缀和：</code>前缀和是一种<strong>预处理技术</strong>，通过预先计算数组从起点到每个位置的累加和（一般不包含自己），从而能够<strong>快速（O(1) 时间）查询任意子数组的和</strong>。用空间换查询时间</p><p>一维数组前缀和的构造和查询：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] pre = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>];<span class="comment">//创建一个用于存放前缀和的数组，注意是n+1个，第一个位置存放的是0，用于统一</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    pre[i + <span class="number">1</span>] = pre[i] + nums[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询</span></span><br><span class="line"><span class="comment">// 子数组 [left, rright] 的和（闭区间）</span></span><br><span class="line"><span class="type">int</span> <span class="variable">subSum</span> <span class="operator">=</span> pre[right + <span class="number">1</span>] - pre[left];</span><br></pre></td></tr></table></figure><p>前缀和是算法竞赛和面试中最基础也最实用的技巧之一，<strong>一维用于区间和，二维用于子矩阵和，结合哈希表可高效解决子数组统计问题</strong>。</p><h6 id="典型应用场景">典型应用场景</h6><table><thead><tr><th style="text-align:left">问题类型</th><th style="text-align:left">描述</th></tr></thead><tbody><tr><td style="text-align:left"><strong>子数组和查询</strong></td><td style="text-align:left">给定数组，多次询问不同子区间的和。</td></tr><tr><td style="text-align:left"><strong>统计和为 k 的子数组个数</strong></td><td style="text-align:left">利用前缀和 + 哈希表，O(n) 解决。</td></tr><tr><td style="text-align:left"><strong>连续子数组的最大/最小和</strong></td><td style="text-align:left">结合 Kadane 算法或前缀和极值。</td></tr><tr><td style="text-align:left"><strong>二维区域和检索</strong></td><td style="text-align:left">LeetCode 304. Range Sum Query 2D – Immutable。</td></tr><tr><td style="text-align:left"><strong>差分数组的逆操作</strong></td><td style="text-align:left">对原数组多次区间加减后，通过前缀和恢复原值。</td></tr></tbody></table><h4 id="2-不使用中间变量交换两个整数">2.不使用中间变量交换两个整数</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> t,<span class="type">int</span> s)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(t==s)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    t=t^s;</span><br><span class="line">    s=s^t;</span><br><span class="line">    t=t^s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//异或运算法则: a^a=0;a^0=a;相同元素异或一定是0，任何整数与0异或一定是自身</span></span><br><span class="line"><span class="comment">//但是不适用于浮点数等其他数据类型！</span></span><br></pre></td></tr></table></figure><h4 id="3-滚动数组">3.滚动数组</h4><p>滚动数组（Rolling Array）是动态规划中常用的空间优化技巧，适用于<strong>当前状态只依赖于前一个或前几个状态</strong>的情况。它将原本需要 O(n) 的数组压缩为 O(1) 或 O(k) 的固定大小，通过不断复用数组中的位置来“滚动”更新。</p><p>分析：</p><ul><li>如果 DP 递推式只依赖前一个或前两个状态，那么只需要用有限的变量（或固定大小的数组）覆盖旧值。</li><li>每一轮迭代时，用新值覆盖不再需要的历史值，就像车轮滚动一样。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">dp[i]=dp[i-<span class="number">1</span>]+dp[i-<span class="number">2</span>];</span><br><span class="line"><span class="comment">//启动条件</span></span><br><span class="line">dp[<span class="number">0</span>]=<span class="number">1</span>,dp[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//滚动计算,包含第n次</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    <span class="comment">//计算下次结果</span></span><br><span class="line">    <span class="type">int</span> next=dp[<span class="number">0</span>]+dp[<span class="number">1</span>];</span><br><span class="line">    <span class="comment">//滚动</span></span><br><span class="line">    dp[<span class="number">0</span>]=dp[<span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">1</span>]=next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回</span></span><br><span class="line"><span class="keyword">return</span> dp[<span class="number">1</span>];<span class="comment">//dp[1]是最后一次计算的结果，因为next赋值给了dp[1]</span></span><br></pre></td></tr></table></figure><p>滚动数组通常要求依赖前 <code>k</code> 个<strong>连续</strong>状态（如斐波那契、爬楼梯），对于每次结果的依赖是“跳跃”的，无法用一个固定大小的滑动窗口覆盖所有需要的旧状态。</p><h4 id="4-深度优先遍历和广度优先遍历">4.深度优先遍历和广度优先遍历</h4><h4 id="5-前序中序后序遍历">5.前序中序后序遍历</h4><p>介绍一下前中后序遍历，主要是左子树、右子树、根节点的顺序关系：</p><p>前序：根节点-&gt;左子树-&gt;右子树</p><p>中序：左子树-&gt;根-&gt;右子树</p><p>后序：左子树-&gt;右子树-&gt;根</p><p>（可以形象的理解成根在左子树、右子树相对的位置顺序）左子树输出的优先级高一些！</p><h6 id="应用场景">应用场景</h6><table><thead><tr><th>遍历方式</th><th>顺序</th><th>特点</th></tr></thead><tbody><tr><td>前序</td><td>根 → 左 → 右</td><td>用于树的复制、前缀表达式</td></tr><tr><td>中序</td><td>左 → 根 → 右</td><td>BST输出有序序列</td></tr><tr><td>后序</td><td>左 → 右 → 根</td><td>用于删除树、后缀表达式</td></tr></tbody></table>]]>
-    </content>
-    <id>http://example.com/2026/04/21/%E7%AE%97%E6%B3%95%E6%80%9D%E8%80%83/</id>
-    <link href="http://example.com/2026/04/21/%E7%AE%97%E6%B3%95%E6%80%9D%E8%80%83/"/>
-    <published>2026-04-21T01:37:43.000Z</published>
-    <summary>
-      <![CDATA[<h4 id="1-前缀和技术">1.前缀和技术</h4>
-<p><code>前缀和：</code>前缀和是一种<strong>预处理技术</strong>，通过预先计算数组从起点到每个位置的累加和（一般不包含自己），从而能够<strong>快速（O(1) 时间）查询任意子数组的]]>
-    </summary>
-    <title>算法思考.md</title>
-    <updated>2026-05-19T02:30:41.464Z</updated>
   </entry>
 </feed>
