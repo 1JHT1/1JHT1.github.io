@@ -435,7 +435,7 @@ lib：工具的一些补充JAR包</p>
 
     
     <article
-  id="post-agent问题"
+  id="post-agent八股"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -446,8 +446,8 @@ lib：工具的一些补充JAR包</p>
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2026/05/25/agent%E9%97%AE%E9%A2%98/"
-    >agent问题</a> 
+  <a class="article-title" href="/2026/05/25/agent%E5%85%AB%E8%82%A1/"
+    >agent八股</a> 
 </h2>
  
 
@@ -457,7 +457,7 @@ lib：工具的一些补充JAR包</p>
 
     
     <div class="article-meta">
-      <a href="/2026/05/25/agent%E9%97%AE%E9%A2%98/" class="article-date">
+      <a href="/2026/05/25/agent%E5%85%AB%E8%82%A1/" class="article-date">
   <time datetime="2026-05-25T08:56:16.000Z" itemprop="datePublished">2026-05-25</time>
 </a>
       
@@ -479,6 +479,172 @@ lib：工具的一些补充JAR包</p>
         <h4 id="1-项目所使用的-lombok-版本与当前的-java-编译器版本不兼容">1.项目所使用的 Lombok 版本与当前的 Java 编译器版本不兼容</h4>
 <h4 id="2-spring-bean的循环依赖">2.Spring Bean的循环依赖</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">The dependencies of some of the beans in the application context form a cycle:</span><br><span class="line">   marketingCopyAgent defined in file [D:\DSAGENT\target\classes\com\ecommerce\agent\MarketingCopyAgent.class]</span><br><span class="line">┌─────┐</span><br><span class="line">|  chatClientBuilder defined in <span class="keyword">class</span> <span class="title class_">path</span> resource [com/ecommerce/config/LLMConfig.class]</span><br></pre></td></tr></table></figure>
+<h3 id="3-核心框架">3.核心框架</h3>
+<p>大模型基本框架：Transformer架构和核心组件、自注意力机制、Encode-Only和Decoder-Only代表模型及其区别、大模型输入文本到输出的整个运行机制、KV缓存</p>
+<p>**RAG：**RAG全流程：解析-&gt;清洗-&gt;索引-&gt;分块-&gt;向量化-&gt;检索-&gt;重排-&gt;上下文组装-&gt;生成与应用；向量模型选型及其区别、分块策略选型、向量检索和关键词检索的区别、检索策略优化</p>
+<p>大模型开发框架学习：Langchain、Langgraph</p>
+<p>Agent: <strong>核心组件、推理范式（Agent和workflow区别）、记忆管理（长短期记忆、短期记忆上下文工程、记忆更新和读写）、工具（Function Calling方式）Multi-Agent架构、通信机制、A2A</strong></p>
+<p>**MCP:**核心组件、调用流程、通信机制、MCP、CLI和function Calling的区别、优缺点</p>
+<p>**Skill:**实现方式、渐进式披露特点、MCP、CLI、SKILLs和function Calling的区别、如何协同</p>
+<p>**主流agent:**openclaw和harmes区别、harness机制、claude code中的harness实现</p>
+<h3 id="4-用的agent框架是什么？react模型还是plan-and-execute">4.用的Agent框架是什么？ReAct模型还是Plan-and-Execute?</h3>
+<p>ReAct的精髓在于思考-&gt;行动-&gt;观察的迭代循环，类似边走边想，而Plan-and-Execute是先生成完整计划再按计划执行。、</p>
+<p>ReAct根据每一步的观察结果动态灵活调整下一步，<strong>适用于开放式、具有探索性的任务</strong>（信息检索、科研探索）</p>
+<p>Plan-and-Execute在开始就确定好所有步骤、执行，<strong>适用于结构化、流程化任务</strong>（如生成报告、数据处理）</p>
+<h3 id="5-怎么让模型不瞎编参数-准确调用工具？">5.怎么让模型不瞎编参数、准确调用工具？</h3>
+<p>一是用模型自带的function calling,它返回的就是结构化数据，直接解析</p>
+<p>二是如果模型不支持function calling，就把工具定义写清楚，参数类型、必填项、例子给足、在Prompt里硬性要求输出json，再加一层正则解析和格式校验，不对则重试最多2次，关键参数会在后端设置默认兜底值</p>
+<h3 id="6-agent的记忆怎么搞？长期短期分别怎么存？">6.Agent的记忆怎么搞？长期短期分别怎么存？</h3>
+<p>(1)<code>短期记忆</code>：是<strong>当前对话或任务执行过程中的上下文状态</strong>，具有易失性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">怎么存？</span><br><span class="line">存当前轮次的对话历史，尚为完成的中间变量、ReAct循环中的Thougt-Action-Observation</span><br><span class="line">一种是基于内存存储（如redis或进程的deque双端队列，读写要求高）</span><br><span class="line">一种是滑动窗口（存储最新的N轮对话，超出的直接丢弃）</span><br><span class="line">当上下文快溢出的时候，触发LLM对历史对话进行压缩总结，将冗长的轨迹提炼为一段精简的“摘要”赛回提示词中。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>(2)<code>长期记忆</code>：<strong>跨会话（Session）持久化的知识和事实</strong>，类似agent的硬盘</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">存储分为两种方式：</span><br><span class="line">一种是通过向量数据库或传统的关系型数据库，进行的语义记忆（客观事实和领域知识）</span><br><span class="line">一种是图数据库或关系型数据库，用户过去的经历、偏好的历史交互事件</span><br></pre></td></tr></table></figure>
+<p>(3)<code>短期记忆转长期记忆机制</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">(4)`长期记忆到短期记忆的“检索召回”`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>
+### 7.一个agent大概有几个部分组成？
+
+大体上分为：**LLM+Tool+Memory+Planning**
+
+**LLM**提供推理的大脑，**Memory**提供对话的历史上下文和先验知识，**Planning**复杂将复杂目标拆解成课执行的子步骤，**Tools**负责具体实施这些方案。这四者通过一个不间断的控制循环（Loop)串联：LLM根据Memory和当前状态进行Planning，决策后调用Tool获取Observation，Observation再作为新的Memory回写入上下文，如此往复到任务结束。
+
+### 8.Tools
+
+由于大模型只擅长回答问题，但是无法感知或者改变外界环境，这个时候tools应运而生，给大模型LLM接上工具，例如读写文件内容工具、运行终端工具等
+
+（1）如何定义一个工具Tool:
+
+要让LLM准确理解并调用工具，工具定义必须包含三个硬性构成（通常是JSON Schema):
+
+**name**（名称）：唯一标识符，清晰表达功能
+
+**Description**（描述）：这是LLM决定是否调用这个工具的依据，需要写清楚何时用、何时一定不能用。
+
+**参数结构**（JSON Schema）：定义必填项、类型、枚举值和取值范围，**防止模型瞎编参数！**
+
+（2）Tools的生命周期？
+
+一个工具调用在系统经历三步：
+
+注册：将工具的函数名、描述、Schema注册进Agent的工具箱里
+
+选择：LLM接收到用户问题，通过Function Calling 机制，从工具箱选出一个或多个工具，并生成符合Schma的JSON参数
+
+执行和回写：系统层解析JSON，执行本地函数，将拿到的结果再回写到LLM的上下文，供生成最终恢复
+
+（3）Tools分为两类：一类是只读工具、一类是写入工具，对于只读工具可直接自动执行，对于写入工具需要引入**人工确认**，先返回确认指令，等用户确认后再真正执行，同时支持幂等性，
+
+（4）Tool的粒度与封装？
+
+粗粒度工具特点：一个工具只做一件大事，优点调用简单，缺点复用性差，浪费token‘
+
+细粒度工具特点：通过拆分，将原子化的、高复用的操作定义为Tool，将复杂的业务流程通过Planning层面的工作流来组装，不封装成一个巨大的Tool
+
+（5）以前Tools是私有协议，现在遵循MCP标准，把**Tools变成可插拔的标准化服务器**，启动一个MCP Server，Agent就可以自动发现并调用里面的Tools，实现工具和Agent的解耦
+
+### 9.Panning
+
+对于普通大模型只能进行单点问答，难以处理复杂模糊的多步骤任务，而加上Planning，则**可以将一个模糊、复杂的用户意图，转化为一些列清晰、可执行、有依赖关系的动作序列**，**将不确定的生成问题转化为确定性的流程编排**
+
+（1）Planning的主流规划模式？（范式）
+
+**隐式规划（CoT思维链）**：LLM内部想一想就直接输出结果，不显示输出步骤不调用Tool。
+
+适用场景：数学题、逻辑推理
+
+**动态规划（ReAct）**：走一步看一步，每执行一步就根据反馈思考下一步。
+
+适用场景：开放世界、不确定性高的问题
+
+**显示/全局规划（Plan-and-Execute）**：开始前先生成一个整套完整的子任务列表（DAG有向无环图），按图依次执行。
+
+适用场景：流程固定、步骤明确的问题
+
+（2）Planning模块的内部构成
+
+**分解器：**负责将目标拆解为原子化的子任务。
+
+**依赖解析器：**识别子任务键的先后依赖和并行可能。
+
+**重规划器：**当某个子任务执行失败或者返回异常结果是，触发重新规划，不是直接报错，而是将错误信息交给大模型，让其反思并修正后续步骤。
+
+（3）Plan生成幻觉和长序列规划的失忆问题？
+
+对于Plan生成幻觉，**引入计划验证，生成计划后先不执行，而是过一遍沙盒校验，**检查依赖的Tool是否存在，参数格式是否正确，不合理立即要求LLM重写
+
+对于长序列规划的失忆，**引入全局进度，将生成的Plan持久化存储为一张表格或者md待办清单，每完成一步就勾选，并显示剩余步骤，减轻LLM上下文记忆负担。**
+
+（4）基于**LangGraph**或**Temporal**这类有向图框架来构建Planning，将计划定义为**状态机（State Machine）**。核心优势是：**支持节点间的条件分支**（If-Else）和**循环重试**（Retry Loops），且任何节点执行出错时，状态机都能将全局状态回滚到上一个安全检查点（Checkpoint），实现企业级的容错规划。”
+
+### 10.Memory
+
+（1）三层存储结构
+
+按读写速度和生命周期划分：
+
+一级缓存（工作记忆）：短期记忆**存储当前轮次的对话原文、ReAct的思考轨迹，刚拿到的工具返回值**，存储介质：**上下文窗口+Redis缓存**
+
+二级缓存（情景记忆）：中期记忆**存储本次会话已经完成的子任务摘要、中间计算变量**，存储介质：**内存字典或本地文件**
+
+三级持久化（长期记忆）：**长期记忆跨会话的用户画像、历史知识库、过往决策经验**，存储介质：向量数学库+关系型/图数据库
+
+加分tip:**冷热数据分离**。热数据（当前会话）放Redis，冷数据（历史会话）压缩后存对象存储（S3），需要时再通过检索拉回
+
+
+
+### 11.多智能体怎么协作？
+
+（1）多智能体有3种经典的协作模式：
+
+**监督者模式：**一个主控Agent负责接收任务、拆解分发、并汇总多个子agent的结果（LangGraph的create_supervisor）
+
+适用场景：任务类型多变，需要路由。
+
+**层级/流水线模式：**Agent A处理完将产出直接喂给AgentB ,依次递推（AutoGen的ConversableAgent链式调用）
+
+适用场景：流程固定、步骤分明的任务。
+
+**群聊/辩论模式：**所有Agent地位平等，通过投票或指定轮次达成共识（AutoGen的GroupChatManager）
+
+适用场景：开放性、高复杂度的决策
+
+（2）智能体间的通信方式
+
+**基于消息队列（异步通信）：**通过RabbitMQ/Kafka传递事件，优势是解耦，生产Agent不需要等待消费Agent处理完，适合耗时的任务。
+
+
+
+**基于共享内存（同步通信）：**维护一个全局状态字典，所有Agent都从同一个State中读取数据和协数据；优势是容易实现回滚和人工审查
+
+
+
+（3）多Agent的一些问题
+
+* 出现无限循环（AgentA觉得不对，AgentB反驳觉得对，陷入死循环）
+
+  解决方式：可以硬性轮次限制、或者引入仲裁者Agent，在达到最大轮次后强制做出最终裁决，同时检测语义重复度，高度重复立即截断。
+
+  
+
+* 协作开销大于收益（一个简单问题也触发多Agent机制）
+
+  解决方式：意图判断，在顶层加一个轻量的分发器，简单问题直接返回，复杂问题才启动多Agent协同。
+
+  
+
+* 工具竞争与资源冲突（两个Agent同时去修改同一个数据库记录，导致数据错乱）
+
+  解决方式：引入分布式锁，或强制写操作必须串行化，由Supervisor统一代理执行，子Agent只建议。
+
+**主流趋势不是让Agent‘自由聊天’，而是引入‘确定性工作流（DAG）’来约束协作**
+
+
+
+
+
+12.工具调用失败、超时怎么办？
+
+</code></pre>
 
       
 
