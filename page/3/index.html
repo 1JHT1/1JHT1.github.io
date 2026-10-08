@@ -1174,6 +1174,14 @@ nums[i], &amp; i = 0 \\
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">在 Redis 主从异步复制的架构下，确实存在这种极端情况导致数据丢失的风险。为了在秒杀场景下保证数据不丢失，我的项目采用了以下策略：</span><br><span class="line"><span class="number">1.</span>Redis 仅作为热数据缓存，不作为最终权威数据源。Lua 脚本扣减的是 Redis 中的“虚拟库存”，即使丢失，也可以从数据库恢复。</span><br><span class="line"><span class="number">2.</span>同步写入 Kafka，再由消费者异步落库。数据库事务保证最终一致性，并且通过消息重试机制防止丢失。</span><br><span class="line"><span class="number">3.</span>主从切换时，如果脚本执行了一半，可能会出现 Redis 与数据库不一致。我会设置一个 定时对账任务，扫描数据库订单和 Redis 库存的差异，进行补偿修复。</span><br><span class="line"><span class="number">4.</span>如果对一致性要求极高，可以使用 WAIT 命令 或 Redisson 的分布式锁，但会牺牲部分性能。在秒杀场景下，我更倾向于异步补偿 + 最终一致性。</span><br><span class="line"></span><br><span class="line"><span class="comment">//“为什么不用 Zookeeper 或 etcd 来保证强一致性？”</span></span><br><span class="line"></span><br><span class="line">Zookeeper 使用 ZAB 协议，写操作需要多数节点确认，能保证强一致性，但吞吐量远低于 Redis（ZK 适合配置管理，不适合秒杀）。秒杀场景更看重 高吞吐 + 最终一致性，Redis + 异步落库是更合适的组合。</span><br></pre></td></tr></table></figure>
 <p><img src="C:/Users/%E8%92%8B%E6%B4%AA%E6%B6%9B/AppData/Roaming/Typora/typora-user-images/image-20260417205619599.png" alt="image-20260417205619599"></p>
 <h4 id="9-秒杀结束后-库存key和用户记录key还需要保留吗？如何设计清理策略？">9.秒杀结束后，库存key和用户记录key还需要保留吗？如何设计清理策略？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">#### 10、lua脚本执行到一半，redis突然宕机，那脚本执行了吗？</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>是的，脚本中已成功执行的写操作会生效。<br>
+原因很简单：<br>
+无回滚机制：Redis 执行 Lua 脚本时，每一条写命令执行后都会立刻写入内存，无法撤回。<br>
+宕机影响：脚本中断后，已经执行的命令效果永久保留在内存中。重启后，这些数据是否能恢复，取决于你的持久化配置（AOF 或 RDB），未及时落盘的部分可能丢失。<br>
+简单说：执行成功的部分算数，没有“撤销”这回事。 如果需要安全性，建议将脚本设计为幂等操作。</p>
+<pre><code>
+</code></pre>
 
       
 

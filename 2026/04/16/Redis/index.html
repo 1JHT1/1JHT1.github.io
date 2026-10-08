@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">3k</span>
+            <span class="post-count">3.2k</span>
         </span>
     </span>
 
@@ -146,7 +146,45 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">###redis配置文件里RDB默认开启，AOF需要手动配置开启</span><br><span class="line">    </span><br><span class="line"><span class="number">7.1</span>-RDB（数据快照）</span><br><span class="line">    RDB异步持久化-bgSave开启一个子进程，？？？由子进程读取内存数据集以二进制快照形式写入磁盘，生成.rdb文件，通过fork()子进程完成，父进程继续处理客户端请求，子进程负责写入临时文件、写入完成后替换旧文件。</span><br><span class="line">    优点--&gt;文件紧凑，恢复速度快，对性能影响小</span><br><span class="line">    缺点--&gt;【可能丢失最后一次快照后的数据】、数据量大，fork()耗时导致服务停顿、无法实时持久化。</span><br><span class="line">    </span><br><span class="line"><span class="number">7.2</span>-AOP(AOF刷盘)</span><br><span class="line">    记录每个写命令到日志文件，redis重启时重放所有写命令来恢复数据。（always、everysec、no）</span><br><span class="line">    优点--&gt;数据安全性高，always下可做到不丢失数据；可读性强，AOF文件时纯文本命令格式，便于手动恢复</span><br><span class="line">    缺点--&gt;文件体积比RDB大，恢复速度慢、磁盘写入压力大时影响性能。</span><br><span class="line"></span><br><span class="line"><span class="number">7.3</span>-混合持久化（redis4<span class="number">.0</span>)</span><br><span class="line">    同时开启RDB和AOF，生成一个混合文件，前半部分是RDB格式快照、后面追加AOF格式的增量命令。重启时，先加载RDB再重放AOF增量，兼顾恢复速度和数据安全性。</span><br><span class="line">    缺点-&gt;实现复杂，不支持旧版Redis</span><br><span class="line">    优点-&gt;重启恢复速度快，数据丢失少，文件体积小于AOF。</span><br><span class="line">    </span><br><span class="line">【通常生产环境建议：混合持久化 + 从库定期 RDB 备份。】</span><br></pre></td></tr></table></figure>
 <h4 id="8-说说redis与数据库如何保持双写一致性？">8.说说Redis与数据库如何保持双写一致性？</h4>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">### 为什么会产生不一致？</span><br><span class="line">（1）写操作-&gt;更新数据库需要同步或删除缓存</span><br><span class="line">	两个操作（更新DB/操作缓存）无法做到完全原子，中间存在时间窗口</span><br><span class="line">（2）并发读写-&gt;一个线程更新数据库，另一个线程读取旧数据并回写缓存，导致脏数据</span><br><span class="line">	多个线程交错执行，读线程可能拿到旧数据并回写缓存，覆盖了新数据</span><br><span class="line">（3）redis异常情况-&gt;更新数据库成功但删除缓存失败，或这删除缓存成功但更新数据库失败</span><br><span class="line">	一个操作成功，另一个失败，导致两者状态不同步</span><br><span class="line">	</span><br><span class="line">对于使用先删除缓存再更新数据库的模式导致的缓存一致性问题，可以采用【延迟双删策略】把可能被其他线程错误回写的脏缓存再次清理掉。</span><br><span class="line"></span><br><span class="line">解决方案-&gt;</span><br><span class="line">`	（1）使用缓存过期时间</span><br><span class="line">	（2）重试机制（删除缓存失败，发送消息队列异步重试）</span><br><span class="line">	（3）分布式锁限制并发写（影响性能）</span><br><span class="line">	（4）采用先更新数据库再删缓存，并保证删除成功（配合消息队列重试）</span><br></pre></td></tr></table></figure>
-<h4 id="9-redis的zset怎么实现？">9.Redis的Zset怎么实现？</h4>
+<h4 id="9-redis的数据类型和底层数据结构？">9.Redis的数据类型和底层数据结构？</h4>
+<p>五大基础类型及应用场景</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">底层核心数据结构</th>
+<th style="text-align:left">经典应用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>String (字符串)</strong></td>
+<td style="text-align:left">SDS（简单动态字符串）</td>
+<td style="text-align:left">缓存对象、分布式锁、计数器、Session共享</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Hash (哈希)</strong></td>
+<td style="text-align:left">ZipList + Hashtable</td>
+<td style="text-align:left">存储对象（如用户信息）、购物车</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>List (列表)</strong></td>
+<td style="text-align:left">QuickList（双向链表+ZipList）</td>
+<td style="text-align:left">消息队列（简单版）、最新消息列表、粉丝列表</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Set (集合)</strong></td>
+<td style="text-align:left">IntSet + Hashtable</td>
+<td style="text-align:left">标签（Tag）、抽奖、共同好友（交集运算）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>ZSet (有序集合)</strong></td>
+<td style="text-align:left"><strong>SkipList（跳表）</strong> + ZipList</td>
+<td style="text-align:left">排行榜、延时队列、带权重的消息队列</td>
+</tr>
+</tbody>
+</table>
+<h4 id="10-redis的zset怎么实现？">10.Redis的Zset怎么实现？</h4>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">底层根据元素数量和大小自动切换：</span><br><span class="line">	元素较少、较小-------&gt;ziplist(压缩跳表)</span><br><span class="line">	元素较多、较大-------&gt;skiplist+dict(跳表+字典)</span><br><span class="line">切换条件:Zset元素个数&lt;=128，且每个元素（member+score)的字符串长度&lt;=64字节时使用ziplist，超过任何一个阈值底层切换成skiplist和dict（哈希表）。</span><br><span class="line"></span><br><span class="line">9.1-跳表（skiplist）</span><br><span class="line">	跳表是一种多层链表，通过概率生成的索引层实现O(logN)的平均、插入、删除复杂度</span><br><span class="line">只使用跳表：查找某个 member 的 score 需要 O(log N) 时间；哈希表提供 O(1) 的 member → score 映射，让 ZSCORE 等命令非常快。</span><br></pre></td></tr></table></figure>
 <h4 id="10-redis分布式锁">10.Redis分布式锁</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">######分布式锁用于在分布式系统（多进程、多机器）中【控制共享资源的互斥访问】。Redis 因其高性能、单线程原子操作成为实现分布式锁的常用组件。</span><br><span class="line">    </span><br><span class="line">   借助Redis的原子命令SET key Value NX EX timeout</span><br><span class="line">NX:只要key不存在时才设置成功，EX设置过期时间，防止死锁</span><br><span class="line"></span><br><span class="line">加锁-&gt;    SET lock_key unique_value NX EX <span class="number">30</span></span><br><span class="line">释放锁-&gt;	ua 脚本实现原子性：先 GET 判断 value 是否匹配，匹配则 DEL。</span><br><span class="line"> <span class="keyword">if</span> redis.call(<span class="string">&quot;get&quot;</span>, KEYS[<span class="number">1</span>]) == ARGV[<span class="number">1</span>] then</span><br><span class="line">    <span class="keyword">return</span> redis.call(<span class="string">&quot;del&quot;</span>, KEYS[<span class="number">1</span>])</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">end</span><br><span class="line">    </span><br><span class="line">【【【问题优化】】】</span><br><span class="line">   (<span class="number">1</span>) 锁过期但是业务还没完成，此时锁提前释放，其他进程获得锁，造成并发问题</span><br><span class="line">【Watchdog机制】，加锁后启动后台定时线程，每隔一段时间（锁过期的<span class="number">1</span>/<span class="number">3</span>）为锁续期---&gt;Redisson</span><br><span class="line">   (<span class="number">2</span>)主从架构，主节点加锁成功后未同步到从节点就宕机了，从节点提升为主节点，锁信息丢失，另一客户端重复加锁</span><br><span class="line">【Redlock算法】使用多个独立的Redis案例（&gt;=<span class="number">5</span>）,客户向所有实例请求加锁，当成功一半+<span class="number">1</span>才认为加锁成功。</span><br><span class="line">   </span><br><span class="line">【【【实现方案】】】</span><br><span class="line">简单场景：单 Redis + SET NX + Lua 即可。</span><br><span class="line">生产推荐：使用 Redisson，它封装了看门狗、可重入、公平锁等特性。</span><br><span class="line">极高可靠性：用 Redlock 或 Zookeeper。</span><br><span class="line"></span><br><span class="line">【【【Zookeeper分布式锁对比】】】</span><br><span class="line">性能没有redis好，因为Zookeeper为了确保数据一致性和持久性，每次写操作会都会先写入事务日志到【磁盘】，然后才更新内存。Zookeeper集群与客户端之间的请求都是【网络】通信，网络开销比单纯内存操作慢。</span><br><span class="line"></span><br><span class="line">【【【场景选择】】】</span><br><span class="line">Zookeeper的数据一致性优先，Redis的性能优先（高并发下的吞吐量）</span><br><span class="line">Zookeeper -&gt;金融支付、库存扣减、配置管理</span><br><span class="line">Redis-&gt;高并发、低延迟（如秒杀、抢购），并且可以接受极端情况下极低概率的数据不一致，</span><br></pre></td></tr></table></figure>

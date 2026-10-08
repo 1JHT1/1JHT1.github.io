@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">2.6k</span>
+            <span class="post-count">2.7k</span>
         </span>
     </span>
 
@@ -98,7 +98,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">9 min</span>
+            <span class="post-count">10 min</span>
         </span>
     </span>
 </div>
@@ -142,6 +142,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">###Scope决定了Bean的生命周期和可见范围</span><br><span class="line"></span><br><span class="line">默认：singleton-&gt;容器内只有一个实例，所有请求共享</span><br><span class="line">prototype-&gt;每次获取（getBean或<span class="meta">@autowired</span>）都会创建新实例。Spring容器只负责创建，不管理其完整生命周期（不自动销毁）</span><br><span class="line">request（仅web应用）-&gt;每个HTTP请求创建一个新实例，请求结束Bean销毁</span><br><span class="line">session（仅web应用）-&gt;每个HTTP session共享一个实例</span><br><span class="line">application（仅web）-&gt;整个ServletContext级别，类似singleton但作用域在web上下文</span><br><span class="line">websocket（仅web）-&gt;每个websocket会话一个实例</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">作用域声明：<span class="meta">@Scope(&quot;prototype&quot;)</span> <span class="meta">@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</span></span><br><span class="line">作用域代理:当 singleton Bean 注入 request/session Bean 时，需要插入一个代理（<span class="meta">@Scope(value = &quot;request&quot;, proxyMode = ScopedProxyMode.TARGET_CLASS)</span>）。因为每次 HTTP 请求需要获取不同实例，代理会在每次调用时从当前请求中查找真实 Bean。</span><br><span class="line">自定义作用域：实现 Scope 接口</span><br><span class="line">    </span><br><span class="line">Q：request 作用域的 Bean 如何注入到 singleton Controller 中？</span><br><span class="line">A：使用 <span class="meta">@Scope(value = &quot;request&quot;, proxyMode = ScopedProxyMode.TARGET_CLASS)</span> 注入代理。</span><br></pre></td></tr></table></figure>
 <h4 id="10-springboot自动装配原理">10.SpringBoot自动装配原理</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">### 能让第三方库的组件自动注入 IoC 容器，开发者无需手动编写繁琐的配置。</span><br><span class="line">### 与普通 Spring 项目区别：传统 Spring 需要自己写 &lt;context:component-scan&gt; 和 &lt;bean&gt; 配置，Spring Boot 则把这些默认配置封装在 starter 里，只需引入依赖即可。</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> 在SpringBoot项目的引导类上有一个注解叫 <span class="meta">@SpringBootApplication</span>，</span><br><span class="line">在这个注解的里面，又有一个注解叫做：<span class="meta">@EnableAutoConfiguration</span> 即触发了自动装配</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> <span class="meta">@EnableAutoConfiguration</span> 是实现自动化配置的核心注解。</span><br><span class="line">该注解里面 通过 <span class="meta">@Import</span> 注解导入了一个 自动配置导入选择器类 AutoConfigurationImportSelector</span><br><span class="line">在 自动配置导入选择器类 里会读取（该项目和该项目引用的）Jar 包的 META-INF/spring.factories文件</span><br><span class="line">在这些文件中记录了配置类的全类名，通过全类名找到对应的配置类，配置类中定义了Bean，</span><br><span class="line">再判断定义的Bean是否加了条件注解是否生效决定是否将其Bean的实例加载到Sping容器中</span><br><span class="line">（条件注解例如<span class="meta">@ConditionalOnClass(xx)</span>判断是否有对应的class文件(依赖)，如果有则加载该Bean）</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<h4 id="11-vo-po-dto">11.VO、PO、DTO</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DTO：用于数据传输，通常在服务层与表现层之间传递数据，目的是优化数据传输效率。</span><br><span class="line">VO：用于表现层，通常是业务数据的封装，直接用于前端显示。</span><br><span class="line">PO：用于持久化，直接与数据库中的表结构对应，是 ORM 框架操作数据库的基础。</span><br></pre></td></tr></table></figure>
 
       
 
