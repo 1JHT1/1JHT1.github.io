@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">481</span>
+            <span class="post-count">779</span>
         </span>
     </span>
 
@@ -98,7 +98,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -132,6 +132,11 @@
 <p>RAG价值:	<strong>知识可热更新、答案可溯源</strong>、<strong>降低大模型幻觉</strong></p>
 <h3 id="2-rag-中的文档是怎么存的？粒度是多大？详细说说文档切割-chunking-策略？">2.RAG 中的文档是怎么存的？粒度是多大？详细说说文档切割（Chunking）策略？</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">文档不能直接存进向量库，必须先切成小块也就是chunk，每个chunk分别向量化之后存成一条记录。</span><br><span class="line"></span><br><span class="line">每条记录我理解有三个核心部分：向量用于相似度检索，原始文本是检索命中之后塞给LLM读的内容，metadata是来源文件、页码这些附加信息，用于过滤和溯源。这两个东西缺一不可，向量负责找到，原文负责阅读。</span><br><span class="line"></span><br><span class="line">切割粒度没有固定答案，通常500到1000个token是一个合理的起点，但更重要的是根据文档类型来选策略，普通文本用固定大小加重叠，有标题结构的文档按语义边界切，代码按函数切，如果既要检索精度又要上下文完整的话，我会用父子切割，也就是小块检索、大块返回。</span><br></pre></td></tr></table></figure>
+<h4 id="3-rag-中文档切块-chunking-策略与-chunk-size-overlap-选择">3.<strong>RAG 中文档切块（Chunking）策略与 chunk size / overlap 选择</strong></h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">分块策略？</span><br><span class="line">(1)固定长度切块---固定 token 数或字符数切分---适合无结构文本，但容易切断语义</span><br><span class="line">(2)按分隔符递归切块---按段落、换行、句号、分号等层级递归切分</span><br><span class="line">(3)按文档结构切块---按标题、章节、小节、条款、FAQ 问答对切分---适合 Markdown、HTML、PDF 报告等结构化文档</span><br><span class="line">(4)语义切块---先按句子切分，再根据相邻句子的 embedding 相似度判断语义边界---语义连贯性更好，但计算成本更高，工程复杂度更大。</span><br><span class="line">(5)滑动窗口切块---固定窗口加 overlap，保证跨块上下文不丢失</span><br><span class="line">(6)父子块 / 小到大检索---用小块做向量检索，命中后返回父块或相邻块给大模型。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">chunk size如何选择？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">overlap选择?</span><br><span class="line">overlap 一般设为 chunk size 的 10%～20%。</span><br><span class="line">结构化文档、段落边界清晰时 overlap 可以小；连续叙述文本可适当增大。</span><br><span class="line">overlap 太大会导致重复内容多、向量库膨胀、检索冗余。</span><br></pre></td></tr></table></figure>
+<h4 id="4-切块过大或者过小的问题？">4.切块过大或者过小的问题？</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="5">5.</h4>
 
       
 
@@ -203,6 +208,15 @@
   
     
   <nav class="article-nav">
+    
+      <a href="/2026/11/08/%E8%87%AA%E6%B5%8B%E9%9D%A2%E8%AF%95-md/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            自测面试.md
+          
+        </div>
+      </a>
     
     
       <a href="/2026/06/25/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" class="article-nav-link">
